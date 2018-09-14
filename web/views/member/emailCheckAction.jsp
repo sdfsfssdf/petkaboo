@@ -50,7 +50,7 @@
 
 		script.println("alert('인증에 성공했습니다.');");
 
-		script.println("location.href = 'index.jsp'");
+		script.println("location.href = '../../index.jsp'");
 
 		script.println("</script>");
 
