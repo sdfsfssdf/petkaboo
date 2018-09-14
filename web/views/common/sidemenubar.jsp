@@ -13,6 +13,7 @@
 	height: 800px;
 	padding: 0;
 	height: 700px;
+	float: left;
 }
 
 ul#navi{

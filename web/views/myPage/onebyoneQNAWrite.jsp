@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.pkb.member.model.vo.User" %>
+<% 
+	User loginUser = (User)session.getAttribute("loginUser"); 
+%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +24,11 @@
 </style>
 </head>
 <body>
+<%-- <%
+
+
+if(loginUser != null){ %> --%>
+
 	<h1 align="center" id="logo">로고</h1>
 	<br>
 	<%@ include file="../common/menubar.jsp"%>
@@ -32,13 +41,13 @@
 		<form action="<%=request.getContextPath() %>/insertQna.bo" method="post">
 			<div class="title">
 
-				<input type="text" class="form-control" id="usr"
-					placeholder="제목을 입력하세요.">
+				<input type="text" class="form-control"
+					name="onebyonetitle" placeholder="제목을 입력하세요.">
 			</div>
 			<br>
 			<div class="content">
-				<textarea class="form-control" rows="20" cols="30" id="comment"
-					placeholder="내용을 입력하세요."></textarea>
+				<textarea class="form-control" rows="20" cols="30"
+					name="onebyonecontent" placeholder="내용을 입력하세요."></textarea>
 			</div>
 			<br>
 			<div class="btns" align="center">
@@ -48,7 +57,11 @@
 			</div>
 		</form>
 	</div>
+<%-- <%}else{ 
+	
+	request.getRequestDispatcher("../common/login.jsp").forward(request,response);
 
+}%> --%>
 
 </body>
 </html>
