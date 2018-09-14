@@ -22,7 +22,7 @@
 	
 	.menu{
 		width:18%;
-		height:200px;
+		height:230px;
 		margin:3%;
 		display:inline-block;
 		text-align: center;
@@ -91,6 +91,7 @@
 		height:200px;
 		background:lightgray;
 	}
+	
 </style>
 
 </head>
@@ -99,12 +100,8 @@
 	<h1 align="center" id="logo">로고</h1><br>
 	<%@ include file="views/common/menubar.jsp" %>
 	
-	<div id="topView">
-		<img src="images/mainPageImgs/topImg.jpg">
-		<form class="navbar-form pull-left">
-  			<input type="text" class="span2">
- 		 	<button type="submit" class="btn">제출</button>
-		</form>
+	<div id="searchBox">
+	<%@ include file="views/common/mainSearchForm.jsp" %>
 	</div>
 	
 	<div class="paddingDiv"></div>

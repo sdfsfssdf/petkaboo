@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet"
@@ -12,7 +12,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>펫시터 등록</title>
 <style>
 .contentArea {
 	margin-top: 80px;
@@ -37,12 +37,13 @@ label {
 <body>
 	<h1 align="center" id="logo">로고</h1>
 	<br>
-	<%@ include file="WEB-INF/menubar.jsp"%>
-	<%@ include file="WEB-INF/myPageSidebar.jsp"%>
+	<!-- 인클루드 파일 경로 수정 필요 -->
+	<%@ include file="/views/common/menubar.jsp"%>
+	<%@ include file="/views/common/sidemenubar.jsp"%>
 
 	<div class="contentArea">
 		<h2>펫시터 서비스 등록</h2>
-		<p>원하는 펫시터 서비스를 등록할 수 있습니다.</p>
+		<p>펫시터 서비스를 등록할 수 있습니다.</p>
 		<table>
 			<tr>
 				<td rowspan="10" class="profileImg"></td>
