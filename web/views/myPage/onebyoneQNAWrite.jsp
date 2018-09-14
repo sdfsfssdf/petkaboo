@@ -15,35 +15,40 @@
 .contentArea {
 	margin-left: 320px;
 	width: 60%;
-	margin-top:80px;
+	margin-top: 80px;
 }
 </style>
 </head>
 <body>
 	<h1 align="center" id="logo">로고</h1>
 	<br>
-	<%@ include file="WEB-INF/menubar.jsp"%>
-	<%@ include file="WEB-INF/myPageSidebar.jsp" %>
+	<%@ include file="../common/menubar.jsp"%>
+	<%@ include file="../common/sidemenubar.jsp"%>
 	<div class="contentArea">
 		<h2>1:1 문의</h2>
 		<p>관리자에게 1:1 문의를 신청할 수 있습니다.</p>
 		<br>
-		<div class="title">
-			<input type="text" class="form-control" id="usr"
-				placeholder="제목을 입력하세요.">
-		</div>
-		<br>
-		<div class="content">
-			<textarea class="form-control" rows="20" cols="30" id="comment"
-				placeholder="내용을 입력하세요."></textarea>
-		</div>
-		<br>
-		<div class="btns" align="center">
-			<button type="submit" class="btn btn-success write">작성하기</button>
-			&nbsp;
-			<button type="button" class="btn btn-danger cancel">취소하기</button>
-		</div>
+		<!-- 20180914-1 -->
+		<form action="<%=request.getContextPath() %>/insertQna.bo" method="post">
+			<div class="title">
+
+				<input type="text" class="form-control" id="usr"
+					placeholder="제목을 입력하세요.">
+			</div>
+			<br>
+			<div class="content">
+				<textarea class="form-control" rows="20" cols="30" id="comment"
+					placeholder="내용을 입력하세요."></textarea>
+			</div>
+			<br>
+			<div class="btns" align="center">
+				<button type="submit" class="btn btn-success write">작성하기</button>
+				&nbsp;
+				<button type="button" class="btn btn-danger cancel">취소하기</button>
+			</div>
+		</form>
 	</div>
+
 
 </body>
 </html>
