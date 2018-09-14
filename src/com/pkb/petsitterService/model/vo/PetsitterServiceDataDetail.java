@@ -1,4 +1,4 @@
-package com.pkb.petsitter.model.vo;
+package com.pkb.petsitterService.model.vo;
 
 public class PetsitterServiceDataDetail {
 	private int pet_regno;
