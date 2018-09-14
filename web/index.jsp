@@ -91,14 +91,78 @@
 		height:200px;
 		background:lightgray;
 	}
+	 .loginArea{
+	   	float:right;
+	   	color:lightgray;
+	   	text-decoration:none;
+   }
+   .loginArea:hover{
+   		font-weight:bold;
+   		text-decoration:none;
+   	}
+   .topArea{
+		position:relative;
+		overflow:hidden;
+		width:100%;
+		min-width:800px;
+	}
+	.topArea.loginArea{
+		position:relative;
+		overflow:hidden;
+		height:54px;
+		width:100%;
+	}
+   .topArea h1{
+		text-decoration:none;
+		position :relative;
+		overflow: hidden;
+		padding: 15px 0 0 15px;
+	}
+	.topArea ul{
+		position: relative;
+		overflow: hidden;
+		float : right;
+		padding : 16px 15px 0 0;
+		text-decoration:none;
+	}
+	.login{
+		text-decoration:none;
+	}
 	
 </style>
 
 </head>
 <body>
 	<!--  상단뷰 include 할 것  -->
-	<h1 align="center" id="logo">로고</h1><br>
-	<%@ include file="views/common/menubar.jsp" %>
+	<div class="topArea">
+		<h1 align="center" id="logo">로고</h1>
+		 <%
+ 			String email = null;
+		 	if (session.getAttribute("email")!= null){
+ 			email = (String) session.getAttribute("email");
+	 		}
+		
+			if(email == null){
+		%>
+			<ul class="loginArea">
+				<li class="login"><a href="views/common/login.jsp">로그인</a></li>	
+			</ul>
+			<ul class="loginArea">
+				<li class="join"><a href="views/member/joinForm.jsp">회원가입</a></li>
+			</ul>
+			
+		<%
+			}else{
+		%>
+		<br>
+			<ul class="loginArea">
+				<li class="logout"><a href="<%=request.getContextPath()%>"/logout.met>로그아웃</a></li>
+			</ul>
+		
+		<%
+			}
+		%>
+	</div>
 	
 	<div id="searchBox">
 	<%@ include file="views/common/mainSearchForm.jsp" %>
