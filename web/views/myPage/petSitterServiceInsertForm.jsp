@@ -44,6 +44,7 @@ label {
 	<div class="contentArea">
 		<h2>펫시터 서비스 등록</h2>
 		<p>펫시터 서비스를 등록할 수 있습니다.</p>
+		<form>
 		<table>
 			<tr>
 				<td rowspan="10" class="profileImg"></td>
@@ -97,6 +98,7 @@ label {
 				<td><label>반려견 여부 : </label> Y</td>
 			</tr>
 		</table>
+		</form>
 
 		<br>
 		<div class="btnsArea" align="center">
