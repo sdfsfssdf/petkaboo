@@ -2,6 +2,7 @@ package com.pkb.board.controller;
 
 import java.io.IOException;
 
+import javax.print.DocFlavor.SERVICE_FORMATTED;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,11 +30,12 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("onebyonetitle");
-		String content = request.getParameter("onebyonecontent");
+		String title = request.getParameter("onetitle");
+		String content = request.getParameter("onecontent");
 		
 		System.out.println(title);
 		System.out.println(content);
+	
 		
 		Board b = new Board ();
 		
