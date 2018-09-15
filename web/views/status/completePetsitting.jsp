@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>진행상황_예약내역</title>
+<title>진행상황_펫시팅진행</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -58,7 +58,7 @@
 	display: inline-block;
 	margin-left: 5%;
 	margin-right: 5%;
-	border-radius:20px;
+	border-radius: 20px;
 }
 
 .PSid {
@@ -69,23 +69,25 @@
 	margin-top: 20px;
 	margin-left: 5%;
 	margin-right: 5%;
-	border-radius:20px;
+	border-radius: 20px;
 }
 
-.RsvDetailed{
+.RsvDetailed {
 	width: 90%;
 	height: 90%;
 	background: lightgray;
 	display: inline-block;
 	margin-left: 5%;
 	margin-right: 5%;
-	margin-bottom:5%;
-	margin-top:5%;
-	border-radius:20px;
+	margin-bottom: 5%;
+	margin-top: 5%;
+	border-radius: 20px;
 }
-img{
-	border-radius:100px;
+
+img {
+	border-radius: 100px;
 }
+
 .icon {
 	width: 140px;
 	height: 140px;
@@ -102,53 +104,45 @@ img{
 		<%@include file="menubar.jsp"%>
 		<h2 style="text-align: center; margin-top: 100px;">
 			<span style="color: rgb(228, 100, 18);"> <strong>
-					요청완료</strong>
+					펫시팅 진행중</strong>
 			</span>
 		</h2>
 		<div class="body">
-			<br />
-			<br />
+			<br /> <br />
 			<h4></h4>
 			<div class="status-icon">
+
+				<img class="icon"
+					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
+				<img class="icon"
+					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
+				<img class="icon"
+					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
+				<img class="icon"
+					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
 				<img class="icon"
 					src="https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_13-512.png">
-				<img class="icon"
-					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
-				<img class="icon"
-					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
-				<img class="icon"
-					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
-				<img class="icon"
-					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
-				
+
 			</div>
-			<br /><br /><br />
-			<br />
+			<br /> <br /> <br /> <br />
 			<div class="RsvStatement">
 				<div class="PSid">
-					
-					<span>펫시터 정보</span><img width="140px" height="140px" border-radius="100px" display="inline-block" src="https://scontent.cdninstagram.com/vp/d432a9c5818f68d1dcfd3860935145f2/5BDCF333/t51.2885-15/sh0.08/e35/p640x640/34982645_1703252956454507_5788207006821122048_n.jpg" alt="" />
-					<span>이름 : </span>
-					<span>주소 : </span>
+					<br />
+					<h4>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;예약번호 : </span>
+					</h4>
 				</div>
-				<br />
-				<br />
 
 
 				<div class="RsvDetailed">
+				<br /><br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<p text-align="center">&nbsp;&nbsp;&nbsp;&nbsp;저희 서비스를 이용해 주셔서 감사합니다.</p>
+					&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">서비스 이용내역 보기(클릭)</a></span> <br />
 					<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>예약신청일 : </p>
 					<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>주소 : </p>
 					<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>펫시팅 시작일 : </p>
 					<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>펫시팅 종료일 : </p>
 					<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>신청자 : </p>
-					<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>기타 요구 사항 : </p>
-					<br /><br /><br /><br /><br /><br /><br /><br />
 				</div>
 			</div>
 		</div>
@@ -159,21 +153,8 @@ img{
 
 
 
-		<br />
-		<br />
-		<br />
-		<br />
-		<br /> <br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br /> <br />
-		<br />
-		<br />
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+		<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 
 
 
