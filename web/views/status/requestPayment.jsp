@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>진행상황_예약내역</title>
+<title>진행상황_결제요청</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -74,13 +74,13 @@
 
 .RsvDetailed{
 	width: 90%;
-	height: 90%;
+	height: 40%;
 	background: lightgray;
 	display: inline-block;
 	margin-left: 5%;
 	margin-right: 5%;
-	margin-bottom:5%;
-	margin-top:5%;
+	margin-bottom:2%;
+	margin-top:2%;
 	border-radius:20px;
 }
 img{
@@ -94,6 +94,11 @@ img{
 	margin-top:2.6%;
 	margin-bottom:1%;
 }
+.btnSt{
+	margin-left:30%;
+	margin-right:;
+
+}
 </style>
 </head>
 <body>
@@ -102,7 +107,7 @@ img{
 		<%@include file="menubar.jsp"%>
 		<h2 style="text-align: center; margin-top: 100px;">
 			<span style="color: rgb(228, 100, 18);"> <strong>
-					요청완료</strong>
+					수락확인</strong>
 			</span>
 		</h2>
 		<div class="body">
@@ -111,9 +116,9 @@ img{
 			<h4></h4>
 			<div class="status-icon">
 				<img class="icon"
-					src="https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_13-512.png">
-				<img class="icon"
 					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
+				<img class="icon"
+					src="https://cdn0.iconfinder.com/data/icons/business-381/500/business-work_13-512.png">
 				<img class="icon"
 					src="https://cdn3.iconfinder.com/data/icons/luchesa-vol-9/128/Light-512.png">
 				<img class="icon"
@@ -126,12 +131,9 @@ img{
 			<br />
 			<div class="RsvStatement">
 				<div class="PSid">
-					
-					<span>펫시터 정보</span><img width="140px" height="140px" border-radius="100px" display="inline-block" src="https://scontent.cdninstagram.com/vp/d432a9c5818f68d1dcfd3860935145f2/5BDCF333/t51.2885-15/sh0.08/e35/p640x640/34982645_1703252956454507_5788207006821122048_n.jpg" alt="" />
-					<span>이름 : </span>
-					<span>주소 : </span>
+					<br /><br />
+					<h4><span>예약 번호 : </span></h4>
 				</div>
-				<br />
 				<br />
 
 
@@ -148,8 +150,26 @@ img{
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>신청자 : </p>
 					<br />
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>기타 요구 사항 : </p>
-					<br /><br /><br /><br /><br /><br /><br /><br />
+					<br />
 				</div>
+				<div class="RsvDetailed">
+					<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>요금 상세</p>
+					<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>-목록 : 10000 p</p>
+					<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>-목록 : 20000 p</p>
+					<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<hr />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>결제 포인트</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>보유 포인트 : 10000 p</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button background="yellow">충전하기</button>
+					<br />
+					<hr />
+				<br />
+				<button class="btn btn-default btnSt" type="submit">결제하기</button> <button class="btn btn-default btnSt" type="reset">취소</button>
+				<br /><br />
+				</div>
+				
+				
 			</div>
 		</div>
 
