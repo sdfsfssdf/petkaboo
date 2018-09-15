@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pkb.petsitterService.model.service.PetsitterServeDetailRegService;
 import com.pkb.petsitterService.model.service.PetsitterServeRegService;
 import com.pkb.petsitterService.model.vo.PetsitterServiceData;
 import com.pkb.petsitterService.model.vo.PetsitterServiceDataDetail;
@@ -50,7 +49,7 @@ public class InsertPetsitterService extends HttpServlet {
 		// 로그인 유저 세션에서 유저 no를 가져오는 코드를 여기에 삽입
 		// to do something...
 		
-		// 서비스와 서비스 디테일을 분리해서 서비스로 넘겨야 한다
+		// 서비스와 서비스 디테일을 서비스로 넘기기
 		
 		// 펫시터 서비스 vo 객체 생성 및 값 넣기
 		PetsitterServiceData psd = new PetsitterServiceData();
@@ -72,25 +71,23 @@ public class InsertPetsitterService extends HttpServlet {
 		// 테스트용 코드
 		System.out.println("psdDetail 객체의 정보는: " + psdDetail);
 		
-		// 펫시터 등록 서비스로 객체 넘기기
-		int result = new PetsitterServeRegService().insertPetsitterService(psd);
+		// 펫시터 등록 및 상세 정보 등록 서비스로 객체 넘기기
+		int result = new PetsitterServeRegService().insertPetsitterService(psd, psdDetail);
 		
 		// 펫시터 상세 정보 등록 서비스로 객체 넘기기
-		int result2 = new PetsitterServeDetailRegService().insertPetsitterServiceDetail(psdDetail);
+		// int result2 = new PetsitterServeDetailRegService().insertPetsitterServiceDetail(psdDetail);
 		
 		// 넘겨줄 페이지 초기화
 		String page = "";
 		
 		// 둘 다 성공시에만 성공처리
-		if(result > 0 && result2 > 0){
+		if(result > 0){
 			// selectList.bo를 펫시터 목록 조회 서블릿으로 대체
 			response.sendRedirect(request.getContextPath() + "/selectList.bo");
 		}else{
 			request.setAttribute("msg", "펫시터 등록 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-
-		
 		
 	}
 

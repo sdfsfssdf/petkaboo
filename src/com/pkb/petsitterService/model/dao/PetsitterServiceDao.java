@@ -16,7 +16,7 @@ public class PetsitterServiceDao {
 	private Properties prop = new Properties();
 	
 	public PetsitterServiceDao(){
-		String fileName = PetsitterServiceDao.class.getResource("/sql/member/member-query.properties").getPath();
+		String fileName = PetsitterServiceDao.class.getResource("/sql/petsitterService/petsitterService-query.properties").getPath();
 
 		try {
 			
@@ -38,6 +38,11 @@ public class PetsitterServiceDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, psd.getUser_no());
+			pstmt.setInt(2, Integer.parseInt(psd.getContract_type()));
+			// 임시코드. 요일은 배열로 가져와 구분자 처리 후 넣어야 함
+			pstmt.setString(3, psd.getContract_days());
+			pstmt.setDate(4, psd.getContract_start());
+			pstmt.setDate(5, psd.getContract_end());
 			
 			result = pstmt.executeUpdate();
 			

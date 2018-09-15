@@ -16,7 +16,7 @@ public class PetsitterServiceDetailDao {
 	private Properties prop = new Properties();
 
 	public PetsitterServiceDetailDao(){
-		String fileName = PetsitterServiceDetailDao.class.getResource("/sql/member/member-query.properties").getPath();
+		String fileName = PetsitterServiceDetailDao.class.getResource("/sql/petsitterService/petsitterService-query.properties").getPath();
 
 		try {
 			prop.load(new FileReader(fileName));
@@ -37,7 +37,11 @@ public class PetsitterServiceDetailDao {
 			pstmt = con.prepareStatement(query);
 			
 			// psdDetail 객체의 정보 꺼내와서 쿼리문 완성
-			pstmt.setInt(1, psdDetail.getPet_count());
+			pstmt.setInt(1, psdDetail.getPet_category());
+			pstmt.setInt(2, psdDetail.getService_charge());
+			pstmt.setInt(3, psdDetail.getPet_count());
+			pstmt.setString(4, psdDetail.getService_detail());
+			pstmt.setString(5, psdDetail.getService_restrict());
 			
 			result = pstmt.executeUpdate();
 			
