@@ -10,10 +10,9 @@
 		width:1000px;
 		height:800px;
 		color:black;
-		margin:0 auto;
-		border:1px solid #000;
+		margin-left:280px;
 	}
-	.head{
+	.head1{
 		background: #ddd;
 		padding:0px;
 		margin:0px;
@@ -24,7 +23,8 @@
 <body>
 	<div class="outer">
 		<br>
-		<h2 class="head" align="center">공지 사항 작성</h2>
+		<h2>공지사항 작성</h2>
+		<p>공지사항을 새로 작성할 수 있습니다.</p>
 		<hr>
 		<div class="first-row">
 			 <form action="" method="post">
@@ -50,7 +50,7 @@
 					</tr>
 					<tr>
 						<td colspan="4">
-							<textarea name="content" cols="138" rows="40" style="resize:none"></textarea>
+							<textarea name="content" cols="138" rows="20" style="resize:none"></textarea>
 						</td>
 					</tr>
 				</table>

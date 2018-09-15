@@ -9,6 +9,13 @@
 <body>
 	<%@include file="../main/header.jsp" %>
 	<%@include file="leftMenu.jsp" %>
-	<%@include file="noticeInsertForm.jsp" %>
+	
+	<% if(request.getParameter("selectMenu").equals("0")){ %>
+		<%@include file="content.jsp" %>
+	<%} else if(request.getParameter("selectMenu").equals("2")) {%>
+		<%@include file="noticeList.jsp" %>
+	<%} else if(request.getParameter("selectMenu").equals("2-1")) {%>
+		<%@include file="noticeInsertForm.jsp" %>
+	<%}  %>
 </body>
 </html>
