@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
+import static com.pkb.common.JDBCTemplate.*;
 
 import com.pkb.board.model.vo.Board;
 
@@ -21,18 +22,23 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, "article_title");
-			pstmt.setString(2, "article_contents");
+			pstmt.setInt(1, b.getUser_no());
+			pstmt.setString(2, b.getArticle_title());
+			pstmt.setString(3, b.getArticle_contents());
+			
 			
 			pstmt.executeQuery();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			
+			close(pstmt);
 		}
 		
 		
-		return 0;
+		return result;
 	}
 
 }

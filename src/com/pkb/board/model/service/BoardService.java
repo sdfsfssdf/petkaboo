@@ -1,6 +1,6 @@
 package com.pkb.board.model.service;
 
-import static com.pkb.common.JDBCTemplate.getConnection;
+import static com.pkb.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
@@ -16,7 +16,20 @@ public class BoardService {
 		
 		int result = new BoardDao().insertOnebyOneQna(con, b);
 		
-		return 0;
+		if(result > 0){
+			commit(con);
+			
+		}else{
+			rollback(con);
+			
+		}
+		
+		return result;
+	}
+
+	public Object selectOnebyOneList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
