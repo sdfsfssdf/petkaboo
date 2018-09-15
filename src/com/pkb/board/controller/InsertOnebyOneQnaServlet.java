@@ -2,13 +2,13 @@ package com.pkb.board.controller;
 
 import java.io.IOException;
 
-import javax.print.DocFlavor.SERVICE_FORMATTED;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pkb.board.model.service.BoardService;
 import com.pkb.board.model.vo.Board;
 
 /**
@@ -41,6 +41,8 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 		
 		b.setArticle_title(title);
 		b.setArticle_contents(content);
+		
+		int result = new BoardService().insertOnebyOneQna(b);
 	
 	}
 

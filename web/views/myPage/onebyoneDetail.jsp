@@ -56,8 +56,8 @@
 <body>
 	<h1 align="center" id="logo">로고</h1>
 	<br>
-	<%@ include file="WEB-INF/menubar.jsp"%>
-	<%@ include file="WEB-INF/myPageSidebar.jsp" %>
+	<%@ include file="../common/menubar.jsp"%>
+	<%@ include file="../common/sidemenubar.jsp"%>
 	<div class="contentArea">
 		<!-- 구현하시는 분이 따로 action을 정의해주셔야 합니다. -->
 		<form method="post" action="">

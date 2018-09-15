@@ -51,8 +51,8 @@ th {
 <body>
 	<h1 align="center" id="logo">로고</h1>
 	<br>
-	<%@ include file="WEB-INF/menubar.jsp"%>
-	<%@ include file="WEB-INF/myPageSidebar.jsp" %>
+	<%@ include file="../common/menubar.jsp"%>
+	<%@ include file="../common/sidemenubar.jsp"%>
 	<div class="contentArea">
 		<h2>내 질문내역</h2>
 		<p>나의 1:1 문의내역을 확일할 수 있습니다.</p>
