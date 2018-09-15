@@ -53,7 +53,7 @@ public class JoinServlet extends HttpServlet {
 			se.doGet(request, response);
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("index.jsp");
 		}else{
 			System.out.println("실패");
 		}
