@@ -1,6 +1,9 @@
+<%@page import="com.pkb.member.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    
+ <% User loginUser = (User)request.getAttribute("loginUser"); %>
+<!DOCTYPE html>
 <html><br>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <head>
@@ -133,32 +136,34 @@
 
 </head>
 <body>
+		<%
+			String email =null;
+		if(session.getAttribute("email")!=null){
+			email = (String)session.getAttribute("email");
+		}
+		
+		%>
 	<!--  상단뷰 include 할 것  -->
 	<div class="topArea">
 		<h1 align="center" id="logo">로고</h1>
-		 <%
- 			String email = null;
-		 	if (session.getAttribute("email")!= null){
- 			email = (String) session.getAttribute("email");
-	 		}
 		
+		  <%
 			if(email == null){
-		%>
+		   %>
 			<ul class="loginArea">
 				<li class="login"><a href="views/common/login.jsp">로그인</a></li>	
 			</ul>
 			<ul class="loginArea">
 				<li class="join"><a href="views/member/joinForm.jsp">회원가입</a></li>
-			</ul>
-			
+			</ul>	
 		<%
 			}else{
-		%>
-		<br>
+		%>	
+			<br>
 			<ul class="loginArea">
-				<li class="logout"><a href="<%=request.getContextPath()%>"/logout.met>로그아웃</a></li>
+				<li class="logout"><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
 			</ul>
-		
+
 		<%
 			}
 		%>

@@ -38,7 +38,7 @@ public class SendEmail extends HttpServlet{
 		u.setUser_pwd(user_pwd);
 		u.setEmail_hash(email_hash);
 		
-		String host = "http://localhost:8001/se/";
+		String host = "http://localhost:8001/pkb/views/member/";
 		
 		String from = "getfreshair1@gmail.com";
 
