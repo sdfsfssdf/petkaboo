@@ -159,7 +159,7 @@
 	<div class="topmenu">
 		<div class="top_02">
 			<ul class="leftMenu">
-				<li><a class="menu" href="views/defaultSet.defaultSet.jsp">기본설정</a></li>
+				<li><a class="menu" href="../defaultSet/defaultSet.jsp?selectMenu=0">기본설정</a></li>
 				<li><a class="menu" href="">회원관리</a></li>
 				<li><a class="menu" href="">거래관리</a></li>
 				<li><a class="menu" href="">통계/현황</a></li>

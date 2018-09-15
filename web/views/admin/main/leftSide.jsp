@@ -8,10 +8,6 @@
 <script type="text/javascript" src="http://jsgetip.appspot.com"></script>
 <script type="text/javascript" src="https://api.ipify.org?format=json"></script>
 <script type="application/javascript">
-	
-  function getIP(json) {
-   	//console.log("My public IP address is: ", json.ip);
-  }
 
 </script>
 
@@ -99,16 +95,16 @@
 <script type="text/javascript" src="http://jsgetip.appspot.com"></script>
 <script type="text/javascript" src="https://api.ipify.org?format=json"></script>
 <script type="application/javascript">
-  function getIP(json) {
-   	//console.log("My public IP address is: ", json.ip);
-   	
-   	var ip = json.ip;
-   	$('#ipArea').val(ip);
-   	
-   	console.log($('#ipArea'));
-   	console.log(json.ip + "aa'");
-  }
+$(function(){
+	ip = "";
 
+  function getIP(json) {
+   	ip = json.ip;	
+  }
+  
+  $('ipArea').text(ip);
+  console.log(ip)
+})
 </script>
 
 <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
