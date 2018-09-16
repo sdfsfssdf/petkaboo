@@ -63,4 +63,18 @@ public class UserService {
 		}
 		close(con);
 		return result;
+	}
+
+	public int changeAdd(User loginUser) {
+		Connection con = getConnection();
+		
+		int result = new UserDAO().chageAdd(con, loginUser);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
 	}}

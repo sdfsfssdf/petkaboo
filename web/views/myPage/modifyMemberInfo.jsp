@@ -465,129 +465,32 @@ border: 1px solid black; */
 										<% }else{ %>
 											value="<%=loginUser.getAddress()%>"
 										<% }} %>	 readonly><br>
-				<form method="post" action="<%=request.getContextPath()%>/modifyAdd.ma">			
-				<input type="text" id="sample6_postcode" style="width: 100px; height: 30px;" placeholder="우편번호" name="postcode">
+				<form method="get" action="<%=request.getContextPath()%>/modifyAdd.ma">			
+				<input type="text" id="postcode"  name="postcode" style="width: 100px; height: 30px;" placeholder="우편번호">
 				<input type="button" onclick="sample6_execDaumPostcode()" style="width: 100px; height: 30px;" value="주소 찾기"><br>
-				<input type="text" id="sample6_address" style="width: 300px; height: 30px;"  placeholder="주소"  name="address">
-				<input type="text" id="sample6_address2" style="width: 300px; height: 30px;"  placeholder="상세주소" name="addressDetail">
-				</form>
-				<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-				<script>
-				    function sample6_execDaumPostcode() {
-				        new daum.Postcode({
-				            oncomplete: function(data) {
-				                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-				
-				                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-				                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-				                var fullAddr = ''; // 최종 주소 변수
-				                var extraAddr = ''; // 조합형 주소 변수
-				
-				                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-				                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-				                    fullAddr = data.roadAddress;
-				
-				                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-				                    fullAddr = data.jibunAddress;
-				                }
-				
-				                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-				                if(data.userSelectedType === 'R'){
-				                    //법정동명이 있을 경우 추가한다.
-				                    if(data.bname !== ''){
-				                        extraAddr += data.bname;
-				                    }
-				                    // 건물명이 있을 경우 추가한다.
-				                    if(data.buildingName !== ''){
-				                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-				                    }
-				                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-				                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-				                }
-				
-				                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-				                document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-				                document.getElementById('sample6_address').value = fullAddr;
-				
-				                // 커서를 상세주소 필드로 이동한다.
-				                document.getElementById('sample6_address2').focus();
-				            }
-				        }).open();
-				    }
-				</script>
-								
+				<input type="text" id="address"  name="address" style="width: 300px; height: 30px;"  placeholder="주소" >
+				<input type="text" id="addressDetail" name="addressDetail" style="width: 300px; height: 30px;"  placeholder="상세주소">
 								</div>
-							
 							</td>
 						</tr>
 						<tr>
 							<td width=300px; height=70px>비밀번호</td>
-
 							<td colspan="2" width=800px; height=70px>
 							<div class="modifypassword" align="left">
-							<button id="modifypassword" onclick="#"
+							<button id="modifypassword" onclick="location.href='modifyPassword.jsp'"
 									style="font-weight: lighter">변경하기</button>
-							
 							</div>
 							</td>
 						</tr>
 					</table>
-
-
-					<!-- <table>
-
-						<tr>
-							<td width=300px; height=500px;>프로필 사진</td>
-							<td colspan="2"; width=800px; height=300px>
-							사진
-							<div class="photo">
-								<img src="../images/me.jpg"; width=450px; height=450px; alt="" />
-							</div>
-							
-							<div class=modanddelete>
-								<button id="modify" onclick="#" style="font-weight:lighter">사진변경</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete" onclick="#" style="font-weight:lighter">삭제</button>
-							</div>
-							
-							
-							</td>
-						</tr>
-						<tr>
-							<td width=300px; height=100px>별명</td>
-							<td colspan="2"; width=800px; height=100px>
-								<div class="nickname">
-									<input type="text" name="nickname" size='20' maxlength='15'  style="width:300px; color:black; margin:0; padding:0; height:35px; border-width:1px" value="별명을 입력하세요">
-								</div>
-							
-							</td>
-
-
-						</tr>
-						<tr>
-							<td width=300px; height=100px></td>
-							<td colspan="2"; width= 800px; height=100px>
-								<div></div>
-							</td>
-						
-						</tr>
-
-					</table>
-					 -->
-
-
-
 					<div class=submitandcancle>
-						<button type="submit" id="submit" onclick="#"
-							style="font-weight: lighter">적용</button>
+						<button type="submit" id="submit" style="font-weight: lighter">적용</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button type="submit" id="cancel" onclick="#"
 							style="font-weight: lighter">취소</button>
-				
 					</div>
+				</form>
 				</div>
-
-
-
-
 
 				<!-- 구분선 -->
 				<br> <br> <br> <br> <br>
@@ -623,7 +526,51 @@ border: 1px solid black; */
 			</div>
 		</div>
 	</div>
-
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+				<script>
+				    function sample6_execDaumPostcode() {
+				        new daum.Postcode({
+				            oncomplete: function(data) {
+				                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+				
+				                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				                var fullAddr = ''; // 최종 주소 변수
+				                var extraAddr = ''; // 조합형 주소 변수
+				
+				                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				                    fullAddr = data.roadAddress;
+				
+				                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+				                    fullAddr = data.jibunAddress;
+				                }
+				
+				                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+				                if(data.userSelectedType === 'R'){
+				                    //법정동명이 있을 경우 추가한다.
+				                    if(data.bname !== ''){
+				                        extraAddr += data.bname;
+				                    }
+				                    // 건물명이 있을 경우 추가한다.
+				                    if(data.buildingName !== ''){
+				                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+				                    }
+				                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+				                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+				                }
+				
+				                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+				                document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+				                document.getElementById('address').value = fullAddr;
+				
+				                // 커서를 상세주소 필드로 이동한다.
+				                document.getElementById('addressDetail').focus();
+				            }
+				        }).open();
+				    }
+				</script>
+								
 
 </body>
 </html>
