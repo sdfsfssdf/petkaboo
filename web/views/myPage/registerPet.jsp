@@ -209,17 +209,17 @@ padding:20px;
 		<div id="container1">
 
 			<!-- 메뉴파일 -->
-			<%@ include file="menubar.jsp"%>
+			<%@ include file="../common/menubar.jsp"%>
 
 
 			<!-- fixed 창 -->
-			<%@ include file="fixed.jsp"%>
+			<%@ include file="../common/fixed.jsp"%>
 
 
 
 			<!-- 사이드 메뉴 부분 -->
 			<div class="content-left">
-				<%@ include file="sidemenubar.jsp"%>
+				<%@ include file="../common/sidemenubar.jsp"%>
 
 
 			</div>
