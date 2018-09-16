@@ -51,6 +51,7 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 		
 		int result = new BoardService().insertOnebyOneQna(b);
 		
+		
 		String page = "";
 		if(result > 0){
 			page = "views/myPage/onebyoneList.jsp";
