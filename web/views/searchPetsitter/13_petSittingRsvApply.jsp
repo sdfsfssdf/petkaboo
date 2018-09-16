@@ -52,7 +52,7 @@
 }
 
 .PSphoto {
-	width: 108px;
+	width: 127px;
 	height: 127px;
 	display: inline;
 }
@@ -66,12 +66,17 @@
 .input-style{
 	width:55%;
 }
+table{
+	margin-left:2%;
+	margin-bottom:2%;
+	margin-top:1%;
+}
 </style>
 </head>
 <body>
 	<div id="container">
 		<div id="header"></div>
-		<%@include file="menubar.jsp"%>
+		<%@include file="../common/menubar.jsp"%>
 
 		<div>
 			<h2 style="text-align: center; margin-top: 100px;">
@@ -107,17 +112,18 @@
 			<div class="div2">
 			<br />
 				<h4>&nbsp;&nbsp;선택하신 펫시터입니다.</h4>
-				<img src="../images/check1.png" style="display: inline" />
 				<table style="display:inline-block">
-					<tr rowspan="2">
+					<tr>
 					
-						<td>2<img src="http://momojeri.com/web/product/big/201607/33_shop1_658629.jpg"
+						<td rowspan="2"><img src="http://momojeri.com/web/product/big/201607/33_shop1_658629.jpg"
 							class="PSphoto img-circle img-responsive" alt="Responsive image" />
 						</td>
-						<td colspan="2">이름</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;이름 :</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;입력란</td>
 					</tr>
 					<tr>
-						<td>주소</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;주소 :</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;입력란</td>
 					</tr>
 				
 				</table>

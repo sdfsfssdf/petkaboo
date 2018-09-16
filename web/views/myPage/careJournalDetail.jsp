@@ -30,8 +30,8 @@
 <body>
 	<h1 align="center" id="logo">로고</h1>
 	<br>
-	<%@ include file="WEB-INF/menubar.jsp"%>
-	<%@ include file="WEB-INF/myPageSidebar.jsp"%>
+	<%@ include file="../common/menubar.jsp"%>
+	<%@ include file="../common/sidemenubar.jsp"%>
 	
 	<div class="contentArea">
 	<h2>돌봄 일지 상세보기</h2>
