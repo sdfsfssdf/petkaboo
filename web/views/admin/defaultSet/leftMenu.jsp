@@ -36,7 +36,7 @@
          <br>
             <div class="text"> <a href="#">수수료 및 계좌설정</a></div>
             <br>
-            <div class="text" ><a href="defaultSet.jsp?selectMenu=2">공지사항 설정</a></div>
+            <div class="text" ><a href="<%=request.getContextPath()%>/noticeList.no">공지사항 설정</a></div>
             <br>
             <div class="text" ><a href="#">관리자 설정</a></div>
       </div>
