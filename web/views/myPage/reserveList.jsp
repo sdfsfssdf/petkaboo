@@ -1,5 +1,7 @@
+<%@page import="com.pkb.member.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%User loginUser = (User)session.getAttribute("loginUser"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,12 +78,12 @@
 			<table class="tableArea" >
 				<tr>
 					<td class="imgArea" rowspan="4" width="150px">img</td>
-					<td><label>이름 : </label>리주혁</td>
-					<td colspan="2"><label>주소 : </label>경기도 광주시</td>
+					<td><input type="text" value="<%=loginUser.getEmail() %>">이름 :</td>
+					<td colspan="2"><label>주소 : </label><input type="text" value="<%=loginUser.getAddress()%>"></td>
 				</tr>
 				<tr>
-					<td><label>반려동물 이름 : </label>내사랑쿠키</td>
-					<td><label>돌봄 시작일 : </label>2009-05-06</td>
+					<td><label>반려동물 이름 : </label><input type="text" value="<%=loginUser.getPet_auth()%>"></td>
+					<td><label>돌봄 시작일 : </label></td>
 					<td><label>돌봄 종료일 : </label> ~ </td>
 				</tr>
 				<tr>
