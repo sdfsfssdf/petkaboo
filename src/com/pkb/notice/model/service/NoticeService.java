@@ -12,11 +12,11 @@ import com.pkb.notice.model.dao.NoticeDao;
 import com.pkb.notice.model.vo.Notice;
 public class NoticeService {
 
-	public int insertNotice(Notice nt) {
+	public int insertNotice(Notice nt, int userNo) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		
-		int result = new NoticeDao().insertNotice(con, nt);
+		int result = new NoticeDao().insertNotice(con, nt , userNo);
 		
 		if(result > 0){
 			commit(con);
@@ -46,6 +46,33 @@ public class NoticeService {
 		
 		int result = new NoticeDao().getListCount(con);
 
+		close(con);
+		
+		return result;
+	}
+
+	public Notice selectOneNotice(int nno) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		Notice nt = new NoticeDao().selectOneNotice(con,nno);
+		
+		close(con);
+		
+		return nt;
+	}
+
+	public int modifyNotice(Notice nt) {
+		Connection con = getConnection();
+		
+		int result = new NoticeDao().modifyNotice(con,nt);
+		
+		if(result > 0){
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
 		close(con);
 		
 		return result;

@@ -36,26 +36,26 @@
 	<%@include file="leftMenu.jsp" %>
 	<div class="outer">
 		<br>
-		<h2>공지사항 수정하기</h2>
-		<p>공지사항의 상세 내용을 수정할 수 있습니다.</p>
+		<h2>공지사항 상세보기</h2>
+		<p>공지사항의 상세 내용을 확인할 수 있습니다.</p>
 		<hr>
 		<div class="first-row">
-			 <form action="<%=request.getContextPath() %>/noticeModify.no" method="post">
+			 <form action="<%=request.getContextPath() %>/noticeModifyForm.no" method="post">
 				<table class="noticeDetailArea">
 					<tr>
 						<td>제목</td>
-						<td colspan="3"><input class="form-control" type="text" size="50" name="title" value="<%=nt.getArticle_title()%>"></td>
+						<td colspan="3"><input class="form-control" type="text" size="50" name="title" readonly value="<%=nt.getArticle_title()%>"></td>
 						<td>공지번호</td>
-						<td><input class="form-control" name="nno" type="text" value="<%=nt.getArticle_no()%>" readOnly></td>
+						<td><input class="form-control" name="nno" type="text" readonly value="<%=nt.getArticle_no()%>"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
 						<td>
-							<input class="form-control" name="writer" type="text" readonly value="<%=nt.getUser_name()%>">
+							<input class="form-control" type="text" readonly value="<%=nt.getUser_name()%>">
 						</td>
 						<td>작성일</td>
 						<td><input class="form-control" type="date" name="date" readonly value="<%=nt.getArticle_date()%>"></td>
-						<td>최종 수정일</td>
+						<td>최종수정일</td>
 						<td><input class="form-control" type="date" name="date" readonly value="<%=nt.getArticle_modify_date()%>"></td>
 					</tr>
 					<tr>
@@ -63,7 +63,7 @@
 					</tr>
 					<tr>
 						<td colspan="6">
-							<textarea class="form-control contentArea" name="content" cols="128" rows="17" style="resize:none" ><%=nt.getArticle_contents() %></textarea>
+							<textarea class="form-control contentArea" name="content" cols="128" rows="17" style="resize:none" readonly ><%=nt.getArticle_contents() %></textarea>
 						</td>
 					</tr>
 				</table>
