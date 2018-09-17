@@ -208,13 +208,11 @@ border: 1px solid black; */
 margin:auto;
 margin-top:20px;
 }
-
 /* 적용 취소 부분 */
 .submitandcancle{
 	text-align:center;
 	margin-top:20px;
 }
-
 #modify, #delete, #submit, #cancel {
 	display: inline-block;
 	text-align: center;
@@ -230,20 +228,14 @@ margin-top:20px;
 	background-color: #cfb7af;
 	font-family: 'Jua', sans-serif;
 }
-
 #modify:hover, #delete:hover. #submit:hover, #cancel:hover {
 	color: black;
 	opacity: 0.7;
 	font-family: 'Jua', sans-serif;
 }
-
-
-
 </style>
 </head>
 <body>
-
-
 	<div id="wrap">
 		<div id="header">
 			<h1 align="center">펫카부</h1>
@@ -262,13 +254,8 @@ margin-top:20px;
 			<!-- 사이드 메뉴 부분 -->
 			<div class="content-left">
 			<%@ include file="../common/sidemenubar.jsp" %>
-
-				
+						
 			</div>
-
-
-			
-
 
 			<!-- 센터 컨텐츠 -->
 			<div class="content-center">
@@ -282,12 +269,7 @@ margin-top:20px;
 					<hr
 						style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				</div>
-
-
-
 				<br>
-
-
 				<!-- 프로필 수정 -->
 				&nbsp;&nbsp;&nbsp;&nbsp;<span
 					style="text-align: left; font-size: 17px; font-weight: bold;">프로필
@@ -295,28 +277,31 @@ margin-top:20px;
 				<hr
 					style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				<div class="center-content1">
+									
+					<form action="<%=request.getContextPath()%>/insert.tn" method="post" encType="multipart/form-data">	
 					<table>
-
 						<tr>
 							<td width=300px; height=500px;>프로필 사진</td>
 							<td colspan="2"; width=800px; height=300px>
 							<!-- 사진 -->
 							<div class="photo">
-								<img src="../images/me.jpg"; width=450px; height=450px; alt="" />
+								<img id="profileImg" width=450px; height=450px; alt="" />
 							</div>
 							
 							<div class=modanddelete>
-								<button id="modify" onclick="#" style="font-weight:lighter">사진변경</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete" onclick="#" style="font-weight:lighter">삭제</button>
-							</div>
-							
-							
+								<input type="file" id="profile" name="profile" onchange="loadImg()" style="font-weight:lighter">사진변경</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete" style="font-weight:lighter">삭제</button>
+							</div>					
 							</td>
 						</tr>
+<!-- 	<button id="modify" onclick="#" style="font-weight:lighter">사진변경</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="delete" onclick="#" style="font-weight:lighter">삭제</button>
+ -->					
 						<tr>
 							<td width=300px; height=100px>별명</td>
 							<td colspan="2"; width=800px; height=100px>
 								<div class="nickname">
-									<input type="text" name="nickname" size='20' maxlength='15'  style="width:300px; color:black; margin:0; padding:0; height:35px; border-width:1px" value="별명을 입력하세요">
+									<input type="text" name="nickName" size='20' maxlength='15'  
+										style="width:300px; color:black; margin:0; 
+										padding:0; height:35px; border-width:1px" placeholder="별명을 입력하세요">
 								</div>
 							
 							</td>
@@ -327,12 +312,24 @@ margin-top:20px;
 					</table>
 					
 					<div class=submitandcancle>
-					<button type="submit" id="submit" onclick="#" style="font-weight:lighter">적용</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" id="cancel" onclick="#" style="font-weight:lighter">취소</button>
-					
+					<button type="submit" id="submit" style="font-weight:lighter">적용</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button id="cancel" onclick="modifyMemberInfoMain" style="font-weight:lighter">취소</button>
 					</div>
+					</form>	
 				</div>
 
-
+				<script>
+					function loadImg(value, num){
+						if(value.files && value.files[0]){
+							var reader = new FileReader();
+							
+							reader.onload = function(e){
+								$("#profileImg").attr("src", e.targetresult);
+							}
+						}
+						reader.readAsDataURL(value.files[0]);
+					}
+				</script>
 
 
 

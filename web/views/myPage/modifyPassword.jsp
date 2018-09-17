@@ -204,10 +204,6 @@ margin:auto;
 
 			</div>
 
-
-
-
-
 			<!-- 센터 컨텐츠 -->
 			<div class="content-center">
 
@@ -220,7 +216,6 @@ margin:auto;
 					<hr
 						style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				</div>
-
 
 
 				<br>
@@ -244,16 +239,16 @@ margin:auto;
 					<div class=passwordform2>
 
 
-						<input type="text" name="inputpassword" size='30' maxlength='25'
-							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" value="현재 비밀번호 입력">
+						<input type="password" size='30' maxlength='25'
+							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" name = "currentPwd" placeholder="현재 비밀번호 입력">
 							<br>
 							<br>
-						<input type="text"  name="inputpassword" size='30' maxlength='25'
-							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" value="새 비밀번호 입력">
+						<input type="password" size='30' maxlength='25'
+							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" name = "newPwd" placeholder="새 비밀번호 입력">
 							<br>
 							<br>
-						<input type="text"  name="inputpassword" size='30' maxlength='25'
-							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" value="새 비밀번호 확인"><br>
+						<input type="password"   size='30' maxlength='25'
+							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" name = "newPwd2" placeholder="새 비밀번호 확인"><br>
 
 					</div>
 
@@ -275,24 +270,16 @@ margin:auto;
 					</div>
 				</div>
 
-
-
-
-
 				<!-- 구분선 -->
 				<br> <br> <br> <br> <br>
 				<hr
 					style="border: thin dashed gray; ! important; display: inline-block !important; width: 100% !important;" />
-
-
 
 				<div class="bottom-content">
 					<br>
 					<div class="bottom-content1">
 						<img src="../images/info1.png" width="65%" height="250px">
 					</div>
-
-
 
 					<div class="bottom-content1">
 						<img src="../images/info2.png" width="65%" height="250px">

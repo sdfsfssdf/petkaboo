@@ -111,4 +111,25 @@ public class UserDAO {
 		}
 		return result;
 	}
+
+	public int chageAdd(Connection con, User loginUser) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		String query = prop.getProperty("changeAdd");
+		System.out.println("change" + loginUser.getAddress());
+		System.out.println("email" + loginUser.getEmail());
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, loginUser.getAddress());
+			pstmt.setString(2, loginUser.getEmail());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		return result;
+	}
 }
