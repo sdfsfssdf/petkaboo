@@ -30,7 +30,7 @@ public class BoardDao {
 			pstmt.executeQuery();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} finally {
 			

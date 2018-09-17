@@ -10,14 +10,14 @@ public class Board implements java.io.Serializable{
 	private String article_contents;	//글내용
 	private String article_type;		//게시물타입
 	private int article_lv;				//게시물레벨
-	private int refno;					//참고게시물번호				
+	private int article_refno;			//참고게시물번호				
 
 	
 	public Board(){}
 	
 
 	public Board(int article_no_1, int user_no, Date article_date, String article_title, String article_contents,
-			String article_type, int article_lv, int refno) {
+			String article_type, int article_lv, int article_refno) {
 		super();
 		this.article_no_1 = article_no_1;
 		this.user_no = user_no;
@@ -26,7 +26,7 @@ public class Board implements java.io.Serializable{
 		this.article_contents = article_contents;
 		this.article_type = article_type;
 		this.article_lv = article_lv;
-		this.refno = refno;
+		this.article_refno = article_refno;
 	}
 
 
@@ -65,8 +65,8 @@ public class Board implements java.io.Serializable{
 	}
 
 
-	public int getRefno() {
-		return refno;
+	public int getArticle_refno() {
+		return article_refno;
 	}
 
 
@@ -105,8 +105,8 @@ public class Board implements java.io.Serializable{
 	}
 
 
-	public void setRefno(int refno) {
-		this.refno = refno;
+	public void setArticle_refno(int article_refno) {
+		this.article_refno = article_refno;
 	}
 
 
@@ -114,7 +114,7 @@ public class Board implements java.io.Serializable{
 	public String toString() {
 		return "Board [article_no_1=" + article_no_1 + ", user_no=" + user_no + ", article_date=" + article_date
 				+ ", article_title=" + article_title + ", article_contents=" + article_contents + ", article_type="
-				+ article_type + ", article_lv=" + article_lv + ", refno=" + refno + "]";
+				+ article_type + ", article_lv=" + article_lv + ", article_refno=" + article_refno + "]";
 	}
 	
 	
