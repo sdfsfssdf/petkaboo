@@ -136,7 +136,7 @@ img {
 
 				<div class="RsvDetailed">
 				<br /><br />
-					&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">돌봄일지 바로가기(클릭)</a></span> <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="http://localhost:8003/pkb/views/myPage/careJournalList.jsp">돌봄일지 바로가기(클릭)</a></span> <br />
 					<br />
 					<br />
 					<br />

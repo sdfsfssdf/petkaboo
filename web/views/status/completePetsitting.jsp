@@ -137,7 +137,7 @@ img {
 				<div class="RsvDetailed">
 				<br /><br />
 					&nbsp;&nbsp;&nbsp;&nbsp;<p text-align="center">&nbsp;&nbsp;&nbsp;&nbsp;저희 서비스를 이용해 주셔서 감사합니다.</p>
-					&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="#">서비스 이용내역 보기(클릭)</a></span> <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="/pkb/views/myPage/reserveList.jsp">서비스 이용내역 보기(클릭)</a></span> <br />
 					<br />
 					<br />
 					<br />
