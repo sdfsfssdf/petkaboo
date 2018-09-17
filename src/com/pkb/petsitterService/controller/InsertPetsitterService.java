@@ -68,6 +68,7 @@ public class InsertPetsitterService extends HttpServlet {
 		psdDetail.setPet_count(Integer.parseInt(pet_count));
 		psdDetail.setService_detail(service_detail);
 		psdDetail.setService_restrict(service_restrict);
+		psdDetail.setService_charge(Integer.parseInt(service_charge));
 		// 테스트용 코드
 		System.out.println("psdDetail 객체의 정보는: " + psdDetail);
 		
