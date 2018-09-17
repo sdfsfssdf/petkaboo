@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%-- <% ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%> --%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,9 +67,20 @@ th {
 						<th class="third">작성일</th>
 					</tr>
 				</thead>
+				
+				
 				<tbody>
-					<tr>
-						<td>John</td>
+				<%-- <%for(Board b : list){ %>
+				
+					<tr> --%>
+					
+					
+					
+					
+					
+					
+					
+						 <td>John</td>
 						<td>Doe</td>
 						<td>john@example.com</td>
 					</tr>
@@ -115,7 +127,7 @@ th {
 					<tr>
 						<td>July</td>
 						<td>Dooley</td>
-						<td>july@example.com</td>
+						<td>july@example.com</td> 
 					</tr>
 				</tbody>
 			</table>
@@ -131,7 +143,7 @@ th {
 				<option value="title">작성일</option>
 			</select> <input type="search" class="form-control search">
 			<button type="submit" class="btn btn-default">검색하기</button>
-			<button onclick="" class="btn btn-success">작성하기</button>
+			<button onclick="location.href='onebyoneQNAWrite.jsp'" class="btn btn-success">작성하기</button>
 		</div>
 
 	</div>

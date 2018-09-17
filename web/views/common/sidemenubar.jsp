@@ -118,8 +118,8 @@ ul.sub li:hover > ul.sub-sub{display:block;}
 							<ul class="sub">
 								<li><a href="#">예약현황</a></li>
 								<li><a href="#">거래내역</a></li>
-								<li><a href="#">1:1 문의 내역</a></li>
-								<li><a href="#">내 질문 내역</a></li>
+								<li><a href="#">1:1 문의</a></li>
+								<li><a href="#" onclick="goOnebyOneQna()" >내 질문 내역</a></li>
 							</ul>
 						</li>
 						<li class="group">
@@ -141,5 +141,14 @@ ul.sub li:hover > ul.sub-sub{display:block;}
 						</li>
 					</ul>
 				</div>
+				
+				<script>
+					function goOnebyOneQna(){
+						location.href = "/pkb/selectOnebyOneList.bo;"
+						
+					}
+				
+				</script>
+				
 </body>
 </html>
