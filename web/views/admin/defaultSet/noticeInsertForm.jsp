@@ -27,23 +27,20 @@
 		<p>공지사항을 새로 작성할 수 있습니다.</p>
 		<hr>
 		<div class="first-row">
-			 <form action="" method="post">
+			 <form action="<%=request.getContextPath()%>/insertNotice.no" method="post">
 				<table class="table1">
 					<tr>
 						<td>제목</td>
 						<td colspan="1"><input type="text" size="50" name="title"></td>
-						<td>공지번호</td>
-						<td><input type="text"></td>
-					</tr>
-					<tr>
 						<td>작성자</td>
 						<td>
-							<input type="text" value="" readonly>
+							<input type="text" value="admin" readonly name="writer">
 							<input type="hidden">
+							<!-- 로그인 기능 완성되면 수정해야할 부분 -->
+							<input type="hidden" value="3" name="userNo">
 						</td>
-						<td>작성일</td>
-						<td><input type="date" name="date"></td>
 					</tr>
+
 					<tr>
 						<td>내용</td>
 						<td colspan="3"></td>
@@ -57,7 +54,7 @@
 				<br>
 				<div align="center">
 					<button type="reset">취소하기</button>
-					<button type="submit">등록하기</button>
+					<button type="submit" >등록하기</button>
 				</div>
 			</form>
 		</div>

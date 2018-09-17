@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="com.pkb.notice.model.vo.*, java.util.*,com.pkb.common.Paging"%>%>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	Paging pg = (Paging)request.getAttribute("pg");
+	// 아래에서 사용하기 편하기 위해 선언 따로 선언하지 않고 pi의 getter메소드를 사용해도 상관없다...
+	int listCount = pg.getListCount();
+	int currentPage = pg.getCurrentPage();
+	int maxPage = pg.getMaxPage();
+	int startPage = pg.getStartPage();
+	int endPage = pg.getEndPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +55,8 @@
 </style>
 </head>
 <body>
+	<%@include file="../main/header.jsp" %>
+	<%@include file="leftMenu.jsp" %>
 	<div class="outer">
 	<div class="first-row">
 	<div class="table1">
@@ -56,12 +69,51 @@
 				<th width="100px">공지번호</th>
 				<th width="400px">제목</th>
 				<th width="200px">작성일</th>
-				<th width="100px">조회수</th>
+				<th width="100px">작성자</th>
 			</tr>
+			<% for (Notice nt : list) {%>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td><%=nt.getArticle_no_1() %></td>
+					<td><%=nt.getArticle_title() %></td>
+					<td><%=nt.getArticle_date() %></td>
+					<td><%=nt.getUser_name() %></td>
+				</tr>
+			<%} %>
 		</table>
 	</div>
 	</div>
 	</div>
+	
+	<!-- 페이지 처리 -->
+		<div class="pigingArea" align="center">
+			<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=1'"><<</button>
+			<% if (currentPage <= 1){%>
+				<button disabled><</button>
+			<% } else { %>
+				<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=currentPage - 1%>'"><</button>
+			<%} %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+				if(p == currentPage){%>
+				
+					<button disabled><%=p %></button>
+				<%} else {%>
+					<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>'"><%=p %></button>
+				<%} %>
+			<%} %>
+			
+			<%if(currentPage >= maxPage) {%>
+				<button disabled>></button>
+			<%} else { %>
+				<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=currentPage + 1%>'">></button>
+			<%} %>
+			
+			<button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%=maxPage%>'">>></button>
+		</div>
+	
+	
+	
 	<div class="searchArea" align="center">
 	<button class="selectAll">전부선택</button>
 			<select id="searchCondition" name="searchCondition">
