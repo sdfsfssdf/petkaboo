@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.jsp.common.MyFileRenamePolicy;
+import com.pkb.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -32,7 +32,11 @@ public class InsertNicknameServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MultipartRequest mr = new MultipartRequest(request, "C:\\Users\\jaeick\\git\\petkaboo\\web\\images\\profileImagesUpload\\", 1024*768, "UTF-8", new DefaultFileRenamePolicy());
+		String AbsolutePath = request.getSession().getServletContext().getRealPath("/");
+		
+		String finalPath = "images\\profileImagesUpload\\";
+		
+		MultipartRequest mr = new MultipartRequest(request, AbsolutePath + finalPath, 1024*768, "UTF-8", new MyFileRenamePolicy());
 		
 		// String filePath = 
 		String nickname = mr.getParameter("nickName");

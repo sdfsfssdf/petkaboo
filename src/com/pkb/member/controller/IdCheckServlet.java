@@ -1,58 +1,41 @@
 package com.pkb.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.pkb.member.model.service.UserService;
-import com.pkb.member.model.vo.User;
-import com.pkb.member.util.SHA256;
 
 /**
- * Servlet implementation class JoinServlet
+ * Servlet implementation class IdCheckServlet
  */
-@WebServlet("/join.me")
-public class JoinServlet extends HttpServlet {
+@WebServlet("/idCheck.do")
+public class IdCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JoinServlet() {
+    public IdCheckServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String email = request.getParameter("email");
-		String user_pwd = request.getParameter("user_pwd");
-		String email_hash = (String)SHA256.getSHA256(email);
+
+		System.out.println("email : " + email);
 		
-		User u = new User();
-		
-		u.setEmail(email);
-		u.setUser_pwd(user_pwd);
-		u.setEmail_hash(email_hash);
-		
-		System.out.println("조인고");
-		
-		int result = new UserService().joinUser(u);
-		
-		String page = "";
-		
-		if(result>0){
-			SendEmail se = new SendEmail();
-			se.doGet(request, response);
-			HttpSession session = request.getSession();
-			session.setAttribute("email", email);
-			response.sendRedirect("index.jsp");
-		}else{
-			System.out.println("실패");
-		}
+		int result = new UserService().checkId(email);
+		System.out.println(result);
+		response.getWriter().print(result);
 		
 	}
 

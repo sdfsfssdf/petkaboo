@@ -57,6 +57,7 @@ public class UserDAO {
 				loginUser.setUser_grade(rset.getInt("user_grade"));
 				loginUser.setPet_auth(rset.getString("pet_auth"));
 				loginUser.setUser_status(rset.getInt("user_status"));
+				loginUser.setFile_no(rset.getInt("file_no"));
 				loginUser.setEmail_hash(rset.getString("email_hash"));
 				System.out.println("2"+loginUser);
 
@@ -129,6 +130,30 @@ public class UserDAO {
 			e.printStackTrace();
 		} finally{
 			close(pstmt);
+		}
+		return result;
+	}
+
+	public int checkId(Connection con, String email) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result = 0;
+		String query = prop.getProperty("checkEmail");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, email);
+			rset= pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
 		}
 		return result;
 	}
