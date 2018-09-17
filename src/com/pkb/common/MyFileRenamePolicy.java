@@ -1,4 +1,4 @@
-package com.kh.jsp.common;
+package com.pkb.common;
 
 import java.io.File;
 import java.sql.Date;

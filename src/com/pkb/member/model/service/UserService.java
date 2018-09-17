@@ -77,4 +77,14 @@ public class UserService {
 		}
 		close(con);
 		return result;
+	}
+
+	public int checkId(String email) {
+		Connection con = getConnection();
+		
+		int result = new UserDAO().checkId(con, email);
+		
+		close(con);
+	
+		return result;
 	}}

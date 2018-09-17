@@ -19,6 +19,7 @@ public class User {
 	private int user_grade;
 	private String pet_auth;
 	private int user_status;
+	private int file_no;
 	private String email_hash;
 	
 	
@@ -30,10 +31,9 @@ public class User {
 		this.email_hash = email_hash;
 	}
 
-
 	public User(int user_no, String email, String user_pwd, int user_type, String user_name, String phone,
 			Date birthday, String gender, String address, String sms_chk, String email_chk, Date enrollDate,
-			String nickname, int user_grade, String pet_auth, int user_status, String email_hash) {
+			String nickname, int user_grade, String pet_auth, int user_status, int file_no, String email_hash) {
 		this.user_no = user_no;
 		this.email = email;
 		this.user_pwd = user_pwd;
@@ -50,6 +50,7 @@ public class User {
 		this.user_grade = user_grade;
 		this.pet_auth = pet_auth;
 		this.user_status = user_status;
+		this.file_no = file_no;
 		this.email_hash = email_hash;
 	}
 
@@ -181,6 +182,14 @@ public class User {
 		this.user_status = user_status;
 	}
 
+	public int getFile_no() {
+		return file_no;
+	}
+
+	public void setFile_no(int file_no) {
+		this.file_no = file_no;
+	}
+
 	public String getEmail_hash() {
 		return email_hash;
 	}
@@ -195,9 +204,7 @@ public class User {
 				+ ", user_name=" + user_name + ", phone=" + phone + ", birthday=" + birthday + ", gender=" + gender
 				+ ", address=" + address + ", sms_chk=" + sms_chk + ", email_chk=" + email_chk + ", enrollDate="
 				+ enrollDate + ", nickname=" + nickname + ", user_grade=" + user_grade + ", pet_auth=" + pet_auth
-				+ ", user_status=" + user_status + ", email_hash=" + email_hash + "]";
+				+ ", user_status=" + user_status + ", file_no=" + file_no + ", email_hash=" + email_hash + "]";
 	}
 
-
-	
 }
