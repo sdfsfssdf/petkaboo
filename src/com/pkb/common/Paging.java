@@ -6,7 +6,7 @@ public class Paging {
 	int maxPage;		// 전체 페이지에서 가장 마지막 페이지
 	int startPage;		// 표시될 페이지 중 시작할 페이지
 	int endPage;		// 표시될 페이지 중 마지막 페이지
-	int listCount ;		// 전체 게시글 수 
+	int listCount;		// 전체 게시글 수 
 	
 	public Paging() {
 		

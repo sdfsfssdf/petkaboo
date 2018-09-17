@@ -1,6 +1,7 @@
 package com.pkb.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,23 +9,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.pkb.board.model.service.BoardService;
 import com.pkb.board.model.vo.Board;
-import com.pkb.member.model.vo.User;
+import com.pkb.common.Paging;
 
 /**
- * Servlet implementation class InsertOnebyOneQnaServlet
+ * Servlet implementation class selectOnebyOneQnaList
  */
-@WebServlet("/insertQna.bo")
-public class InsertOnebyOneQnaServlet extends HttpServlet {
+
+/*1:1문의 조회*/
+@WebServlet("/selectOnebyOneList.bo")
+public class selectOnebyOneQnaList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertOnebyOneQnaServlet() {
+    public selectOnebyOneQnaList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,40 +35,57 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("onetitle");
-		String content = request.getParameter("onecontent");
-		
-		System.out.println(title);
-		System.out.println(content);
-	
-		HttpSession session = request.getSession();
-		User loginUser = (User)session.getAttribute("loginUser");
-		String writer = String.valueOf(loginUser.getUser_no());
-		
-		Board b = new Board ();
-		
-		b.setArticle_title(title);
-		b.setArticle_contents(content);
-		b.setUser_no(Integer.parseInt(writer));
-		
-		int result = new BoardService().insertOnebyOneQna(b);
+		int currentPage;
+		int limit;
+		int maxPage;
+		int startPage;
+		int endPage;
 		
 		
-		//등록한 정보가 있다면 내 질문내역 화면 띄워주기
-		String page = "";
-		if(result > 0){
-			page = "views/myPage/onebyoneList.jsp";
-			request.setAttribute("list", new BoardService().selectOnebyOneList());
-			
-		}else{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "1:1문의 등록 실패!");
+		currentPage = 1;
+		
+		limit = 10;
+		
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			
 		}
 		
+		
+		int listCount = new BoardService().getOnebyOneListCount(); 
+		
+		maxPage = (int)((double)listCount / limit + 0.9);
+		
+		startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
+		
+		endPage = startPage + limit - 1;
+		
+		if(maxPage < endPage){
+			endPage = maxPage;
+		}
+		
+		Paging p = new Paging(currentPage, listCount, limit, maxPage, startPage, endPage);
+			
+		ArrayList<Board> list = new BoardService().selectOnebyOneList(currentPage, limit);
+		String page = "";
+		
+		
+		if(list != null) {
+			page = "views/myPage/onebyoneList.jsp";
+			request.setAttribute("list", list);
+			request.setAttribute("p", p);
+			
+			
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시판 조회 실패");
+			
+			
+		}
+	
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		
+	
 	
 	}
 
