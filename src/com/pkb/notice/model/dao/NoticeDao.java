@@ -30,7 +30,7 @@ public class NoticeDao {
 	}
 	
 	
-	public int insertNotice(Connection con, Notice nt) {
+	public int insertNotice(Connection con, Notice nt, int userNo) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
 		int rs = 0;
@@ -39,12 +39,10 @@ public class NoticeDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, nt.getUser_no());
+			pstmt.setInt(1, userNo);
 			pstmt.setString(2, nt.getArticle_title());
 			pstmt.setString(3, nt.getArticle_contents());
-			
-			rs = pstmt.executeUpdate();
-			
+			rs = pstmt.executeUpdate();	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,14 +78,16 @@ public class NoticeDao {
 			while(rs.next()){
 				nt = new Notice();
 				
-				nt.setArticle_no_1(rs.getInt("ARTICLE_NO"));
+				nt.setArticle_no(rs.getInt("ARTICLE_NO"));
 				nt.setUser_name(rs.getString("user_name"));
 				nt.setArticle_date(rs.getDate("ARTICLE_DATE"));
 				nt.setArticle_title(rs.getString("ARTICLE_TITLE"));
 				nt.setArticle_contents(rs.getString("ARTICLE_CONTENTS"));
 				nt.setArticle_type(rs.getString("ARTICLE_TYPE"));
 				nt.setArticle_lv(rs.getInt("ARTICLE_LV"));
-				nt.setRefno(rs.getInt("ARTICLE_REFNO"));
+				nt.setArticle_refno(rs.getInt("article_refno"));
+				nt.setArticle_status(rs.getInt("article_status"));
+				nt.setArticle_modify_date(rs.getDate("ARTICLE_MODIFY_DATE"));
 				
 				list.add(nt);
 			}
@@ -127,6 +127,70 @@ public class NoticeDao {
 			close(stmt);
 		}
 		return listCount;
+	}
+
+
+	public Notice selectOneNotice(Connection con, int nno) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Notice nt = null;
+		String query = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, nno);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				nt = new Notice();
+				
+				nt.setArticle_no(rs.getInt("ARTICLE_NO"));
+				nt.setUser_name(rs.getString("user_name"));
+				nt.setArticle_date(rs.getDate("ARTICLE_DATE"));
+				nt.setArticle_title(rs.getString("ARTICLE_TITLE"));
+				nt.setArticle_contents(rs.getString("ARTICLE_CONTENTS"));
+				nt.setArticle_type(rs.getString("ARTICLE_TYPE"));
+				nt.setArticle_lv(rs.getInt("ARTICLE_LV"));
+				nt.setArticle_refno(rs.getInt("article_refno"));
+				nt.setArticle_status(rs.getInt("article_status"));
+				nt.setArticle_modify_date(rs.getDate("ARTICLE_MODIFY_DATE"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return nt;
+	}
+
+
+	public int modifyNotice(Connection con, Notice nt) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("modifyNotice");
+		
+		try {
+			System.out.println(nt);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nt.getArticle_title());
+			pstmt.setString(2, nt.getArticle_contents());
+			pstmt.setInt(3, nt.getArticle_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

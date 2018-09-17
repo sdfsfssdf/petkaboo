@@ -65,7 +65,6 @@ public class SelectNoticeListServlet extends HttpServlet {
 
 		String page = "";
 
-		System.out.println(list);
 		if (list != null) {
 			page = "views/admin/defaultSet/noticeList.jsp";
 			request.setAttribute("list", list);

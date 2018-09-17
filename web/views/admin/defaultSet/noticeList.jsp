@@ -15,9 +15,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <title>Insert title here</title>
 <style>
 	.outer{
@@ -53,6 +54,13 @@
 	}
 	
 </style>
+<script>
+	$(function(){
+		$('.masterCheck').click(function(){
+			$('.childCheck').prop('checked',this.checked);
+		});
+	});
+</script>
 </head>
 <body>
 	<%@include file="../main/header.jsp" %>
@@ -63,18 +71,19 @@
 	<h2>공지사항 목록</h2>
 	<p>공지사항의 목록을 확인할 수 있고, 관리를 할 수 있습니다.</p>
 	<div class="container">
-		<table id="table table-hover">
+		<table id="listTable" class="table table-hover">
 			<tr class="head" >
-				<th width="100px">선택</th>
+				<th width="100px"><input type="checkbox" class="masterCheck"> 선택</th>
 				<th width="100px">공지번호</th>
 				<th width="400px">제목</th>
 				<th width="200px">작성일</th>
 				<th width="100px">작성자</th>
 			</tr>
 			<% for (Notice nt : list) {%>
-				<tr>
-					<td><input type="checkbox"></td>
-					<td><%=nt.getArticle_no_1() %></td>
+				<tr>	
+					<input type="hidden" value="<%=nt.getArticle_no() %>">
+					<td><input type="checkbox" class="childCheck"></td>
+					<td><%=nt.getArticle_no() %></td>
 					<td><%=nt.getArticle_title() %></td>
 					<td><%=nt.getArticle_date() %></td>
 					<td><%=nt.getUser_name() %></td>
@@ -87,11 +96,11 @@
 	
 	<!-- 페이지 처리 -->
 		<div class="pigingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=1'"><<</button>
+			<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
 				<button disabled><</button>
 			<% } else { %>
-				<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=currentPage - 1%>'"><</button>
+				<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage - 1%>'"><</button>
 			<%} %>
 			
 			<% for(int p = startPage; p <= endPage; p++){
@@ -99,23 +108,22 @@
 				
 					<button disabled><%=p %></button>
 				<%} else {%>
-					<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=p%>'"><%=p %></button>
+					<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=p%>'"><%=p %></button>
 				<%} %>
 			<%} %>
 			
 			<%if(currentPage >= maxPage) {%>
 				<button disabled>></button>
 			<%} else { %>
-				<button onclick="location.href='<%=request.getContextPath()%>/selectList.bo?currentPage=<%=currentPage + 1%>'">></button>
+				<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage + 1%>'">></button>
 			<%} %>
 			
-			<button onclick="location.href='<%=request.getContextPath() %>/selectList.bo?currentPage=<%=maxPage%>'">>></button>
+			<button onclick="location.href='<%=request.getContextPath() %>/noticeList.no?currentPage=<%=maxPage%>'">>></button>
 		</div>
 	
 	
-	
+	<br>
 	<div class="searchArea" align="center">
-	<button class="selectAll">전부선택</button>
 			<select id="searchCondition" name="searchCondition">
 				<option>----</option>
 				<option value="number">공지번호</option>
@@ -130,7 +138,12 @@
 			<script>
 				$(function(){
 					$('#write').click(function(){
-						location.href="defaultSet.jsp?selectMenu=2-1";
+						location.href="<%=request.getContextPath()%>/views/admin/defaultSet/noticeInsertForm.jsp";
+					})
+					
+					$('#listTable td').click(function(){
+						var num = $(this).parent().children("input[type=hidden]").val();
+						location.href = "<%=request.getContextPath()%>/selectOne.no?num="+num;
 					})
 				})
 			</script>
