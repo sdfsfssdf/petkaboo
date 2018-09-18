@@ -1,14 +1,18 @@
 package com.pkb.petsitterService.model.service;
 
 import static com.pkb.common.JDBCTemplate.close;
+import static com.pkb.common.JDBCTemplate.getConnection;
+import static com.pkb.common.JDBCTemplate.close;
 import static com.pkb.common.JDBCTemplate.commit;
 import static com.pkb.common.JDBCTemplate.getConnection;
 import static com.pkb.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.pkb.petsitterService.model.dao.PetsitterServiceDao;
 import com.pkb.petsitterService.model.dao.PetsitterServiceDetailDao;
+import com.pkb.petsitterService.model.vo.Petsitter;
 import com.pkb.petsitterService.model.vo.PetsitterServiceData;
 import com.pkb.petsitterService.model.vo.PetsitterServiceDataDetail;
 
@@ -41,6 +45,21 @@ public class PetsitterServeRegService {
 		close(con);
 		
 		return result;
+	}
+
+	public int getListCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<Petsitter> selectList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Petsitter> list = new PetsitterServiceDao().selectList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
 	}
 
 }

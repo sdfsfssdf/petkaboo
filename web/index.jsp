@@ -1,14 +1,13 @@
 <%@page import="com.pkb.member.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
- <% User loginUser = (User)request.getAttribute("loginUser"); %>
+<% User loginUser = (User)request.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html><br>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>PETKABOO - Find Petsitter for your lovely pets</title>
 <style>	
 	#topView {
 		background:lightgray;
@@ -171,7 +170,9 @@
 			}
 		%>
 	</div>
-	
+	<div id="menuBar">
+		<%@ include file="views/common/menubar.jsp"%>
+	</div>
 	<div id="searchBox">
 	<%@ include file="views/common/mainSearchForm.jsp" %>
 	</div>

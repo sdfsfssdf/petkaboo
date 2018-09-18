@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -55,13 +55,13 @@
 
 			<ul class="menubar">
 				<li><div>
-						<a href="../index.jsp">HOME</a>
+						<a href="<%=request.getContextPath()%>/index.jsp">HOME</a>
 					</div></li>
 				<li><div>
 						<a href="/w.jsp">SERVICE</a>
 					</div></li>
 				<li><div>
-						<a href="/w.jsp">PETSITTER</a>
+						<a href="<%=request.getContextPath()%>/views/searchPetsitter/searchPetsitter.jsp">PETSITTER</a>
 					</div></li>
 				<li><div>
 						<a href="/">STEP</a>

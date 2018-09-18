@@ -59,7 +59,7 @@
 <div class="center-searchArea">
 	<h1 style="color:white;"><strong>지금 바로 펫시터를 찾아보세요</strong></h1>
 	<div class="center-searchBar">
-	<input class="searchBar" type="text" style="font-size:200%; font-weight:bold;" placeholder="원하는 펫시팅 조건을 검색해 보세요" autocomplete="off">
+	<input class="searchBar" name="searchKeyword" type="text" style="font-size:200%; font-weight:bold;" placeholder="원하는 펫시팅 조건을 검색해 보세요" autocomplete="off">
 	<div id="goSearch" onclick="goSearch()"><span>검색하기</span></div><div></div></div>
 	</div>
 </form>
