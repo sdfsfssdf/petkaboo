@@ -55,7 +55,7 @@ public class InsertNicknameServlet extends HttpServlet {
 		if(result > 0){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			
+			session.setAttribute("nickname", nickname);
 			response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
 		}else{
 			System.out.println("실패");
