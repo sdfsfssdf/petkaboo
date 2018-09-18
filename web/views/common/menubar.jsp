@@ -25,7 +25,7 @@
 
 .menubar {
 	text-align: center;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 .menubar>li>div:hover {
