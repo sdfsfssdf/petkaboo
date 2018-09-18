@@ -19,10 +19,11 @@ public class LoginWrapper extends HttpServletRequestWrapper{
 		
 		if(key != null && key.equals("user_pwd")){
 			value = getSha512(super.getParameter("user_pwd"));
+		}else if(key.equals("newPwd")){
+			value = getSha512(super.getParameter("newPwd"));
 		}else{
-			value = super.getParameter(key);
+		value = super.getParameter(key);
 		}
-		
 		return value;
 	}
 	
@@ -40,8 +41,6 @@ public class LoginWrapper extends HttpServletRequestWrapper{
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
-		
 		
 		return encPwd;
 	}

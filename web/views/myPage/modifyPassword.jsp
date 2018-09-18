@@ -178,6 +178,7 @@ margin:auto;
 
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -190,25 +191,15 @@ margin:auto;
 
 			<!-- 메뉴파일 -->
 			<%@ include file="../common/menubar.jsp"%>
-
-
 			<!-- fixed 창 -->
 			<%@ include file="../common/fixed.jsp"%>
-
-
-
 			<!-- 사이드 메뉴 부분 -->
 			<div class="content-left">
 				<%@ include file="../common/sidemenubar.jsp"%>
-
-
 			</div>
-
 			<!-- 센터 컨텐츠 -->
 			<div class="content-center">
-
 				<br> <br>
-
 				<!-- 마이페이지 타이틀부분 -->
 				<div class="title">
 					<h3 align="center"
@@ -216,15 +207,10 @@ margin:auto;
 					<hr
 						style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				</div>
-
-
 				<br>
-
-
 				<!-- 비밀번호 변경 -->
 				&nbsp;&nbsp;&nbsp;&nbsp;<span
-					style="text-align: left; font-size: 17px; font-weight: bold;">비밀번호
-					변경</span>
+					style="text-align: left; font-size: 17px; font-weight: bold;">비밀번호변경</span>
 				<hr
 					style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				<div class="center-content1">
@@ -235,12 +221,10 @@ margin:auto;
 						<br>
 						<br>
 					</div>
-
+				<form method = "post" action = "<%=request.getContextPath()%>/checkPwd.me">
 					<div class=passwordform2>
-
-
 						<input type="password" size='30' maxlength='25'
-							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" name = "currentPwd" placeholder="현재 비밀번호 입력">
+							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" name = "user_pwd" placeholder="현재 비밀번호 입력">
 							<br>
 							<br>
 						<input type="password" size='30' maxlength='25'
@@ -249,9 +233,8 @@ margin:auto;
 							<br>
 						<input type="password"   size='30' maxlength='25'
 							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px" name = "newPwd2" placeholder="새 비밀번호 확인"><br>
-
 					</div>
-
+				
 					<div class=passwordform3>
 					<p>자동입력 방지문자 매크로 구현</p>
 					<br>
@@ -261,13 +244,14 @@ margin:auto;
 					</div>
 
 					<div class=submitandcancle>
-						<button type="submit" id="submit" onclick="#"
+						<input type="submit" id="submit"
 							style="font-weight: lighter">확인</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button type="submit" id="cancel" onclick="#"
 							style="font-weight: lighter">취소</button>
 
 					</div>
+				</form>	
 				</div>
 
 				<!-- 구분선 -->
