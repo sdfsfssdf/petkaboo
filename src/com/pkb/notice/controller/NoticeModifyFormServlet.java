@@ -44,7 +44,7 @@ public class NoticeModifyFormServlet extends HttpServlet {
 			request.setAttribute("nt", nt);
 		} else {
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "(관리자 페이지)공지사항 수정하기 실패");
+			request.setAttribute("msg", "(관리자 페이지)공지사항 수정 화면 조회 실패");
 		}
 
 		RequestDispatcher view = request.getRequestDispatcher(page);
