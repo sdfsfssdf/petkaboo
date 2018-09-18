@@ -198,7 +198,7 @@ public class NoticeDao {
 			for (int i = 0; i < deleteNnos.length; i++) {
 				pstmt.setInt(1, deleteNnos[i]);
 				pstmt.addBatch();
-				pstmt.clearParameters();
+				pstmt.addBatch();
 			}
 			result = pstmt.executeBatch();
 		} catch (SQLException e) {
