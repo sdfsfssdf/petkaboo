@@ -1,7 +1,9 @@
 <%@page import="com.pkb.member.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% User loginUser = (User)request.getAttribute("loginUser"); %>
+<% 
+	User loginUser = (User)request.getAttribute("loginUser"); 
+%>
 <!DOCTYPE html>
 <html><br>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -139,12 +141,10 @@
 <body>
 		<%
 			String email =null;
-		if(session.getAttribute("email")!=null){
+			if(session.getAttribute("email")!=null){
 			email = (String)session.getAttribute("email");
 		}
-		
 		%>
-	<!--  상단뷰 include 할 것  -->
 	<div class="topArea">
 		<h1 align="center" id="logo">로고</h1>
 		
@@ -174,7 +174,7 @@
 		<%@ include file="views/common/menubar.jsp"%>
 	</div>
 	<div id="searchBox">
-	<%@ include file="views/common/mainSearchForm.jsp" %>
+		<%@ include file="views/common/mainSearchForm.jsp" %>
 	</div>
 	
 	<div class="paddingDiv"></div>
