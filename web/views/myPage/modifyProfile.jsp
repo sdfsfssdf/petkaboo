@@ -299,7 +299,7 @@ margin-top:20px;
 							<td width=300px; height=100px>별명</td>
 							<td colspan="2"; width=800px; height=100px>
 								<div class="nickName">
-									<input type="text" id="nickName" name="nickName" size='20' maxlength='15'  
+									<input type="text" id="nickName" name="nickname" size='20' maxlength='15'  
 										style="width:300px; color:black; margin:0; 
 										padding:0; height:35px; border-width:1px" placeholder="별명을 입력하세요">
 								</div>
