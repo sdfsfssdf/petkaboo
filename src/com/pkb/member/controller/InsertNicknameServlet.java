@@ -12,8 +12,6 @@ import com.pkb.common.MyFileRenamePolicy;
 import com.pkb.member.model.service.UserService;
 import com.pkb.member.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import javafx.application.Application;
 
 /**
@@ -45,23 +43,28 @@ public class InsertNicknameServlet extends HttpServlet {
 		// String filePath = 
 		String nickname = mr.getParameter("nickname");
 		String email = (String)request.getSession().getAttribute("email");
+		String address= (String)request.getSession().getAttribute("address");
 		int result = new UserService().changeNickname(nickname, email);
+		
+		System.out.println(email);
 		System.out.println(nickname);
 		System.out.println(result);
-
+		
 		User loginUser = new User();
 		loginUser.setNickname(nickname);
-		
+		loginUser.setAddress(address);
+		loginUser.setEmail(email);
+				
 		if(result > 0){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("nickname", nickname);
+			session.setAttribute("address", address);
 			response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
 		}else{
 			System.out.println("실패");
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
