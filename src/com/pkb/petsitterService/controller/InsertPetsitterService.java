@@ -1,13 +1,16 @@
 package com.pkb.petsitterService.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.pkb.member.model.vo.User;
 import com.pkb.petsitterService.model.service.PetsitterServeRegService;
 import com.pkb.petsitterService.model.vo.PetsitterServiceData;
 import com.pkb.petsitterService.model.vo.PetsitterServiceDataDetail;
@@ -36,9 +39,11 @@ public class InsertPetsitterService extends HttpServlet {
 		String contract_type = request.getParameter("contract_type");
 		String contract_days = request.getParameter("contract_days");
 		
-		// String 으로 꺼내온 후 Date로 변형해야 함
-		String contract_start = request.getParameter("contract_start");
-		String contract_end = request.getParameter("contract_end");
+		// 날짜는 parameter에서 String 으로 꺼내온 후 Date로 변형해야 함
+		String contract_start_string = request.getParameter("contract_start");
+		Date contract_start = Date.valueOf(contract_start_string);
+		String contract_end_string = request.getParameter("contract_end");
+		Date contract_end = Date.valueOf(contract_end_string);
 		
 		// 서비스 디테일 값 꺼내오기
 		String service_charge = request.getParameter("service_charge");
@@ -47,18 +52,21 @@ public class InsertPetsitterService extends HttpServlet {
 		String service_restrict = request.getParameter("service_restrict");
 		
 		// 로그인 유저 세션에서 유저 no를 가져오는 코드를 여기에 삽입
-		// to do something...
+		HttpSession session = request.getSession();
+		User loginUser = (User)session.getAttribute("loginUser");
+		String user_no = String.valueOf(loginUser.getUser_no());
 		
 		// 서비스와 서비스 디테일을 서비스로 넘기기
 		
 		// 펫시터 서비스 vo 객체 생성 및 값 넣기
 		PetsitterServiceData psd = new PetsitterServiceData();
-		// psd.setUser_no(user_no);	// 로그인 세션에서 가져온 유저 no 세팅
+		psd.setUser_no(Integer.parseInt(user_no));	// 로그인 세션에서 가져온 유저 no 세팅
 		psd.setContract_days(contract_days);
 		psd.setContract_type(contract_type);
+		
 		// contract_start와 contract_end는 Date로 형변환 후 집어넣어야 한다
-		// psd.setContract_start((Date)(contract_start)); // 가짜코드
-		// psd.setContract_end((Date)(contract_end)); // 가짜코드
+		psd.setContract_start(contract_start); // Todo
+		psd.setContract_end(contract_end); // Todo
 		// 테스트용 코드
 		System.out.println("psd 객체의 정보는: " + psd);
 

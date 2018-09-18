@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, java.text.*" %>
+<%@ page import="java.util.*, java.text.*, com.pkb.member.model.vo.User" %>
+<% User loginUser = (User)session.getAttribute("loginUser");
+	System.out.println(loginUser);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +50,10 @@ th, tr, td{
 						<td rowspan="13">프로필 사진을 여기에</td>
 					</tr>
 					<tr>
-						<td><label>이름 </label><input type="text" placeholder="김아빠" readonly></td>
+						<td><label>이름 </label><input type="text" placeholder="<%=loginUser.getUser_name() %>" readonly></td>
 					</tr>
 					<tr>
-						<td><label>주소 </label><input type="text" placeholder="서울시 강남구 역삼동" readonly></td>					
+						<td><label>주소 </label><input type="text" placeholder="<%=loginUser.getAddress() %>" readonly></td>					
 					</tr>
 					<tr>
 						<td><label>카테고리 </label> <input type="radio" value="1"
@@ -72,15 +75,15 @@ th, tr, td{
 					</tr>
 					<tr>
 					<td><label>예약가능 요일 </label><input type="checkbox"
-					name="day" id="mon" value="mon"><label for="mon">월</label>
-					<input type="checkbox" name="day" id="tues" value="tues"><label
-					for="tues">화</label> <input type="checkbox" name="day" id="wed"
+					name="contract_days" id="mon" value="mon"><label for="mon">월</label>
+					<input type="checkbox" name="contract_days" id="tues" value="tues"><label
+					for="tues">화</label> <input type="checkbox" name="contract_days" id="wed"
 					value="wed"><label for="wed">수</label> <input
-					type="checkbox" name="day" id="thurs" value="thurs"><label
+					type="checkbox" name="contract_days" id="thurs" value="thurs"><label
 					for="thurs">목</label> <input type="checkbox" name="day" id="fri"
 					value="fri"><label for="fri">금</label> <input
-					type="checkbox" name="day" id="sat" value="sat"><label
-					for="sat">토</label> <input type="checkbox" name="day" id="sun"
+					type="checkbox" name="contract_days" id="sat" value="sat"><label
+					for="sat">토</label> <input type="checkbox" name="contract_days" id="sun"
 					value="sun"><label for="sun">일</label></td>
 					</tr>
 					<tr>
@@ -116,7 +119,6 @@ th, tr, td{
 			&nbsp;
 			<button type="button" class="btn btn-danger cancel">취소하기</button>
 		</div>
-	</div>
 	<script>
 		function insertService(){
 			$("#insertForm").submit();
