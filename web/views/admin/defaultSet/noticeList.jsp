@@ -53,6 +53,16 @@
 		margin-top:30px;
 	}
 	
+	#selects {
+		display:inline-block;
+		width:150px;
+	}
+	
+	#searchInput {
+		display:inline-block;
+		width:400px;
+	}
+	
 </style>
 <script>
 	$(function(){
@@ -82,7 +92,7 @@
 			<% for (Notice nt : list) {%>
 				<tr>	
 					<input type="hidden" value="<%=nt.getArticle_no() %>">
-					<td><input type="checkbox" class="childCheck"></td>
+					<td><input onclick="event.cancelBubble=true" type="checkbox" name="selectNno" class="childCheck" value="<%=nt.getArticle_no()%>"></td>
 					<td><%=nt.getArticle_no() %></td>
 					<td><%=nt.getArticle_title() %></td>
 					<td><%=nt.getArticle_date() %></td>
@@ -96,44 +106,44 @@
 	
 	<!-- 페이지 처리 -->
 		<div class="pigingArea" align="center">
-			<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
+			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
-				<button disabled><</button>
+				<button class="btn btn-info" disabled><</button>
 			<% } else { %>
-				<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage - 1%>'"><</button>
+				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage - 1%>'"><</button>
 			<%} %>
 			
 			<% for(int p = startPage; p <= endPage; p++){
 				if(p == currentPage){%>
 				
-					<button disabled><%=p %></button>
+					<button class="btn btn-default" disabled ><%=p %></button>
 				<%} else {%>
-					<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=p%>'"><%=p %></button>
+					<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=p%>'"><%=p %></button>
 				<%} %>
 			<%} %>
 			
 			<%if(currentPage >= maxPage) {%>
-				<button disabled>></button>
+				<button class="btn btn-info" disabled>></button>
 			<%} else { %>
-				<button onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage + 1%>'">></button>
+				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage + 1%>'">></button>
 			<%} %>
 			
-			<button onclick="location.href='<%=request.getContextPath() %>/noticeList.no?currentPage=<%=maxPage%>'">>></button>
+			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/noticeList.no?currentPage=<%=maxPage%>'">>></button>
 		</div>
 	
 	
 	<br>
 	<div class="searchArea" align="center">
-			<select id="searchCondition" name="searchCondition">
-				<option>----</option>
+			<select class="form-control" id="selects" id="searchCondition" name="searchCondition">
+			
+				<option value="----">----</option>
 				<option value="number">공지번호</option>
 				<option value="title">제목</option>
-				<option value="date">작성일</option>
 			</select>
-			<input type="search">
-			<button type="button" class="btn btn-default">검색하기</button>
+			<input class="form-control" id="searchInput" type="search">
+			<button type="button" id="search" class="btn btn-default">검색하기</button>
 			<button type="submit" id="write" class="btn btn-success" >작성하기</button>
-			<button type="button" class="btn btn-danger">삭제</button>
+			<button type="button" id="delete" class="btn btn-danger">삭제</button>
 			
 			<script>
 				$(function(){
@@ -144,6 +154,59 @@
 					$('#listTable td').click(function(){
 						var num = $(this).parent().children("input[type=hidden]").val();
 						location.href = "<%=request.getContextPath()%>/selectOne.no?num="+num;
+					})
+					
+					$('#search').click(function(){
+						var selectValue = $('#selects').val();
+						if(selectValue !== "----"){							
+							console.log(selectValue);
+							var serchContent = $('#searchInput').val();
+							if(serchContent === ""){
+								alert("검색하실 조건을 입력해주세요.")
+							} else {
+								location.href = "<%=request.getContextPath()%>/search.no?search="+selectValue+"&condition="+serchContent;
+							}
+						} else {
+							alert("검색 조건을 선택해 주세요.")
+						}
+					})
+					
+					$("#delete").click(function(){
+						var checkBoxs = document.getElementsByName("selectNno"); // 체크박스 객체
+						var len = checkBoxs.length;
+						var checkRow = "";
+						var checkCnt = 0;
+						var checkLast = "";
+						var rowid = '';
+						var values = "";
+						var cnt = 0;
+						
+						for(var i = 0; i < len ; i ++){
+							if(checkBoxs[i].checked == true){
+								checkCnt++;
+								checkLast = i;
+							}
+						}
+						
+						for(var i = 0; i < len ; i ++){
+							if(checkBoxs[i].checked == true){
+								checkRow = checkBoxs[i].value;
+								
+								if(checkCnt == 1){
+									rowid += checkRow;
+								} else {
+									if(i == checkLast){
+										rowid += checkRow ;
+									} else {
+										rowid += checkRow + ",";
+									}
+								}
+								
+								cnt ++;
+								checkRow = '';
+							}	
+						}
+						location.href="<%=request.getContextPath()%>/deleteNotices.no?selecNnos="+rowid;
 					})
 				})
 			</script>
