@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="com.pkb.board.model.vo.*, java.util.*, com.pkb.common.Paging"%>
- <% ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
-	<%--Paging pg = (Paging)(request.getAttribute("pg"));
+ <% ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	Paging pg = (Paging)(request.getAttribute("pg"));
 	int currentPage = pg.getCurrentPage();
 	int startPage = pg.getStartPage();
 	int endPage = pg.getEndPage();
 	int oneByOneListCount = pg.getListCount();
 	int maxPage = pg.getMaxPage();
 	
-%> --%>
+%> 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -76,19 +76,19 @@ th {
 					<th class="third">작성일</th>
 				</tr>
 
-				<%-- <%for(Board b : list){ %>
+				 <%for(Board b : list){ %>
 
 				<tr>
 				
-					<td><%=b.getArticle_no()%></td>
+					<td><%=b.getArticle_no() %></td>
 					<td><%=b.getArticle_title()%></td>
 					<td><%=b.getArticle_date()%></td>
 				</tr>
 
-				<% } %> --%>
+				<% } %> 
 
 
-			 <td>John</td>
+			 <!-- <td>John</td>
 						<td>Doe</td>
 						<td>john@example.com</td>
 					</tr>
@@ -137,7 +137,7 @@ th {
 						<td>Dooley</td>
 						<td>july@example.com</td> 
 					</tr> 
-
+ -->
 			</table>
 		</div>
 		<!-- 페이지처리 -->
