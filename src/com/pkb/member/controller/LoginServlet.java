@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 		if(loginUser != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			session.setAttribute("email", email);
 			if(loginUser.getUser_type()==3){
 				response.sendRedirect("views/admin/main/adminMain.jsp");
 			}else{
