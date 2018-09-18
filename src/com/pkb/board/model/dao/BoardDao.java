@@ -2,6 +2,8 @@ package com.pkb.board.model.dao;
 
 import static com.pkb.common.JDBCTemplate.close;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +17,18 @@ import com.pkb.board.model.vo.Board;
 public class BoardDao {
 	private Properties prop = new Properties();
 	
+	
+	public BoardDao(){
+		String fileName = BoardDao.class.getResource("/sql/board/board-query.properties").getPath();
+		
+		try{
+			prop.load(new FileReader(fileName));
+			
+		} catch(IOException e){
+			e.printStackTrace();
+		}
+		
+	}
 	//1:1문의 등록 메소드
 	public int insertOnebyOneQna(Connection con, Board b) {
 		
@@ -90,18 +104,50 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(arg0, arg1);
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+		
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
+			rset = pstmt.executeQuery();
 			
+			list = new ArrayList<Board>();
+			
+			System.out.println(list);
+			
+			while(rset.next()){
+				Board b = new Board();
+				
+				b.setArticle_no(rset.getInt("article_no"));
+				b.setUser_no(rset.getInt("user_no"));
+				b.setArticle_date(rset.getDate("article_date"));
+				b.setArticle_title(rset.getString("article_title"));
+				b.setArticle_contents(rset.getString("article_contents"));
+				b.setArticle_type(rset.getString("article_type"));
+				b.setArticle_lv(rset.getInt("article_lv"));
+				b.setContract_no(rset.getInt("contract_no"));
+				b.setArticle_status(rset.getInt("article_status"));
+				b.setArticle_refno(rset.getInt("article_refno"));
+				b.setArticle_modify_date(rset.getDate("article_modify_date"));
+				
+				list.add(b);
+				
+			}
+			
+			System.out.println("dao는? : " + list);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
 		}
 		
 		
 		
-		return null;
+		return list;
 	}
 	
 
