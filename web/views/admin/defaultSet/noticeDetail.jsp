@@ -7,9 +7,9 @@
 <!DOCTYPE>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -46,7 +46,7 @@
 						<td>제목</td>
 						<td colspan="3"><input class="form-control" type="text" size="50" name="title" readonly value="<%=nt.getArticle_title()%>"></td>
 						<td>공지번호</td>
-						<td><input class="form-control" name="nno" type="text" readonly value="<%=nt.getArticle_no()%>"></td>
+						<td><input class="form-control" id="nno" name="nno" type="text" readonly value="<%=nt.getArticle_no()%>"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -69,9 +69,18 @@
 				</table>
 				<br>
 				<div align="center">
-					<button type="reset" class="btn btn-danger" onclick="location.href='<%=request.getContextPath()%>/noticeList.no'">취소하기</button>
+					<button type="reset" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/noticeList.no'">취소하기</button>
 					<button type="submit" class="btn btn-primary">수정하기</button>
+					<button type="button" class="btn btn-danger" id="delete">삭제하기</button>
 				</div>
+				<script>
+					$(function(){
+						$('#delete').click(function(){
+							var nno = $('#nno').val();
+							location.href = "<%=request.getContextPath()%>/deleteNotice.no?nno="+nno;
+						})
+					})
+				</script>
 			</form>
 		</div>
 		
