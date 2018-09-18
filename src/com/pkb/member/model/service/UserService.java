@@ -87,4 +87,28 @@ public class UserService {
 		close(con);
 	
 		return result;
+	}
+
+	public int checkPwd(String currentPwd, String email) {
+		Connection con = getConnection();
+		
+		int result = new UserDAO().checkPwd(con, currentPwd, email);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int changePwd(String newPwd, String email) {
+		Connection con = getConnection();
+		
+		int result = new UserDAO().changePwd(con, newPwd, email);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
 	}}

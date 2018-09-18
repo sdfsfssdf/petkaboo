@@ -131,7 +131,9 @@
 	.login{
 		text-decoration:none;
 	}
-	
+	.logined{
+		float : right;
+	}
 </style>
 
 </head>
@@ -159,11 +161,12 @@
 		<%
 			}else{
 		%>	
-			<br>
-			<ul class="loginArea">
-				<li class="logout"><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
-			</ul>
-
+			<div class=logined>
+				<button onclick="location.href='views/myPage/mypagemain.jsp'">마이페이지</button>
+				<ul class="loginArea">
+					<li class="logout"><a href="<%=request.getContextPath()%>/logout.me">로그아웃</a></li>
+				</ul>
+			</div>
 		<%
 			}
 		%>

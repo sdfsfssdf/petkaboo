@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import com.pkb.wrapper.LoginWrapper;
+import com.pkb.wrapper.ModifyPwdWrapper;
 
 /**
  * Servlet Filter implementation class IncryptFilter
@@ -44,7 +45,6 @@ public class IncryptFilter implements Filter {
 		HttpServletRequest h_request = (HttpServletRequest)request;
 		
 		LoginWrapper lw = new LoginWrapper(h_request);
-		
 		// pass the request along the filter chain
 		chain.doFilter(lw, response);
 	}

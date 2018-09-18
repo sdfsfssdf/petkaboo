@@ -62,7 +62,7 @@
 						<button onclick="checkEmail()">중복체크</button>
 					</div>
 					<div class="form-group">
-						<input type="password" id="user_pwd" class="form-control" placeholder="비밀번호"
+						<input type="password" id="pwd" class="form-control" placeholder="비밀번호"
 							name="user_pwd" maxlength="20">
 					</div>
 					<div class="form-group">
@@ -106,15 +106,13 @@
 					$('#email').focus();
 
 				}else{
-					if ($('#user_pwd').val() == "") {
+					if ($('#pwd').val() == "") {
 						alert("비밀번호를 입력 해 주세요");
-						console.log("dasdf");
-						$('#user_pwd').focus();
+						$('#pwd').focus();
 					}else{
-						if ($('#check').val() != $('#user_pwd').val()) {
+						if ($('#check').val() != $('#pwd').val()) {
 							alert("입력하신 비밀번호를 확인 해 주세요");
 							$('#check').focus();
-							console.log("daflsjdflj");
 						}else{
 							$("#joinForm").submit();
 						}
