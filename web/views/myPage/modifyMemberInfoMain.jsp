@@ -284,16 +284,24 @@ a:hover, a:active, a:focus {
 							<br>
 							<!-- 사진부분 -->
 							<div class=circleimg></div>
+							<%
+							String nickname = null;
+							if (session.getAttribute("nickname") != null) {
+								nickname = (String) session.getAttribute("nickname");
+							}
+							%>
 							<!-- 닉네임 -->
 							<div class=nicknamespan>
 								<span style="text-align: left">닉네임 : </span>&nbsp;<input
 									type="text" name="nimknamespann" size="20" maxlength="15"
 									style="width: 50px; color: black; margin: 0; padding: 0; height: 35px; border-width: 0; background-color: #eee;"
-									value="펫카부" readonly="">
+									<% if(loginUser != null){%>
+									value="<%=loginUser.getNickname()%>"
+									<% } %> readonly>
 							</div>
 							<!-- 수정버튼 -->
 							<div class=modibutton>
-								<button id=modifyprofile onclick="#">수정하기</button>
+								<button id=modifyprofile onclick="location.href='modifyProfile.jsp'">수정하기</button>
 							</div>
 						</div>
 						<%

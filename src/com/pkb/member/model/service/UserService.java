@@ -111,4 +111,18 @@ public class UserService {
 		}
 		close(con);
 		return result;
+	}
+
+	public int changeNickname(String nickname, String email) {
+		Connection con = getConnection();
+		
+		int result = new UserDAO().changeNickname(con, nickname, email);
+		
+		if(result>0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
 	}}

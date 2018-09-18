@@ -6,8 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pkb.common.MyFileRenamePolicy;
+import com.pkb.member.model.service.UserService;
+import com.pkb.member.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -38,10 +41,25 @@ public class InsertNicknameServlet extends HttpServlet {
 		
 		MultipartRequest mr = new MultipartRequest(request, AbsolutePath + finalPath, 1024*768, "UTF-8", new MyFileRenamePolicy());
 		
+	
 		// String filePath = 
-		String nickname = mr.getParameter("nickName");
-		
+		String nickname = mr.getParameter("nickname");
+		String email = (String)request.getSession().getAttribute("email");
+		int result = new UserService().changeNickname(nickname, email);
 		System.out.println(nickname);
+		System.out.println(result);
+
+		User loginUser = new User();
+		loginUser.setNickname(nickname);
+		
+		if(result > 0){
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", loginUser);
+			
+			response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
+		}else{
+			System.out.println("실패");
+		}
 	}
 
 	/**
