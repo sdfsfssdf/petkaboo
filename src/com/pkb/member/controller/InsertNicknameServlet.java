@@ -46,20 +46,12 @@ public class InsertNicknameServlet extends HttpServlet {
 		String address= (String)request.getSession().getAttribute("address");
 		int result = new UserService().changeNickname(nickname, email);
 		
-		System.out.println(email);
-		System.out.println(nickname);
-		System.out.println(result);
-		
-		User loginUser = new User();
-		loginUser.setNickname(nickname);
-		loginUser.setAddress(address);
-		loginUser.setEmail(email);
-				
 		if(result > 0){
 			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			session.setAttribute("nickname", nickname);
-			session.setAttribute("address", address);
+			User u = (User)session.getAttribute("loginUser");
+			u.setNickname(nickname);
+			// 키값은 중복이 안된다. 
+			session.setAttribute("loginUser", u);
 			response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
 		}else{
 			System.out.println("실패");
