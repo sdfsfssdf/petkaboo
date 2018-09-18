@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%-- <% ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%> --%>	
+	pageEncoding="UTF-8"
+	import="com.pkb.board.model.vo.*, java.util.*, com.pkb.common.*"%>
+<% ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	Paging p = (Paging)(request.getAttribute("p"));
+	int p.get
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +15,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 .contentArea {
-	margin-top:80px;
+	margin-top: 80px;
 	margin-left: 320px;
 	width: 60%;
 }
@@ -23,7 +28,7 @@ th {
 	margin-left: 0px;
 	width: 90%;
 	height: 430px;
-	padding:0px;
+	padding: 0px;
 }
 
 .first {
@@ -38,14 +43,14 @@ th {
 	width: 25%;
 }
 
-.form-control{
-	width:15%;
-	display:inline-block;
-	marig-left:5px;
+.form-control {
+	width: 15%;
+	display: inline-block;
+	marig-left: 5px;
 }
 
-.search{
- 	width:45%;
+.search {
+	width: 45%;
 }
 </style>
 </head>
@@ -60,27 +65,24 @@ th {
 		<br>
 		<div class="container">
 			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th class="first">글번호</th>
-						<th class="second">제목</th>
-						<th class="third">작성일</th>
-					</tr>
-				</thead>
-				
-				
-				<tbody>
-				<%-- <%for(Board b : list){ %>
-				
-					<tr> --%>
-					
-					
-					
-					
-					
-					
-					
-						 <td>John</td>
+				<tr>
+					<th class="first">글번호</th>
+					<th class="second">제목</th>
+					<th class="third">작성일</th>
+				</tr>
+
+				<%for(Board b : list){ %>
+
+				<tr>
+					<td><%=b.getArticle_no()%></td>
+					<td><%=b.getArticle_title()%></td>
+					<td><%=b.getArticle_contents()%></td>
+				</tr>
+
+				<% } %>
+
+
+				<!-- <td>John</td>
 						<td>Doe</td>
 						<td>john@example.com</td>
 					</tr>
@@ -128,22 +130,55 @@ th {
 						<td>July</td>
 						<td>Dooley</td>
 						<td>july@example.com</td> 
-					</tr>
-				</tbody>
+					</tr> -->
+
 			</table>
 		</div>
-		<div align="center">
-			<p>페이징 들어갈부분</p>
+		<!-- 페이지처리 -->
+		<div class="pagingArea" align="center">
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOnebyOneList.bo?currentPage=1'"><<</button>
+			<% if(currentPage <= 1 ){ %>
+			<button disabled><</button>
+			<%}else{ %>
+			<button
+				onclick="location.href='<%=request.getContextpath()%>/selectOnebyOneList.bo?currentPage=<%=currentPage - 1%>'"><</button>
+			<%} %>
+
+			<!-- 1,2,3,4,5버튼 -->
+			<% for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){
+				%>
+			<button disabled><%= p %></button>
+			<% 	}else { %>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOnebyOneList.bo?currentPage=<%=p%>'"><%= p %></button>
+
+			<% } %>
+
+			<% } %>
+
+			<% if(currentPage >= maxPage){ %>
+			<button disabled>></button>
+			<% }else{ %>
+			<button
+				onclick="location.href='<%=request.getContextPath() %>/selectOnebyOneList.bo?currentPage=<%=currentPage + 1 %>'">></button>
+			<% } %>
+			<button
+				onclick="location.href='<%=request.getContextPath()%>/selectOnebyOenList.bo?currentPage=<%=maxPage%>'">>></button>
+
 		</div>
-		<div class="searchArea" >
-			<select class="form-control" id="searchCondition" name="searchCondition">
+		<div class="searchArea">
+			<select class="form-control" id="searchCondition"
+				name="searchCondition">
 				<option>----</option>
 				<option value="category">제목</option>
 				<option value="writer">내용</option>
 				<option value="title">작성일</option>
 			</select> <input type="search" class="form-control search">
 			<button type="submit" class="btn btn-default">검색하기</button>
-			<button onclick="location.href='onebyoneQNAWrite.jsp'" class="btn btn-success">작성하기</button>
+			<button onclick="location.href='onebyoneQNAWrite.jsp'"
+				class="btn btn-success">작성하기</button>
 		</div>
 
 	</div>

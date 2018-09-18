@@ -45,7 +45,7 @@ public class BoardDao {
 			pstmt.setString(3, b.getArticle_contents());
 			
 			
-			pstmt.executeQuery();
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			
@@ -65,9 +65,9 @@ public class BoardDao {
 		
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = prop.getProperty("listCount");
+		String query = prop.getProperty("OnebyOnelistCount");
 		
-		int listCount = 0;
+		int oneByonelistCount = 0;
 		
 		try{
 			stmt = con.createStatement();
@@ -75,7 +75,7 @@ public class BoardDao {
 			
 			
 			if(rset.next()){
-				listCount = rset.getInt(1);
+				oneByonelistCount = rset.getInt(1);
 				
 			}
 			
@@ -90,7 +90,7 @@ public class BoardDao {
 			
 		}
 		
-		return listCount;
+		return oneByonelistCount;
 	}
 
 	//1:1문의 목록 DB에서 조회

@@ -52,9 +52,9 @@ public class selectOnebyOneQnaList extends HttpServlet {
 		}
 		
 		
-		int listCount = new BoardService().getOnebyOneListCount(); 
+		int oneByOneListCount = new BoardService().getOnebyOneListCount(); 
 		
-		maxPage = (int)((double)listCount / limit + 0.9);
+		maxPage = (int)((double)oneByOneListCount / limit + 0.9);
 		
 		startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
 		
@@ -64,7 +64,7 @@ public class selectOnebyOneQnaList extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		Paging p = new Paging(currentPage, listCount, limit, maxPage, startPage, endPage);
+		Paging p = new Paging(currentPage, oneByOneListCount, limit, maxPage, startPage, endPage);
 			
 		ArrayList<Board> list = new BoardService().selectOnebyOneList(currentPage, limit);
 		String page = "";

@@ -42,11 +42,11 @@ public class BoardService {
 	public int getOnebyOneListCount() {
 		Connection con = getConnection();
 		
-		int listCount = new BoardDao().getOnebyOneListCount(con);
+		int oneByOneListCount = new BoardDao().getOnebyOneListCount(con);
 		
 		close(con);
 		
-		return listCount;
+		return oneByOneListCount;
 	}
 
 }
