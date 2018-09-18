@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.pkb.board.model.service.BoardService;
 import com.pkb.board.model.vo.Board;
 import com.pkb.member.model.vo.User;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * Servlet implementation class InsertOnebyOneQnaServlet
@@ -51,22 +52,18 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 		
 		int result = new BoardService().insertOnebyOneQna(b);
 		
-		
-		//등록한 정보가 있다면 내 질문내역 화면 띄워주기
 		String page = "";
-		if(result > 0){
-			page = "views/myPage/onebyoneList.jsp";
-			request.setAttribute("list", new BoardService().selectOnebyOneList());
+		if(result > 0) {
+			page = ("views/myPage/onebyoneList.jsp");
 			
-		}else{
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "1:1문의 등록 실패!");
+		}else {
+			page = "views/"
 			
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 		
+		//등록한 정보가 있다면 내 질문내역 화면 띄워주기
+
 	
 	}
 
