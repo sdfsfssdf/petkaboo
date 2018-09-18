@@ -11,13 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pkb.member.model.vo.User;
-import com.pkb.petsitterService.model.service.PetsitterServeRegService;
-import com.pkb.petsitterService.model.vo.PetsitterServiceData;
-import com.pkb.petsitterService.model.vo.PetsitterServiceDataDetail;
+import com.pkb.petsitterService.model.service.PetsitterMainService;
+import com.pkb.petsitterService.model.vo.PetsitterService;
 
-/**
- * Servlet implementation class InsertPetsitterService
- */
 @WebServlet("/insertPetService.do")
 public class InsertPetsitterService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -56,35 +52,28 @@ public class InsertPetsitterService extends HttpServlet {
 		User loginUser = (User)session.getAttribute("loginUser");
 		String user_no = String.valueOf(loginUser.getUser_no());
 		
-		// 서비스와 서비스 디테일을 서비스로 넘기기
-		
+		// 서비스와 서비스 디테일을 서비스로 넘기기	
 		// 펫시터 서비스 vo 객체 생성 및 값 넣기
-		PetsitterServiceData psd = new PetsitterServiceData();
-		psd.setUser_no(Integer.parseInt(user_no));	// 로그인 세션에서 가져온 유저 no 세팅
-		psd.setContract_days(contract_days);
-		psd.setContract_type(contract_type);
+		PetsitterService ps = new PetsitterService();
+		ps.setUser_no(Integer.parseInt(user_no));	// 로그인 세션에서 가져온 유저 no 세팅
+		ps.setContract_days(contract_days);
+		ps.setContract_type(contract_type);
 		
 		// contract_start와 contract_end는 Date로 형변환 후 집어넣어야 한다
-		psd.setContract_start(contract_start); // Todo
-		psd.setContract_end(contract_end); // Todo
-		// 테스트용 코드
-		System.out.println("psd 객체의 정보는: " + psd);
+		ps.setContract_start(contract_start); // Todo
+		ps.setContract_end(contract_end); // Todo
 
-		// 펫시터 서비스 상세 vo 객체 생성 및 값 넣기
-		PetsitterServiceDataDetail psdDetail = new PetsitterServiceDataDetail();
-		psdDetail.setPet_category(Integer.parseInt(pet_category));
-		psdDetail.setPet_count(Integer.parseInt(pet_count));
-		psdDetail.setService_detail(service_detail);
-		psdDetail.setService_restrict(service_restrict);
-		psdDetail.setService_charge(Integer.parseInt(service_charge));
+		// 펫시터 서비스 상세 값 넣기
+		ps.setPet_category(Integer.parseInt(pet_category));
+		ps.setPet_count(Integer.parseInt(pet_count));
+		ps.setService_detail(service_detail);
+		ps.setService_restrict(service_restrict);
+		ps.setService_charge(Integer.parseInt(service_charge));
 		// 테스트용 코드
-		System.out.println("psdDetail 객체의 정보는: " + psdDetail);
+		System.out.println("ps 객체의 정보는: " + ps);
 		
 		// 펫시터 등록 및 상세 정보 등록 서비스로 객체 넘기기
-		int result = new PetsitterServeRegService().insertPetsitterService(psd, psdDetail);
-		
-		// 펫시터 상세 정보 등록 서비스로 객체 넘기기
-		// int result2 = new PetsitterServeDetailRegService().insertPetsitterServiceDetail(psdDetail);
+		int result = new PetsitterMainService().insertPetsitterService(ps);
 		
 		// 넘겨줄 페이지 초기화
 		String page = "";
@@ -92,12 +81,11 @@ public class InsertPetsitterService extends HttpServlet {
 		// 둘 다 성공시에만 성공처리
 		if(result > 0){
 			// selectList.bo를 펫시터 목록 조회 서블릿으로 대체
-			response.sendRedirect(request.getContextPath() + "/selectList.bo");
+			response.sendRedirect(request.getContextPath() + "/PetSitter.all");
 		}else{
 			request.setAttribute("msg", "펫시터 등록 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
-		
+		}		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

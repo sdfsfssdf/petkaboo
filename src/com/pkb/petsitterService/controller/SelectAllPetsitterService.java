@@ -10,19 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pkb.petsitterService.model.service.PetsitterServeRegService;
+import com.pkb.petsitterService.model.service.PetsitterMainService;
 import com.pkb.petsitterService.model.vo.PageInfo;
-import com.pkb.petsitterService.model.vo.Petsitter;
+import com.pkb.petsitterService.model.vo.PetsitterService;
 
-@WebServlet("/selectList.bo")
-public class SelectPetsitterServiceList extends HttpServlet {
-	private static final long serialVersionUID = -2439929295714565982L;
-
-	public SelectPetsitterServiceList() {
+/**
+ * Servlet implementation class SelectAllPetsitterService
+ */
+@WebServlet("/PetSitter.all")
+public class SelectAllPetsitterService extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public SelectAllPetsitterService() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Paging 처리 사용
 		// Paging 처리에 필요한 변수 선언
@@ -44,7 +50,9 @@ public class SelectPetsitterServiceList extends HttpServlet {
 		}
 		
 		// BoardService에서 전체 목록 개수를 리턴받음
-		int listCount = new PetsitterServeRegService().getListCount();
+		int listCount = new PetsitterMainService().getListCount();
+		// 테스트 코드
+		System.out.println(listCount);
 		
 		// 총 페이지 수 계산
 		maxPage = (int)((double)listCount / limit + 0.9);
@@ -63,7 +71,7 @@ public class SelectPetsitterServiceList extends HttpServlet {
 		// 페이지 정보 -> PageInfo class
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<Petsitter> list = new PetsitterServeRegService().selectList(currentPage, limit);
+		ArrayList<PetsitterService> list = new PetsitterMainService().selectList(currentPage, limit);
 		
 		String page = "";
 		
@@ -76,14 +84,16 @@ public class SelectPetsitterServiceList extends HttpServlet {
 			request.setAttribute("pi", pi);
 		}else{
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 조회 실패!");
+			request.setAttribute("msg", "조회 실패!");
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);		
-		
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, java.text.*, com.pkb.member.model.vo.User" %>
-<% User loginUser = (User)session.getAttribute("loginUser");
-	System.out.println(loginUser);
-%>
+<% User loginUser = (User)session.getAttribute("loginUser");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +34,6 @@ th, tr, td{
 <body>
 	<h1 align="center" id="logo">로고</h1>
 	<br>
-	<!-- 인클루드 파일 경로 수정 필요 -->
 	<%@ include file="/views/common/menubar.jsp"%>
 	<%@ include file="/views/common/sidemenubar.jsp"%>
 

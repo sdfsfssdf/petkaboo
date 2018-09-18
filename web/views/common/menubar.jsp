@@ -61,7 +61,7 @@
 						<a href="/w.jsp">SERVICE</a>
 					</div></li>
 				<li><div>
-						<a href="<%=request.getContextPath()%>/views/searchPetsitter/searchPetsitter.jsp">PETSITTER</a>
+						<a href="<%=request.getContextPath()%>/PetSitter.all">PETSITTER</a>
 					</div></li>
 				<li><div>
 						<a href="/">STEP</a>
