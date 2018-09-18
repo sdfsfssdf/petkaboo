@@ -39,6 +39,7 @@ if(loginUser != null){ %> --%>
 		<br>
 		<!-- 20180914-1 -->
 		<form action="<%=request.getContextPath() %>/insertQna.bo" method="post">
+			
 			<div class="title">
 		
 				<input type="text" class="form-control" name="onetitle" placeholder="제목을 입력하세요.">

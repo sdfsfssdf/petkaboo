@@ -1,31 +1,29 @@
 package com.pkb.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.pkb.board.model.service.BoardService;
 import com.pkb.board.model.vo.Board;
-import com.pkb.member.model.vo.User;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.pkb.common.Paging;
 
 /**
- * Servlet implementation class InsertOnebyOneQnaServlet
+ * Servlet implementation class SelectOnebyOneList
  */
-@WebServlet("/insertQna.bo")
-public class InsertOnebyOneQnaServlet extends HttpServlet {
+@WebServlet("/selectOnebyOneList.bo")
+public class SelectOnebyOneList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertOnebyOneQnaServlet() {
+    public SelectOnebyOneList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,42 +32,45 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title = request.getParameter("onetitle");
-		String content = request.getParameter("onecontent");
+		int currentPage;
+		int limit;
+		int maxPage;
+		int startPage;
+		int endPage;
 		
-		System.out.println(title);
-		System.out.println(content);
-
+		currentPage = 1;
 		
-		//나중에 로그인 되면 수정!
-		/*HttpSession session = request.getSession();
-		User loginUser = (User)session.getAttribute("loginUser");
-		String writer = String.valueOf(loginUser.getUser_no());*/
+		limit = 10;
 		
-		Board b = new Board ();
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+				
+		}
 		
-		b.setArticle_title(title);
-		b.setArticle_contents(content);
-		//b.setUser_no(Integer.parseInt(writer));
+		int oneByOneListCount = new BoardService().getOnebyOneListCount();
+		maxPage = (int)((double)oneByOneListCount / limit + 0.9);
+		startPage = (((int)((double)currentPage / limit + 0.9))-1) * limit + 1;
+		endPage = startPage + limit - 1;
+		if(maxPage < endPage){
+			endPage = maxPage;
+		}
 		
-		int result = new BoardService().insertOnebyOneQna(b);
+		Paging pg = new Paging(currentPage, oneByOneListCount, limit, maxPage, startPage, endPage);
+		
+		ArrayList<Board> list = new BoardService().selectOnebyOneList(currentPage, limit);
 		
 		String page = "";
-		if(result > 0) {
+		
+		if(list != null){
 			page = "../views/myPage/onebyoneList.jsp";
-			request.setAttribute("list", new BoardService().selectOnebyOneList());
-			
+			request.setAttribute("list", list);
+			request.setAttribute("pg", pg);
 			
 		}else {
 			page = "../views/common/errorPage.jsp";
-			request.setAttribute("msg", "1:1문의 등록 실패");		
+			request.setAttribute("msg", "내 질문내역 조회 실패");
 			
 		}
-		
-		
-		//등록한 정보가 있다면 내 질문내역 화면 띄워주기
-
-	
 	}
 
 	/**
