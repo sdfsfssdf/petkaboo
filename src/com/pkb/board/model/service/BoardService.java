@@ -25,28 +25,9 @@ public class BoardService {
 			
 		}
 		
+		close(con);
 		return result;
 	}
 
-	public ArrayList<Board> selectOnebyOneList(int currentPage, int limit) {
-		Connection con = getConnection();
-		
-		ArrayList<Board> list = new BoardDao().selectOnebyOneList(con, currentPage, limit);
-		
-		close(con);
-		
-		return list;
-	}
-
-	//1:1문의 게시물 수 조회용 메소드
-	public int getOnebyOneListCount() {
-		Connection con = getConnection();
-		
-		int oneByOneListCount = new BoardDao().getOnebyOneListCount(con);
-		
-		close(con);
-		
-		return oneByOneListCount;
-	}
-
+	
 }
