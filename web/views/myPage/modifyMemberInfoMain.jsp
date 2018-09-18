@@ -304,12 +304,6 @@ a:hover, a:active, a:focus {
 								<button id=modifyprofile onclick="location.href='modifyProfile.jsp'">수정하기</button>
 							</div>
 						</div>
-						<%
-							String address = null;
-							if (session.getAttribute("address") != null) {
-								address = (String) session.getAttribute("address");
-							}
-						%>
 						<!-- 개인정보수정 -->
 						<div class="element">
 							<p style="text-align: left; font-size: 17px; font-weight: bold;">개인정보
