@@ -211,22 +211,14 @@ padding:20px;
 			<!-- 메뉴파일 -->
 			<%@ include file="../common/menubar.jsp"%>
 
-
 			<!-- fixed 창 -->
 			<%@ include file="../common/fixed.jsp"%>
-
-
 
 			<!-- 사이드 메뉴 부분 -->
 			<div class="content-left">
 				<%@ include file="../common/sidemenubar.jsp"%>
 
-
 			</div>
-
-
-
-
 
 			<!-- 센터 컨텐츠 -->
 			<div class="content-center">
@@ -241,10 +233,7 @@ padding:20px;
 						style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				</div>
 
-
-
 				<br>
-
 
 				<!-- 실명 인증 -->
 				&nbsp;&nbsp;&nbsp;&nbsp;<span
@@ -253,33 +242,31 @@ padding:20px;
 				<hr
 					style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				<div class="center-content1">
-					
-					<!-- 주민등록증 사진 찾기 -->
-					<div class=identifyform1>
-						<input type="text" name="inputnamepath" size='30' maxlength='25'
-							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px"
-							value="파일경로" readonly>&nbsp;&nbsp;&nbsp;
-						<button id="regphoto" onclick="#" style="font-weight: lighter">찾기</button>
-					</div>
+					<form action="<%=request.getContextPath()%>/insert.tn"
+						method="post" encType="multipart/form-data">
+						<!-- 주민등록증 사진 찾기 -->
+						<div class=identifyform1>
+							<input type="file" name="identifyImg" size='30' maxlength='25'
+								style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px"
+								value="파일경로" readonly>&nbsp;&nbsp;&nbsp;
+							<button id="regphoto" onclick="#" style="font-weight: lighter">찾기</button>
+						</div>
 
-					<!-- 주민등록증 미리보기 부분 -->
-					<div class=identifyform2>
-						<span>주민등록증 미리보기 사진</span>
-					</div>
+						<!-- 주민등록증 미리보기 부분 -->
+						<div class=identifyform2>
+							<span>주민등록증 미리보기 사진</span>
+						</div>
 
-					<div class=submitandcancle>
-						<button type="submit" id="submit" onclick="#"
-							style="font-weight: lighter">등록하기</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="submit" id="cancel" onclick="#"
-							style="font-weight: lighter">취소하기</button>
+						<div class=submitandcancle>
+							<button type="submit"
+								style="font-weight: lighter">등록하기</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button  id="cancel" onclick="#"
+								style="font-weight: lighter">취소하기</button>
 
-					</div>
+						</div>
+					</form>
 				</div>
-
-
-
-
 
 				<!-- 구분선 -->
 				<br> <br> <br> <br> <br>
@@ -304,11 +291,7 @@ padding:20px;
 			</div>
 			<!-- 	
 			<div class="content-right">
-			
 			</div> -->
-
-
-
 			<!-- footer -->
 			<div id="footer">
 				<h1>footer</h1>
