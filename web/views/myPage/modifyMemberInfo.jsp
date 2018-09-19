@@ -461,8 +461,9 @@ border: 1px solid black; */
 										style="width: 300px; color: black; margin: 0; padding: 0; height: 35px; border-width: 0"
 										<% if(loginUser != null){
 											if(loginUser.getAddress()==null){ %>
+				
 											value="지정된 주소가 없습니다."
-										<% }else{ %>
+									<% }else{ %>
 											value="<%=loginUser.getAddress()%>"
 										<% }} %>	 readonly><br>
 				<form method="get" action="<%=request.getContextPath()%>/modifyAdd.ma">			
@@ -472,6 +473,7 @@ border: 1px solid black; */
 				<input type="text" id="addressDetail" name="addressDetail" style="width: 300px; height: 30px;"  placeholder="상세주소">
 								</div>
 							</td>
+		
 						</tr>
 						<tr>
 							<td width=300px; height=70px>비밀번호</td>

@@ -60,6 +60,7 @@ public class InsertNicknameServlet extends HttpServlet {
 			String address= (String)request.getSession().getAttribute("address");
 			int result = new UserService().changeNickname(nickname, email);
 			
+			
 			if(result > 0){
 				HttpSession session = request.getSession();
 				User u = (User)session.getAttribute("loginUser");

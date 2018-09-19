@@ -121,6 +121,7 @@ a:hover, a:active, a:focus {
 	margin-top: 30px;
 }
 
+
 #footer {
 	float: left;
 	width: 100%;

@@ -54,6 +54,7 @@ public class InsertLicenseImgServlet extends HttpServlet {
 		
 		System.out.println(result);
 		
+		
 		if(result > 0){
 			response.sendRedirect("views/myPage/licenseIdentify.jsp");
 		}else{

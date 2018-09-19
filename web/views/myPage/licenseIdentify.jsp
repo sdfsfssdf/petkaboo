@@ -235,6 +235,7 @@ padding:20px;
 						style="font-weight: bold; font-family: 'Jua', sans-serif;">마이페이지</h3>
 					<hr
 						style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
+			
 				</div>
 
 				<br>
