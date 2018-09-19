@@ -119,7 +119,7 @@ ul.sub li:hover > ul.sub-sub{display:block;}
 								<li><a href="../myPage/reserveList.jsp">예약현황</a></li>
 								<li><a href="#">거래내역</a></li>
 								<li><a href="../myPage/onebyoneQNAWrite.jsp" >1:1 문의</a></li>
-								<li><a href="../myPage/onebyoneList.jsp" onclick="goOnebyOneQna()">내 질문 내역</a></li>
+								<li><a onclick="goOnebyOneQna()">내 질문 내역</a></li>
 							</ul>
 						</li>
 						<li class="group">
@@ -143,11 +143,11 @@ ul.sub li:hover > ul.sub-sub{display:block;}
 				</div>
 				
 				<script>
-					/* function goOnebyOneQna(){
-						location.href = "/pkb/selectOnebyOneList.bo;"
+				 	 function goOnebyOneQna(){
+						location.href = "<%=request.getContextPath()%>/selectOnebyOneList.bo";
 						
 					}
-				 */
+				  
 				</script>
 				
 </body>

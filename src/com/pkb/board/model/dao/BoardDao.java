@@ -60,24 +60,28 @@ public class BoardDao {
 	}
 	public ArrayList<Board> selectOnebyOneList(Connection con, int currentPage, int limit) {
 		
-		Statement stmt = null;
+		Board b = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> list = null;
-		
 		String query = prop.getProperty("selectOnebyOneList");
 	
 		
 		try {
-			stmt = con.createStatement();
+			pstmt = con.prepareStatement(query);
 			
-			rset = stmt.executeQuery(query);
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
 			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
+			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<Board>();
 			
 			while(rset.next()){
-				Board b = new Board();
+				b = new Board();
 				
 				b.setArticle_no(rset.getInt("article_no"));
 				b.setUser_no(rset.getInt("user_no"));
@@ -103,7 +107,7 @@ public class BoardDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			close(stmt);
+			close(pstmt);
 			close(rset);
 			
 		}
