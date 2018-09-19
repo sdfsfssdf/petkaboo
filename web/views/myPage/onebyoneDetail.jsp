@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, com.pkb.board.model.vo.*"%>
+	<%Board b = (Board)(request.getAttribute("b")); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -68,24 +69,26 @@
 		
 			</table>
 			<div class="topView">
-				<label>글번호</label><input type="text" class="form-control no"
-					id="oboNo" name="oboNo" readOnly> &nbsp;&nbsp;<label
-					class="labelTitle">제목</label><input type="text"
-					class="form-control oboTitle" id="title" name="title" value=""
-					readOnly>
+				<label>글번호</label><input type="text" class="form-control no" id="detailno" name="oboNo" value="<%=b.getArticle_no() %>" readOnly> &nbsp;&nbsp;
+				<label class="labelTitle">제목</label>
+				<input type="text"class="form-control oboTitle" id="detailtitle" name="title" value="<%=b.getArticle_title() %>" >
 				<!-- 받아온 정보를 넣어야함.-->
+				
 				<br>
-				<br> <label>작성자 </label><input type="text"
-					class="form-control writer" readOnly>
-				&nbsp;&nbsp;&nbsp;&nbsp;<label>작성일</label> <input type="text"
-					class="form-control date"> &nbsp;&nbsp;&nbsp;&nbsp;<label>카테고리</label>
-				<input type="text" class="form-control category" value="공지사항"
-					readOnly>
+				<br> <label>작성자 </label>
+			    <input type="text" class="form-control writer" id="detailwriter" value="<%=b.getUser_no() %>" readOnly>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				<label>작성일</label> 
+				<input type="text" class="form-control date" id="detaildate" value="<%=b.getArticle_date() %>" readOnly> &nbsp;&nbsp;&nbsp;&nbsp;
+					
+				<label>카테고리</label>
+				<input type="text" class="form-control category" id="detailcategory" value="<%=b.getArticle_type() %>" readOnly>
 			</div>
 			<br>
 			<div class="content">
-				<textarea class="form-control" rows="20" cols="30" id="comment"
-					readOnly value=""></textarea>
+				<textarea class="form-control" rows="20" cols="30" id="comment" value="<%=b.getArticle_contents() %>"
+					readOnly></textarea>
 			</div>
 			<br>
 			<div class="btns" align="center">

@@ -5,6 +5,8 @@ import static com.pkb.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import com.pkb.board.model.dao.BoardDao;
 import com.pkb.board.model.vo.Board;
 
@@ -51,15 +53,12 @@ public class BoardService {
 
 	public Board selectOneOnebyOne(int num) {
 		Connection con = getConnection();
+	
+	
+		Board b = new BoardDao().selectOneOnebyOne(con, num);
 		
-		Board b = null;
-		
-		
-		/*int result = new BoardDao().updateOnebyOneCount(con, num);*/
-		
-		
-		
-		return null;
+	
+		return b;
 	}
 
 	

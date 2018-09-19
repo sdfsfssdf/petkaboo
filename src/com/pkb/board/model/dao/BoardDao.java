@@ -155,6 +155,7 @@ public class BoardDao {
 		ResultSet rset = null;
 		Board b = null;
 		
+		
 		String query = prop.getProperty("selectOneOnebyOne");
 		
 		try {
@@ -163,6 +164,8 @@ public class BoardDao {
 			pstmt.setInt(1, num);
 			
 			rset = pstmt.executeQuery();
+			
+		
 			
 			if(rset.next()){
 				
@@ -179,6 +182,7 @@ public class BoardDao {
 				b.setArticle_status(rset.getInt("article_status"));
 				b.setArticle_refno(rset.getInt("article_refno"));
 				b.setArticle_modify_date(rset.getDate("article_modify_date"));
+			
 				
 			}
 			
@@ -187,13 +191,15 @@ public class BoardDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(rset);
-			
+			close(rset);	
+	
 		}
 		
 		
 		return b;
+		
 	}
+	
 	
 	/*public int updateOnebyOneCount(Connection con, int num) {
 		PreparedStatement pstmt = null;
