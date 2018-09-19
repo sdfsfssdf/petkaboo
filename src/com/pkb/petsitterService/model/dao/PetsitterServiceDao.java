@@ -153,5 +153,50 @@ public class PetsitterServiceDao {
 
 		return list;
 	}
+
+	public PetsitterService selectOne(Connection con, int psrno) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		PetsitterService p = null;
+		
+		String query = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, psrno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				p = new PetsitterService();
+				
+				p.setPet_service_regno(rset.getInt("pet_service_regno"));
+				p.setUser_no(rset.getInt("user_no"));
+				p.setUser_name(rset.getString("user_name"));
+				p.setNickname(rset.getString("nickname"));
+				p.setAddress(rset.getString("address"));
+				p.setPhone(rset.getString("phone"));
+				p.setGender(rset.getString("gender"));
+				p.setContract_type(rset.getString("contract_type"));
+				p.setPet_category(rset.getInt("pet_category"));
+				p.setPet_count(rset.getInt("pet_count"));
+				p.setService_charge(rset.getInt("service_charge"));
+				p.setContract_days(rset.getString("contract_days"));
+				p.setContract_start(rset.getDate("contract_start"));
+				p.setContract_end(rset.getDate("contract_end"));
+				p.setService_detail(rset.getString("service_detail"));
+				p.setService_restrict(rset.getString("service_restrict"));		
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+	}
 	
 }
