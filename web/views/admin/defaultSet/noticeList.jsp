@@ -15,9 +15,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	.outer{
@@ -62,6 +62,14 @@
 		width:400px;
 	}
 	
+	.pigingArea{
+		margin-left:45%;
+	}
+	
+	.searchArea{
+		margin-left:15%;
+		width:1000px;
+	}
 </style>
 <script>
 	$(function(){
@@ -104,7 +112,7 @@
 	</div>
 	
 	<!-- 페이지 처리 -->
-	<div class="spaceDiv"><div class="pigingArea" align="center">
+	<div class="spaceDiv"><div class="pigingArea">
 			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
 				<button class="btn btn-info" disabled><</button>
@@ -128,9 +136,9 @@
 			<%} %>
 			
 			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/noticeList.no?currentPage=<%=maxPage%>'">>></button>
-		</div>
+	</div>
 	
-	
+
 	<br>
 	</div><div class="searchArea" align="center">
 			<select class="form-control" id="selects" id="searchCondition" name="searchCondition">

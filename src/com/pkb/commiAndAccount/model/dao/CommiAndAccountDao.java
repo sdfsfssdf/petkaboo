@@ -219,4 +219,67 @@ public class CommiAndAccountDao {
 		return result;
 	}
 
+	public ArrayList<PetCategory> selectPetCategory(Connection con, int current, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<PetCategory> plist = null;
+		String query = prop.getProperty("selectPetCategory");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (current - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rs = pstmt.executeQuery();
+			plist = new ArrayList<PetCategory>();
+			while(rs.next()){
+				PetCategory pc = new PetCategory();
+				pc.setPetCategory(rs.getInt("pet_category"));
+				pc.setCategoryName(rs.getString("pet_categoryname"));
+				pc.setCategoryLV(rs.getInt("pet_categorylv"));
+				pc.setCategoryRefNo(rs.getInt("pet_categoryref"));
+	
+				plist.add(pc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+	
+		return plist;
+	}
+
+	public int getListCount(Connection con) {
+		// TODO Auto-generated method stub
+		Statement stmt = null;
+		ResultSet rs = null;
+		String query = prop.getProperty("listCount");
+
+		int listCount = 0;
+
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return listCount;
+	}
+
 }

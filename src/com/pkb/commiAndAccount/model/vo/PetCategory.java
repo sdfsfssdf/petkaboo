@@ -32,6 +32,7 @@ public class PetCategory {
 		return categoryRefNo;
 	}
 
+
 	public void setPetCategory(int petCategory) {
 		this.petCategory = petCategory;
 	}
@@ -53,5 +54,4 @@ public class PetCategory {
 		return "PetCategory [petCategory=" + petCategory + ", categoryName=" + categoryName + ", categoryLV="
 				+ categoryLV + ", categoryRefNo=" + categoryRefNo + "]";
 	}
-	
 }
