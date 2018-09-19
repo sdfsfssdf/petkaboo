@@ -85,8 +85,48 @@
 		width:20%;
 	}
 	
-	.modal-content {
+	.modal-backdrop.in {
+   	 	z-index: 100;
+	}
+	
+	.modal-content{
 		z-index:9999999;
+	}
+	
+	.addCate {
+		float:left;
+		width:200px;
+	}
+	
+	.totalAddArea{
+		width:80%;
+		display:inline-block;
+	}
+	
+	.addCateH3{
+		display:inline-block;
+	}
+	
+	#selectCategory{
+		width:100%;
+		
+	}
+	
+	.addCateLabel{
+		width:80px;
+		float:left;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	
+	.addCateDiv{
+		width:100px;
+		float:left;
+	}
+	
+	.addCatePer{
+		width:80px;
+		float:left;
 	}
 </style>
 </head>
@@ -207,20 +247,36 @@
 		<button type="button" id="deleteAccBtn" class="btn btn-danger " >삭제하기</button>
 	</div>
 	<div class="modal fade" id="myModal" role="dialog">
-	    <div class="modal-dialog modal-sm">
-	      	<div class="modal-content">
-	        	<div class="modal-header">
-	          		<button type="button" class="close" data-dismiss="modal">&times;</button>
-	          			<h4 class="modal-title">Modal Header</h4>
-	        	</div>
-		      	<div class="modal-body">
-		         	<p>This is a small modal.</p>
-		        </div>
-		        <div class="modal-footer">
-		          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-	      	</div>
-	    </div>
+    	<div class="modal-dialog modal-lg">
+      		<div class="modal-content">
+        		<div class="modal-header">
+          			<button type="button" class="close" data-dismiss="modal">&times;</button>
+          			<h4 class="modal-title">무통장 입금계좌 추가하기 입력창</h4>
+        		</div>
+        	<form method="post" action="<%=request.getContextPath()%>/insertAccount.caa">
+        	<div class="modal-body">
+          		<label>은행</label> 
+          		<select name="bank" class="form-control modalContent1 modalContent">
+          			<option value="NH농협은행">NH농협은행</option>
+          			<option value="신한은행">신한은행</option>
+          			<option value="우리은행">우리은행</option>
+          			<option value="하나은행">하나은행</option>
+          			<option value="IBK기업은행">IBK기업은행</option>
+          			<option value="KB국민은행">KB국민은행</option>
+          			<option value="KEB외환은행">KEB외환은행</option>
+          		</select>
+          		<label>계좌번호</label>
+          		<input type="text" class="form-control modalContent modalContent2" name="accountNo" placeholder="계좌번호를 입력해주세요.">
+<!--           		<label>예금주</label>
+          		<input type="text" class="form-control modalContent modalContent3" name="name" placeholder="예금주명을 입력해주세요."> -->
+        	</div>
+        	<div class="modal-footer">
+        		<button type="submit" class="btn btn-success">추가하기</button>
+          		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        	</div>
+        	</form>
+      	</div>
+    </div>
  	</div>
 	<script>
 		$(function(){
@@ -265,7 +321,68 @@
 	</script>
 	<br>
 	<hr>
-	<h3>동물 카테고리 추가</h3>
+	<h3 class="addCateH3">동물 카테고리 추가</h3>
+	<div class="totalAddArea">
+		<div class="addCateDiv">
+		<label> </label>
+			<select class="form-control" id="selectCategory">
+				<option value="1">대분류</option>
+				<option value="2">소분류</option>
+			</select>
+		</div>
+		<div id="major">
+			<div class="addCateLabel">
+				<label>카테고리명  </label>
+			</div>
+			<div class="addCate">
+				<input class="form-control addCate" type="text">
+			</div>
+			<div class="addCateLabel">
+				<label>수수료  </label>
+			</div>
+			<div class="addCate">
+				<input class="form-control addCatePer" type="number" min="0" max="100">
+			</div>
+			<div class="addaddCateLabelCate">
+				<label>%</label>
+			</div>
+			<div class="addCate">
+				<button class="btn btn-success">추가하기</button>
+			</div>
+		</div>
+		
+		<div style="display:none;" id="minor">
+			<div class="addCate">
+				<select class="form-control addCate">
+					<% for (int i = 0 ; i< caa.getClist().size(); i++){ %>
+						<option><%=caa.getClist().get(i).getPetCategoryName() %></option>
+					<%} %>
+				</select>
+			</div>
+			<div class="addCateLabel">
+				<label>카테고리명  </label>
+			</div>
+			<div class="addCate">
+				<input class="form-control addCate" type="text">
+			</div>
+			<div class="addCate">
+				<button class="btn btn-success">추가하기</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$('#selectCategory').change(function(){
+				if($('#selectCategory').val() == "1"){
+					$('#major').show();
+					$('#minor').hide();
+				} else {
+					$('#major').hide();
+					$('#minor').show();
+				}
+			})
+		})
+	</script>
 	</div>
 </body>
 </html>

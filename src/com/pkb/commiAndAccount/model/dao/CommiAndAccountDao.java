@@ -135,4 +135,27 @@ public class CommiAndAccountDao {
 		return result;
 	}
 
+	public int insertAccount(Connection con, Account ac, int user_no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertAccount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, ac.getAccountNo());
+			pstmt.setString(2, ac.getBankName());
+			pstmt.setInt(3,user_no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
