@@ -65,7 +65,7 @@
 </style>
 </head>
 <body>
-	<h1 align="center" id="logo">로고</h1>
+	<a  href="/pkb/index.jsp"><h1 align="center" id="logo">로고</h1></a>
 	<br>
 	<%@ include file="../common/menubar.jsp"%>
 	<%@ include file="../common/sidemenubar.jsp" %>
@@ -79,11 +79,11 @@
 			<table class="tableArea" >
 				<tr>
 					<td class="imgArea" rowspan="4" width="150px">img</td>
-					<td><span value="<%=loginUser.getUser_name() %>"> </span>이름 :</td>
-					<td colspan="2"><label>주소 : </label><%-- <input type="text" value="<%=loginUser.getAddress()%>"> --%></td>
+					<td>이름 : <div value="<%=loginUser.getUser_name() %>"> </div></td>
+					<td colspan="2"><label>주소 : </label><input type="text" value="<%=loginUser.getAddress()%>"></td>
 				</tr>
 				<tr>
-					<td><label>반려동물 이름 : </label><%-- <input type="text" value="<%=loginUser.getPet_auth()%>"> --%></td>
+					<td><label>반려동물 이름 : </label><input type="text" value="<%=loginUser.getPet_auth()%>"></td>
 					<td><label>돌봄 시작일 : </label></td>
 					<td><label>돌봄 종료일 : </label> ~ </td>
 				</tr>

@@ -6,6 +6,7 @@ import static com.pkb.common.JDBCTemplate.getConnection;
 import static com.pkb.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.pkb.member.model.dao.UserDAO;
 import com.pkb.member.model.vo.User;
@@ -125,4 +126,15 @@ public class UserService {
 		}
 		close(con);
 		return result;
+	}
+
+	public ArrayList<User> getPetsitterInfo(User loginUser) {
+		Connection con = getConnection();
+		
+		ArrayList<User> list = new UserDAO().getPetsitterInfo(loginUser, con);
+		
+		close(con);
+		return list;
+		
+		
 	}}
