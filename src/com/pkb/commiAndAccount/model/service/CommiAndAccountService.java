@@ -10,6 +10,7 @@ import com.pkb.commiAndAccount.model.dao.CommiAndAccountDao;
 import com.pkb.commiAndAccount.model.vo.Account;
 import com.pkb.commiAndAccount.model.vo.Commission;
 import com.pkb.commiAndAccount.model.vo.CommissionAndAccountList;
+import com.pkb.commiAndAccount.model.vo.PetCategory;
 public class CommiAndAccountService {
 
 	public CommissionAndAccountList selectCAAList() {
@@ -68,6 +69,46 @@ public class CommiAndAccountService {
 		Connection con = getConnection();
 		
 		int result = new CommiAndAccountDao().insertAccount(con, ac, user_no);
+		
+		if(result > 0){
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public int insertCategoryMajor(PetCategory pc, int commission) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		int result = new CommiAndAccountDao().insertCategoryMajor(con, pc);
+		int result2 = 0;
+		if(result > 0){
+			result2 = new CommiAndAccountDao().insertFee(con,commission);
+			
+			if(result2 > 0) {
+				commit(con);
+			} else {
+				rollback(con);
+			}
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		return result2;
+	}
+
+	public int insertCategoryMinor(PetCategory pc) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		int result = new CommiAndAccountDao().insertCateogoryMinor(con,pc);
 		
 		if(result > 0){
 			commit(con);

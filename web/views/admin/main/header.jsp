@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.pkb.member.model.vo.*"%>
+<%
+	User loginUser = (User)session.getAttribute("loginUser");
+%>
 <!DOCTYPE>
 <html>
 <style>
@@ -174,6 +177,14 @@
 			</ul>
 		</div>
 	</div>
+	<% if( loginUser == null || loginUser.getUser_type() == 1){ %>
+		<script>
+			$(function(){
+				location.href="<%=request.getContextPath() %>/views/common/errorPage.jsp";
+			})
+		</script>
+		
+	<%} %>
 </div>
 
 </body>

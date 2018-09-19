@@ -15,9 +15,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
 
 <title>Insert title here</title>
 <style>
@@ -63,7 +62,6 @@
 		width:400px;
 	}
 	
-	
 </style>
 <script>
 	$(function(){
@@ -106,7 +104,7 @@
 	</div>
 	
 	<!-- 페이지 처리 -->
-		</div><div class="pigingArea" align="center">
+	<div class="spaceDiv"><div class="pigingArea" align="center">
 			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
 				<button class="btn btn-info" disabled><</button>
@@ -134,7 +132,7 @@
 	
 	
 	<br>
-	<div class="searchArea" align="center">
+	</div><div class="searchArea" align="center">
 			<select class="form-control" id="selects" id="searchCondition" name="searchCondition">
 			
 				<option value="----">----</option>
