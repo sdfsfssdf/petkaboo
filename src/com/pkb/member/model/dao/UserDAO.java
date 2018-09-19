@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.pkb.member.model.vo.File;
@@ -263,6 +264,21 @@ public class UserDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<User> getPetsitterInfo(User loginUser, Connection con) {
+		PreparedStatement pstmt = null;
+		ArrayList<User> list = null;
+		String query = prop.getProperty("petsitterInfo");
+		
+		try {
+			pstmt=con.prepareStatement(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return list;
 	}
 	
 }
