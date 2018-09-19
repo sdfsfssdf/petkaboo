@@ -6,6 +6,11 @@ public class PetsitterService {
 	private int pet_service_regno;		// 펫시터 서비스 등록번호
 	private int pet_regno;				// 펫시터 서비스 상세 번호
 	private int user_no;				// 회원번호
+	private String user_name;			// 회원이름
+	private String nickname;			// 닉네임
+	private String gender;				// 성별
+	private String phone;				// 전화번호
+	private String address;				// 주소
 	private String contract_type;		// 계약종류
 	private int pet_category;			// 계약가능동물
 	private int pet_count;				// 계약가능동물 마리수
@@ -18,13 +23,19 @@ public class PetsitterService {
 	
 	public PetsitterService(){}
 
-	public PetsitterService(int pet_service_regno, int pet_regno, int user_no, String contract_type, int pet_category,
-			int pet_count, int service_charge, String contract_days, Date contract_start, Date contract_end,
-			String service_detail, String service_restrict) {
-		// super();
+	public PetsitterService(int pet_service_regno, int pet_regno, int user_no, String user_name, String nickname,
+			String gender, String phone, String address, String contract_type, int pet_category, int pet_count,
+			int service_charge, String contract_days, Date contract_start, Date contract_end, String service_detail,
+			String service_restrict) {
+		super();
 		this.pet_service_regno = pet_service_regno;
 		this.pet_regno = pet_regno;
 		this.user_no = user_no;
+		this.user_name = user_name;
+		this.nickname = nickname;
+		this.gender = gender;
+		this.phone = phone;
+		this.address = address;
 		this.contract_type = contract_type;
 		this.pet_category = pet_category;
 		this.pet_count = pet_count;
@@ -46,6 +57,26 @@ public class PetsitterService {
 
 	public int getUser_no() {
 		return user_no;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getAddress() {
+		return address;
 	}
 
 	public String getContract_type() {
@@ -96,6 +127,26 @@ public class PetsitterService {
 		this.user_no = user_no;
 	}
 
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public void setContract_type(String contract_type) {
 		this.contract_type = contract_type;
 	}
@@ -134,11 +185,12 @@ public class PetsitterService {
 
 	@Override
 	public String toString() {
-		return "Petsitter [pet_service_regno=" + pet_service_regno + ", pet_regno=" + pet_regno + ", user_no=" + user_no
-				+ ", contract_type=" + contract_type + ", pet_category=" + pet_category + ", pet_count=" + pet_count
-				+ ", service_charge=" + service_charge + ", contract_days=" + contract_days + ", contract_start="
-				+ contract_start + ", contract_end=" + contract_end + ", service_detail=" + service_detail
-				+ ", service_restrict=" + service_restrict + "]";
+		return "PetsitterService [pet_service_regno=" + pet_service_regno + ", pet_regno=" + pet_regno + ", user_no="
+				+ user_no + ", user_name=" + user_name + ", nickname=" + nickname + ", gender=" + gender + ", phone="
+				+ phone + ", address=" + address + ", contract_type=" + contract_type + ", pet_category=" + pet_category
+				+ ", pet_count=" + pet_count + ", service_charge=" + service_charge + ", contract_days=" + contract_days
+				+ ", contract_start=" + contract_start + ", contract_end=" + contract_end + ", service_detail="
+				+ service_detail + ", service_restrict=" + service_restrict + "]";
 	}
-	
+
 }
