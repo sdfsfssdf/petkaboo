@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -225,10 +225,6 @@ padding:20px;
 
 			</div>
 
-
-
-
-
 			<!-- 센터 컨텐츠 -->
 			<div class="content-center">
 
@@ -241,8 +237,6 @@ padding:20px;
 					<hr
 						style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				</div>
-
-
 
 				<br>
 
@@ -277,11 +271,7 @@ padding:20px;
 
 					</div>
 				</div>
-
-
-
-
-
+				
 				<!-- 구분선 -->
 				<br> <br> <br> <br> <br>
 				<hr
@@ -294,7 +284,6 @@ padding:20px;
 					<div class="bottom-content1">
 						<img src="../images/info1.png" width="65%" height="250px">
 					</div>
-
 
 
 					<div class="bottom-content1">
