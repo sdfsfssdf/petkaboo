@@ -266,6 +266,7 @@ public class UserDAO {
 		return result;
 	}
 
+
 	public ArrayList<User> getPetsitterInfo(User loginUser, Connection con) {
 		PreparedStatement pstmt = null;
 		ArrayList<User> list = null;
@@ -279,6 +280,7 @@ public class UserDAO {
 		}
 	
 		return list;
+
 	}
 	
 }

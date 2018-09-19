@@ -54,28 +54,12 @@ public class InsertNicknameServlet extends HttpServlet {
 		f.setUser_no(Integer.valueOf(((User) (request.getSession().getAttribute("loginUser"))).getUser_no()));
 		
 		int profileResult = new FileService().InsertProfile(f);
-		
-		if(profileResult ==1){
+	
 			String nickname = mr.getParameter("nickname");
 			String email = (String)request.getSession().getAttribute("email");
 			String address= (String)request.getSession().getAttribute("address");
 			int result = new UserService().changeNickname(nickname, email);
 			
-			if(result > 0){
-				HttpSession session = request.getSession();
-				User u = (User)session.getAttribute("loginUser");
-				u.setNickname(nickname);
-				// 키값은 중복이 안된다. 
-				session.setAttribute("loginUser", u);
-				response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
-			}else{
-				System.out.println("실패");
-			}
-		}else{
-			String nickname = mr.getParameter("nickname");
-			String email = (String)request.getSession().getAttribute("email");
-			String address= (String)request.getSession().getAttribute("address");
-			int result = new UserService().changeNickname(nickname, email);
 			
 			if(result > 0){
 				HttpSession session = request.getSession();
@@ -88,7 +72,6 @@ public class InsertNicknameServlet extends HttpServlet {
 				System.out.println("실패");
 			}
 		}
-	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
