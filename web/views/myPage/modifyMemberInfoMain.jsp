@@ -284,12 +284,7 @@ a:hover, a:active, a:focus {
 							<br>
 							<!-- 사진부분 -->
 							<div class=circleimg></div>
-							<%
-							String nickname = null;
-							if (session.getAttribute("nickname") != null) {
-								nickname = (String) session.getAttribute("nickname");
-							}
-							%>
+						
 							<!-- 닉네임 -->
 							<div class=nicknamespan>
 								<span style="text-align: left">닉네임 : </span>&nbsp;<input

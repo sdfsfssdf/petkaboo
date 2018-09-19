@@ -2,9 +2,6 @@ package com.pkb.member.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +14,16 @@ import com.pkb.member.model.service.FileService;
 import com.pkb.member.model.vo.User;
 
 /**
- * Servlet implementation class InsertIdentifyImgServlet
+ * Servlet implementation class InsertLicenseImgServlet
  */
-@WebServlet("/insertIdentify.tn")
-public class InsertIdentifyImgServlet extends HttpServlet {
+@WebServlet("/insert.li")
+public class InsertLicenseImgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertIdentifyImgServlet() {
+    public InsertLicenseImgServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,11 +38,11 @@ public class InsertIdentifyImgServlet extends HttpServlet {
 		
 		MultipartRequest mr = new MultipartRequest(request, AbsolutePath + finalPath, 1024*768, "UTF-8", new MyFileRenamePolicy());
 		
-		String name = mr.getParameter("identifyImg");
-		String upload =  mr.getFilesystemName("identifyImg");
-		String original = mr.getOriginalFileName("identifyImg");
+		String name = mr.getParameter("licenseImg");
+		String upload =  mr.getFilesystemName("licenseImg");
+		String original = mr.getOriginalFileName("licenseImg");
 		
-		File file = mr.getFile("identifyImg");
+		File file = mr.getFile("licenseImg");
 		
 		com.pkb.member.model.vo.File f = new com.pkb.member.model.vo.File();
 		
@@ -53,13 +50,12 @@ public class InsertIdentifyImgServlet extends HttpServlet {
 		f.setFile_path(finalPath);
 		f.setUser_no(Integer.valueOf(((User) (request.getSession().getAttribute("loginUser"))).getUser_no()));
 		
-		int result = new FileService().insertIdentify(f);
+		int result = new FileService().insertLicense(f);
 		
 		System.out.println(result);
 		
 		if(result > 0){
-			response.sendRedirect("views/myPage/nameIdentify.jsp");
-
+			response.sendRedirect("views/myPage/licenseIdentify.jsp");
 		}else{
 			System.out.println("실패");
 		}

@@ -264,5 +264,27 @@ public class UserDAO {
 		}
 		return result;
 	}
+
+	public int insertLicense(Connection con, File f) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("insertLicense");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, f.getFile_name());
+			pstmt.setInt(2, f.getUser_no());
+			pstmt.setString(3, f.getFile_path());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		return result;
+	}
 	
 }

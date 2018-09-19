@@ -36,5 +36,19 @@ public class FileService {
 		close(con);
 		return profileResult;
 	}
+
+	public int insertLicense(com.pkb.member.model.vo.File f) {
+		Connection con = getConnection();
+		
+		int licenseResult = new UserDAO().insertLicense(con, f);
+		
+		if(licenseResult > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return licenseResult;
+	}
 	
 }

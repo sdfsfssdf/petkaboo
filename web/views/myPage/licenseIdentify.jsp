@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <link href="https://fonts.googleapis.com/css?family=Jua"
 	rel="stylesheet">
@@ -248,10 +247,10 @@ padding:20px;
 				<hr
 					style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				<div class="center-content1">
-					
+				<form method="post" action="<%=request.getContextPath()%>/insert.li" encType="multipart/form-data">	
 					<!-- 자격증 사진 찾기 -->
 					<div class=identifyform1>
-						<input type="text" name="inputlicensepath" size='30' maxlength='25'
+						<input type="file" name="licenseImg" size='30' maxlength='25'
 							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px"
 							value="파일경로" readonly>&nbsp;&nbsp;&nbsp;
 						<button id="regphoto" onclick="#" style="font-weight: lighter">찾기</button>
@@ -270,6 +269,7 @@ padding:20px;
 							style="font-weight: lighter">취소하기</button>
 
 					</div>
+				</form>
 				</div>
 				
 				<!-- 구분선 -->
