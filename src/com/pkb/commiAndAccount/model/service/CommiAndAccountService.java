@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.pkb.commiAndAccount.model.dao.CommiAndAccountDao;
+import com.pkb.commiAndAccount.model.vo.Account;
 import com.pkb.commiAndAccount.model.vo.Commission;
 import com.pkb.commiAndAccount.model.vo.CommissionAndAccountList;
 public class CommiAndAccountService {
@@ -57,6 +58,23 @@ public class CommiAndAccountService {
 		} else {
 			rollback(con);
 		}
+		close(con);
+		
+		return result;
+	}
+
+	public int insertAccount(Account ac, int user_no) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		int result = new CommiAndAccountDao().insertAccount(con, ac, user_no);
+		
+		if(result > 0){
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		
 		close(con);
 		
 		return result;

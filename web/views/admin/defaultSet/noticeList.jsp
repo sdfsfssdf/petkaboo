@@ -63,6 +63,7 @@
 		width:400px;
 	}
 	
+	
 </style>
 <script>
 	$(function(){
@@ -105,7 +106,7 @@
 	</div>
 	
 	<!-- 페이지 처리 -->
-		<div class="pigingArea" align="center">
+		</div><div class="pigingArea" align="center">
 			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
 				<button class="btn btn-info" disabled><</button>
