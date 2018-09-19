@@ -123,6 +123,11 @@ public class PetsitterServiceDao {
 				
 				p.setPet_service_regno(rset.getInt("pet_service_regno"));
 				p.setUser_no(rset.getInt("user_no"));
+				p.setUser_name(rset.getString("user_name"));
+				p.setNickname(rset.getString("nickname"));
+				p.setAddress(rset.getString("address"));
+				p.setPhone(rset.getString("phone"));
+				p.setGender(rset.getString("gender"));
 				p.setContract_type(rset.getString("contract_type"));
 				p.setPet_category(rset.getInt("pet_category"));
 				p.setPet_count(rset.getInt("pet_count"));

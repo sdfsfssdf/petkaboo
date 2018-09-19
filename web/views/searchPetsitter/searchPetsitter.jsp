@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8" import="java.util.*, com.pkb.petsitterService.model.vo.*"%>
+<% ArrayList<PetsitterService> list = (ArrayList<PetsitterService>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -107,6 +115,49 @@ nav {
 	width: 1%;
 	height: 1%;
 }
+.new-ps-body{
+	width:55%;
+	margin-left:8%;
+}
+#map {
+	position:absolute;
+	right:10%;
+	margin-top:2%;
+}
+
+#listArea{
+	text-align:center;
+}
+
+table.listArea {
+	display:inline-block;
+    border-collapse: collapse;
+    width:40%;
+    text-align: center;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #369;
+    margin-top:4%;
+    margin-left:5%;
+}
+table.listArea th {
+    width: 147px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #153d73;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align:center;
+}
+table.listArea td {
+    width: 349px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
 </style>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
@@ -173,7 +224,6 @@ nav {
 	}
 </script>
 <body>
-
 	<div id="container">
 		<div id="header"></div>
 		<%@include file="/views/common/menubar.jsp"%>
@@ -202,146 +252,73 @@ nav {
 				<option value="">등급낮은순</option>
 			</select> <br /> <br /> <br />
 		</fieldset>
-
-		<div class="body-div">
-
-			<div class="petsitter-list">
-				<br /> <br /> <br /> <br /> <br />
-				<table class="PSList">
+		<br>
+	<div class="SearchBodyArea">
+	<div id="map" style="width:400px; height:400px;">
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다.">
+	</script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+						center : new daum.maps.LatLng(33.450701, 126.570667), level : 3
+					  };
+		var map = new daum.maps.Map(container, options);
+	</script>
+	</div>						
+		<div class="new-ps-body">
+				<% for(PetsitterService p : list){ %>
+				<table id="listArea" class="listArea">
 					<tr>
-						<a href="#"><td width="118px" height="192.2px"><img
-								src="https://pbs.twimg.com/profile_images/984239725190901760/-5wrSANU_400x400.jpg"
-								class="PSphoto img-circle img-responsive" alt="Responsive image" />
-						</td>
-							<td>
-								<ul>
-									<li>닉네임</li>
-									<li>성별</li>
-									<li>주소</li>
-									<li>등급</li>
-								</ul>
-						</td></a>
-						<td width="118px" height="192.2px"><img
-							src="https://scontent-atl3-1.cdninstagram.com/vp/124d1f94c8e173a98886f9956d4a8ce8/5C3349EB/t51.2885-15/e35/33160048_2066949453569642_3907206528846790656_n.jpg"
-							class="PSphoto  img-circle img-responsive" alt="Responsive image" />
-						</td>
-						<td>
-							<ul>
-								<li>닉네임</li>
-								<li>성별</li>
-								<li>주소</li>
-								<li>등급</li>
-							</ul>
-						</td>
-						<td colspan="2" rowspan="3" width="50%"><div id="map"
-								style="width: 500px; height: 400px;"></div></td>
-						<script type="text/javascript"
-							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다."></script>
-						<script>
-							var container = document.getElementById('map');
-							var options = {
-								center : new daum.maps.LatLng(33.450701,
-										126.570667),
-								level : 3
-							};
-
-							var map = new daum.maps.Map(container, options);
-						</script>
-
+						<td colspan="2">프로필 사진을 여기에 출력<br><br><br><Br></td>
 					</tr>
 					<tr>
-						<td width="118px" height="192.2px"><img
-							src="https://scontent-dfw5-1.cdninstagram.com/vp/0311309cc754aefef94b4434b17d16a1/5C3BA82E/t51.2885-15/e35/s480x480/38643408_211597533047688_3169716521924558848_n.jpg"
-							class="PSphoto img-circle img-responsive" alt="Responsive image" />
-						</td>
-						<td>
-							<ul>
-								<li>닉네임</li>
-								<li>성별</li>
-								<li>주소</li>
-								<li>등급</li>
-							</ul>
-						</td>
-						<td width="118px" height="192.2px"><img
-							src="https://scontent.cdninstagram.com/vp/d432a9c5818f68d1dcfd3860935145f2/5BDCF333/t51.2885-15/sh0.08/e35/p640x640/34982645_1703252956454507_5788207006821122048_n.jpg"
-							class="PSphoto img-circle img-responsive" alt="Responsive image" />
-						</td>
-						<td>
-							<ul>
-								<li>닉네임</li>
-								<li>성별</li>
-								<li>주소</li>
-								<li>등급</li>
-							</ul>
-						</td>
-
+						<th scope="row">닉네임</th>
+						<td><%= p.getNickname() %></td>
 					</tr>
 					<tr>
-						<td width="118px" height="192.2px"><img
-							src="http://momojeri.com/web/product/big/201607/33_shop1_658629.jpg"
-							class="PSphoto img-circle img-responsive" alt="Responsive image" />
-						</td>
-						<td>
-							<ul>
-								<li>닉네임</li>
-								<li>성별</li>
-								<li>주소</li>
-								<li>등급</li>
-							</ul>
-						</td>
-						<td width="118px" height="192.2px"><img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-_6PO3bu0QTN01FCWAiScWQWo9DVCm3t0bj64sphhxGVlthTEJA"
-							class="PSphoto img-circle img-responsive" alt="Responsive image" />
-						</td>
-						<td>
-							<ul>
-								<li style="display: list-item;">닉네임</li>
-								<li style="display: list-item;">성별</li>
-								<li style="display: list-item;">주소</li>
-								<li style="display: list-item;">등급</li>
-							</ul>
-						</td>
+						<th scope="row">성별</th>	
+						<% if(p.getGender().equals("M")){ %>
+						<td>남</td>
+						<% } else { %>
+						<td>여</td>
+						<% } %>
+					</tr>
+					<tr>
+						<th scope="row">주소</th>
+						<td><%= p.getAddress() %></td>
 					</tr>
 				</table>
-				<br /> <br /> <br /> <br />
-				<div>
-					<nav align="center">
-					<ul>
-						<li><a href="#"><img
-								src="https://cdn.icon-icons.com/icons2/38/PNG/512/back_arrow_5821.png"
-								alt="" id="nav-icon"></a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#"><img
-								src="https://cdn.icon-icons.com/icons2/38/PNG/512/forwardarrow_haciaadelante_4836.png"
-								alt="" id="nav-icon"></a></li>
-					</ul>
-					</nav>
-				</div>
-
-			</div>
-
-
-
+				<% } %>
+		<%-- 페이지 처리 --%>
+		<div class="pagingArea" align="center">
+			<button onclick="location.href='<%=request.getContextPath()%>/PetSitter.all?currentPage=1'"><<</button>
+			<% if(currentPage <= 1){ %>
+				<button disabled><</button>		
+			<% }else{ %>
+				<button onclick="location.href='<%=request.getContextPath()%>/PetSitter.all?currentPage=<%=currentPage - 1 %>'"><</button>
+			<% } %>
+			<%
+				for(int p = startPage; p <= endPage; p++){
+					if(p == currentPage){
+			%>
+				<button disabled><%= p %></button>
+			<% } else {%>
+				<button onclick="location.href='<%=request.getContextPath()%>/PetSitter.all?currentPage=<%=p %>'"><%= p %></button>
+			<% } %>			
+			
+			<% } %>
+			
+			<% if(currentPage >= maxPage){ %>
+				<button disabled>></button>
+			<% } else { %>
+				<button onclick="location.href='<%=request.getContextPath()%>/PetSitter.all?currentPage=<%=currentPage + 1 %>'">></button>
+			<% } %>
+			<button onclick="location.href='<%=request.getContextPath()%>/PetSitter.all?currentPage=<%=maxPage%>'">>></button>
+		
 		</div>
-
-
-	</div>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+		</div>
+</div>
+</div>
 	<script>
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').trigger('focus')
