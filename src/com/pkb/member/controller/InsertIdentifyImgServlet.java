@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.pkb.common.MyFileRenamePolicy;
+import com.pkb.member.model.service.FileService;
 import com.pkb.member.model.vo.User;
 
 /**
  * Servlet implementation class InsertIdentifyImgServlet
  */
-@WebServlet("/insert.tn")
+@WebServlet("/insertIdentify.tn")
 public class InsertIdentifyImgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,7 +47,15 @@ public class InsertIdentifyImgServlet extends HttpServlet {
 		
 		File file = mr.getFile("identifyImg");
 		
-		com.pkb.member.model.vo.File f =
+		com.pkb.member.model.vo.File f = new com.pkb.member.model.vo.File();
+		
+		f.setFile_name(upload);
+		f.setFile_path(finalPath);
+		f.setUser_no(Integer.valueOf(((User) (request.getSession().getAttribute("loginUser"))).getUser_no()));
+		
+		int result = new FileService().insertIdentify(f);
+		
+		
 	}
 
 	/**
