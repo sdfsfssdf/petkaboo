@@ -61,4 +61,13 @@ public class PetsitterMainService {
 		return list;
 	}
 
+	public PetsitterService selectOne(int psrno) {
+		Connection con = getConnection();
+		PetsitterService p = null;
+		
+		p = new PetsitterServiceDao().selectOne(con, psrno);
+		
+		return p;
+	}
+
 }

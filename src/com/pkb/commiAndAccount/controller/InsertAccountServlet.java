@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pkb.commiAndAccount.model.service.CommiAndAccountService;
 import com.pkb.commiAndAccount.model.vo.Account;
+import com.pkb.member.model.vo.User;
 
 /**
  * Servlet implementation class InsertAccountServlet
@@ -34,27 +36,25 @@ public class InsertAccountServlet extends HttpServlet {
 		String bank = request.getParameter("bank");
 		String accountNo = request.getParameter("accountNo");
 		
-		// 세션에서 받아오도록 변경해야함...
-		int user_no = 21;
-		
+		HttpSession session = request.getSession();
+		int userNo = ((User)(session.getAttribute("loginUser"))).getUser_no();
 		Account ac = new Account();
 		ac.setBankName(bank);
 		ac.setAccountNo(accountNo);
 		
-		int result = new CommiAndAccountService().insertAccount(ac,user_no);
+		int result = new CommiAndAccountService().insertAccount(ac,userNo);
 		
 		
 		String page = "";
 		if (result > 0) {
-			page = "views/admin/defaultSet/commissionAndAccountMain.jsp";
-			request.setAttribute("caa", new CommiAndAccountService().selectCAAList());
+			response.sendRedirect(request.getContextPath()+ "/caaList.caa");
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "(관리자 페이지)무통장 입금용 계좌추가 실패");
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
 		}
 
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package com.pkb.commiAndAccount.model.service;
 
 import static com.pkb.common.JDBCTemplate.*;
-import static com.pkb.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import com.pkb.commiAndAccount.model.vo.CommissionAndAccountList;
 import com.pkb.commiAndAccount.model.vo.PetCategory;
 public class CommiAndAccountService {
 
-	public CommissionAndAccountList selectCAAList() {
+	public CommissionAndAccountList selectCAAList(int current, int limit) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		
@@ -24,11 +23,17 @@ public class CommiAndAccountService {
 			
 			if(tempcaa != null){
 				caa.setAlist(tempcaa.getAlist());
+				ArrayList<PetCategory> plist = new CommiAndAccountDao().selectPetCategory(con,current,limit);	
+				if(plist != null ){
+					caa.setPlist(plist);
+				} else {
+					caa = null;
+				}
 			} else {
 				caa = null;
 			}
 		}
-		
+	
 		close(con);
 		
 		return caa;
@@ -118,6 +123,17 @@ public class CommiAndAccountService {
 		
 		close(con);
 		
+		return result;
+	}
+
+	public int getListCount() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+
+		int result = new CommiAndAccountDao().getListCount(con);
+
+		close(con);
+
 		return result;
 	}
 

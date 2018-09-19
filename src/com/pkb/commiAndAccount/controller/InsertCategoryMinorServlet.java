@@ -44,15 +44,14 @@ public class InsertCategoryMinorServlet extends HttpServlet {
 		
 		String page = "";
 		if (result > 0) {
-			page = "views/admin/defaultSet/commissionAndAccountMain.jsp";
-			request.setAttribute("caa", new CommiAndAccountService().selectCAAList());
+			response.sendRedirect(request.getContextPath()+ "/caaList.caa");
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "(관리자 페이지)펫 카테고리 추가 실패");
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
 		}
 
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

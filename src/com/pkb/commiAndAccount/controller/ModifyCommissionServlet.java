@@ -58,15 +58,14 @@ public class ModifyCommissionServlet extends HttpServlet {
 
 		String page = "";
 		if (result.length > 0) {
-			page = "views/admin/defaultSet/commissionAndAccountMain.jsp";
-			request.setAttribute("caa", new CommiAndAccountService().selectCAAList());
+			response.sendRedirect(request.getContextPath()+ "/caaList.caa");
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "(관리자 페이지)카테고리별 수수로 변경 실패");
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
 		}
 
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 
 	}
 

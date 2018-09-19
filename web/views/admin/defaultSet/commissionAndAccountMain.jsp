@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.pkb.commiAndAccount.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.pkb.commiAndAccount.model.vo.*,com.pkb.common.Paging"%>
 <%
 	CommissionAndAccountList caa =(CommissionAndAccountList)request.getAttribute("caa");
+	Paging pg = (Paging)request.getAttribute("pg");
+
+	int listCount = pg.getListCount();
+	int currentPage = pg.getCurrentPage();
+	int maxPage = pg.getMaxPage();
+	int startPage = pg.getStartPage();
+	int endPage = pg.getEndPage();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -94,7 +101,7 @@
 	}
 	
 	.totalAddArea{
-		width:70%;
+		width:100%;
 		display:inline-block;
 	}
 	
@@ -156,7 +163,15 @@
 	
 	form {
 		display:inline-block;
-		width:80%;
+		width:50%;
+	}
+	
+	.leftWrapArea{
+      height:1250px !important; 
+	}
+	
+	.categoryInfoTable{
+		height:400px;
 	}
 </style>
 </head>
@@ -359,15 +374,15 @@
 	</script>
 	<br>
 	<hr>
-	<h3 class="categoryH3">동물 카테고리 추가</h3>
 	<div class="totalAddArea">
+	<h3 class="categoryH3">동물 카테고리 추가</h3>
 		<div class="addCateDiv">
 			<select class="form-control" id="selectCategory">
 				<option value="1">대분류</option>
 				<option value="2">소분류</option>
 			</select>
 		</div>
-		<form method="post" action="<%=request.getContextPath()%>/insertCategoryMajor.caa">
+		<form method="post" action="<%=request.getContextPath()%>/insertCategoryMajor.caa" id="majorForm">
 			<div id="major">
 					<label>카테고리명 : </label>
 					<input class="form-control addCate" type="text" name="categoryName">
@@ -377,8 +392,9 @@
 					<button class="btn btn-success">추가하기</button>
 			</div>
 		</form>
-		<form method="post" action="<%=request.getContextPath()%>/insertCategoryMinor.caa">
-			<div style="display:none;" id="minor">
+		<form method="post" style="display:none;"  action="<%=request.getContextPath()%>/insertCategoryMinor.caa" id="minorForm">
+			<div id="minor">
+					<label>분류:</label>
 					<select class="form-control addCate" name="selectCategory">
 						<% for (int i = 0 ; i< caa.getClist().size(); i++){ %>
 							<option value="<%=caa.getClist().get(i).getPetCategory()%>"><%=caa.getClist().get(i).getPetCategoryName() %></option>
@@ -394,15 +410,115 @@
 		$(function(){
 			$('#selectCategory').change(function(){
 				if($('#selectCategory').val() == "1"){
-					$('#major').show();
-					$('#minor').hide();
+					$('#majorForm').show();
+					$('#minorForm').hide();
 				} else {
-					$('#major').hide();
-					$('#minor').show();
+					$('#majorForm').hide();
+					$('#minorForm').show();
 				}
 			})
 		})
 	</script>
+	
+	<hr>
+	<h3>동물 카테고리 관리</h3>
+	<table class="table table-hover categoryInfoTable">
+		<tr>
+			<th><input type="checkbox" class="masterCheck2"></th>
+			<th>카테고리 번호</th>
+			<th>분류</th>
+			<th>카테고리명</th>
+		</tr>
+		<%for(PetCategory c : caa.getPlist()){ %>
+			<tr>
+				<td><input type="checkbox" class="childCheck2" name="selectCategoryList" value="<%=c.getPetCategory()%>"></td>
+				<td><%=c.getPetCategory() %></td>
+				<%if(c.getCategoryLV()==0) {%>
+					<td>대분류</td>
+				<%}else { %>
+					<td>소분류</td>
+				<%} %>
+				<td><%=c.getCategoryName()%></td>
+			</tr>
+		<%} %>
+	</table>
+	<script>	
+		$(function(){
+			$('.masterCheck2').click(function(){
+				$('.childCheck2').prop('checked',this.checked);
+			});
+		});
+	</script>
+
+	
+	<div class="spaceDiv"><div class="pigingArea" align="center">
+			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=1'"><<</button>
+			<% if (currentPage <= 1){%>
+				<button class="btn btn-info" disabled><</button>
+			<% } else { %>
+				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage - 1%>'"><</button>
+			<%} %>
+			
+			<% for(int p = startPage; p <= endPage; p++){
+				if(p == currentPage){%>
+				
+					<button class="btn btn-default" disabled ><%=p %></button>
+				<%} else {%>
+					<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=p%>'"><%=p %></button>
+				<%} %>
+			<%} %>
+			
+			<%if(currentPage >= maxPage) {%>
+				<button class="btn btn-info" disabled>></button>
+			<%} else { %>
+				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage + 1%>'">></button>
+			<%} %>
+			
+			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/caaList.caa?currentPage=<%=maxPage%>'">>></button>
+			<button class="btn btn-danger" name="deleteCategory"> 삭제하기</button>
+			<script>
+				$(function(){
+					$('#deleteCategory').click(function(){
+						var checkBoxs = document.getElementsByName("selectCategoryList"); // 체크박스 객체
+						var len = checkBoxs.length;
+						var checkRow = "";
+						var checkCnt = 0;
+						var checkLast = "";
+						var rowid = '';
+						var values = "";
+						var cnt = 0;
+						
+						for(var i = 0; i < len ; i ++){
+							if(checkBoxs[i].checked == true){
+								checkCnt++;
+								checkLast = i;
+							}
+						}
+						
+						for(var i = 0; i < len ; i ++){
+							if(checkBoxs[i].checked == true){
+								checkRow = checkBoxs[i].value;
+								
+								if(checkCnt == 1){
+									rowid += checkRow;
+								} else {
+									if(i == checkLast){
+										rowid += checkRow ;
+									} else {
+										rowid += checkRow + ",";
+									}
+								}
+								
+								cnt ++;
+								checkRow = '';
+							}	
+						}
+						location.href="<%=request.getContextPath()%>/deleteCategory.caa?selecCategorys="+rowid;
+					})
+				})
+			</script>
+	</div>
+	
 	</div>
 </body>
 </html>

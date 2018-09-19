@@ -1,6 +1,7 @@
 package com.pkb.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,23 @@ public class SelectOneOnebyOne extends HttpServlet {
 		System.out.println(num);
 		
 		Board b = new BoardService().selectOneOnebyOne(num);
+		
+		
+		
+		String page = "";
+		System.out.println("넘어왔나요?");
+		
+		if(b != null){
+			System.out.println(b.getArticle_title());
+			page = "views/myPage/onebyoneDetail.jsp";
+			request.setAttribute("b", b);
+			
+			System.out.println("넘어왔나요????");
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "1:1문의 내역 상세조회 실패!");
+			
+		}
 		
 		
 	}

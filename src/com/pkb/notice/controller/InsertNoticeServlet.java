@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pkb.common.Paging;
+import com.pkb.member.model.vo.User;
 import com.pkb.notice.model.service.NoticeService;
 import com.pkb.notice.model.vo.Notice;
 
@@ -41,8 +43,8 @@ public class InsertNoticeServlet extends HttpServlet {
 		nt.setArticle_contents(content);
 		nt.setArticle_title(title);
 		
-		// 추후 세션에서 받아와야 함.
-		int userNo = 21;
+		HttpSession session = request.getSession();
+		int userNo = ((User)(session.getAttribute("loginUser"))).getUser_no();
 		
 		int result = new NoticeService().insertNotice(nt,userNo);
 		
