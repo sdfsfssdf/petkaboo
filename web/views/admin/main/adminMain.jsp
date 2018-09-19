@@ -3,14 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 
 <body>
 	<%@include file="/views/admin/main/header.jsp" %>
-	<%@include file="/views/admin/main/leftSide.jsp" %>
-	<%@include file="/views/admin/main/rightSide.jsp" %>
+	
+		<%@include file="/views/admin/main/leftSide.jsp" %>
+		<%@include file="/views/admin/main/rightSide.jsp" %>
+	
 	<%-- <script>
 		$(function(){
 			$.ajax({

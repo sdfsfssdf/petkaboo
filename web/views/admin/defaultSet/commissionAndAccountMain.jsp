@@ -93,13 +93,8 @@
 		z-index:9999999;
 	}
 	
-	.addCate {
-		float:left;
-		width:200px;
-	}
-	
 	.totalAddArea{
-		width:80%;
+		width:70%;
 		display:inline-block;
 	}
 	
@@ -109,29 +104,72 @@
 	
 	#selectCategory{
 		width:100%;
-		
-	}
-	
-	.addCateLabel{
-		width:80px;
-		float:left;
-		margin-left:auto;
-		margin-right:auto;
 	}
 	
 	.addCateDiv{
-		width:100px;
-		float:left;
+		display:inline-block;
+		width:15%;
+		margin-right:30px;
 	}
 	
-	.addCatePer{
-		width:80px;
-		float:left;
+	#major {
+		display:inline-block;
+		width:100%
+	}
+	
+	#minor{
+		display:inline-block;
+		width:100%
+	}
+	
+	#major input {
+		display:inline-block;
+		width:20%
+	}
+	
+	#minor input {
+		display:inline-block;
+		margin-right:30px;
+		width:20%
+	}
+	
+	#minor select {
+		width:20%;
+		display:inline-block;
+	}
+	
+	.addCate{
+		wdith:40%;
+	}
+	
+	.categoryH3 {
+		margin-right:50px;
+	}
+	
+	.cateper{
+		margin-right:0px;
+	}
+	
+	.cateperLabel{
+		margin-right:30px;
+	}
+	
+	form {
+		display:inline-block;
+		width:80%;
 	}
 </style>
 </head>
 <body>
 	<%@include file="../main/header.jsp" %>
+	<% if( loginUser == null && loginUser.getUser_type()!= 9){ %>
+		<script>
+			$(function(){
+				location.href="<%=request.getContextPath() %>/views/common/errorPage.jsp";
+			})
+		</script>
+		
+	<%} %>
 	<%@include file="leftMenu.jsp" %>
 	<div class=contentArea>
 	<h2>수수료 및 계좌설정</h2>
@@ -321,54 +359,36 @@
 	</script>
 	<br>
 	<hr>
-	<h3 class="addCateH3">동물 카테고리 추가</h3>
+	<h3 class="categoryH3">동물 카테고리 추가</h3>
 	<div class="totalAddArea">
 		<div class="addCateDiv">
-		<label> </label>
 			<select class="form-control" id="selectCategory">
 				<option value="1">대분류</option>
 				<option value="2">소분류</option>
 			</select>
 		</div>
-		<div id="major">
-			<div class="addCateLabel">
-				<label>카테고리명  </label>
+		<form method="post" action="<%=request.getContextPath()%>/insertCategoryMajor.caa">
+			<div id="major">
+					<label>카테고리명 : </label>
+					<input class="form-control addCate" type="text" name="categoryName">
+					<label>수수료  : </label>
+					<input class="form-control cateper" name="commission" type="number" min="0" max="100">
+					<label class="cateperLabel">%</label>
+					<button class="btn btn-success">추가하기</button>
 			</div>
-			<div class="addCate">
-				<input class="form-control addCate" type="text">
+		</form>
+		<form method="post" action="<%=request.getContextPath()%>/insertCategoryMinor.caa">
+			<div style="display:none;" id="minor">
+					<select class="form-control addCate" name="selectCategory">
+						<% for (int i = 0 ; i< caa.getClist().size(); i++){ %>
+							<option value="<%=caa.getClist().get(i).getPetCategory()%>"><%=caa.getClist().get(i).getPetCategoryName() %></option>
+						<%} %>
+					</select>
+					<label>카테고리명  : </label>
+					<input class="form-control addCate" type="text" name="categoryName">
+					<button class="btn btn-success">추가하기</button>
 			</div>
-			<div class="addCateLabel">
-				<label>수수료  </label>
-			</div>
-			<div class="addCate">
-				<input class="form-control addCatePer" type="number" min="0" max="100">
-			</div>
-			<div class="addaddCateLabelCate">
-				<label>%</label>
-			</div>
-			<div class="addCate">
-				<button class="btn btn-success">추가하기</button>
-			</div>
-		</div>
-		
-		<div style="display:none;" id="minor">
-			<div class="addCate">
-				<select class="form-control addCate">
-					<% for (int i = 0 ; i< caa.getClist().size(); i++){ %>
-						<option><%=caa.getClist().get(i).getPetCategoryName() %></option>
-					<%} %>
-				</select>
-			</div>
-			<div class="addCateLabel">
-				<label>카테고리명  </label>
-			</div>
-			<div class="addCate">
-				<input class="form-control addCate" type="text">
-			</div>
-			<div class="addCate">
-				<button class="btn btn-success">추가하기</button>
-			</div>
-		</div>
+		</form>
 	</div>
 	<script>
 		$(function(){

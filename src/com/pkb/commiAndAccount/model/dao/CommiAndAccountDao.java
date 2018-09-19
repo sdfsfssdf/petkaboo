@@ -16,6 +16,7 @@ import java.util.Properties;
 import com.pkb.commiAndAccount.model.vo.Account;
 import com.pkb.commiAndAccount.model.vo.Commission;
 import com.pkb.commiAndAccount.model.vo.CommissionAndAccountList;
+import com.pkb.commiAndAccount.model.vo.PetCategory;
 
 public class CommiAndAccountDao {
 
@@ -155,6 +156,66 @@ public class CommiAndAccountDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public int insertCategoryMajor(Connection con, PetCategory pc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertCategoryMajor");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, pc.getCategoryName());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);			
+		}	
+		return result;
+	}
+
+	public int insertFee(Connection con, int commission) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertFee");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, commission);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);			
+		}	
+		return result;
+	}
+
+	public int insertCateogoryMinor(Connection con, PetCategory pc) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("insertCategoryMinor");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, pc.getCategoryName());
+			pstmt.setInt(2, pc.getCategoryRefNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		return result;
 	}
 
