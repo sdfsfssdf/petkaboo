@@ -1,5 +1,6 @@
 package com.pkb.petsitterService.model.vo;
 
+import java.sql.Connection;
 import java.sql.Date;
 
 public class PetsitterService {
@@ -192,5 +193,6 @@ public class PetsitterService {
 				+ ", contract_start=" + contract_start + ", contract_end=" + contract_end + ", service_detail="
 				+ service_detail + ", service_restrict=" + service_restrict + "]";
 	}
+
 
 }

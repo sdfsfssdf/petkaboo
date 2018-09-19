@@ -18,10 +18,23 @@ public class SearchPetsitter extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String searchKeyword = request.getParameter("searchKeyword");
+		String gender = request.getParameter("gender");
+		String arrayCondition = request.getParameter("arrayCondition");
 		
 		// 테스트코드
-		// System.out.println(searchKeyword);
+		System.out.println("키워드: " + searchKeyword);
+		System.out.println("성별: " + gender);
+		System.out.println("정렬조건: " + arrayCondition);
 		
+		// 테스트 코드
+		if(searchKeyword.equals("") || searchKeyword.equals(null)){
+			// 아무 키워드도 안 들어왔으면 다시 모든 리스트 보여주기
+			response.sendRedirect(request.getContextPath() + "/PetSitter.all");
+		}else{
+			// 아니면 질의 개시
+			
+			
+		}
 		
 		
 	}

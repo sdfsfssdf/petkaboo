@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>펫시터찾기메인</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -158,6 +159,10 @@ table.listArea td {
     border-bottom: 1px solid #ccc;
 }
 
+.SearchFormArea{
+	
+}
+
 </style>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript"
@@ -233,26 +238,9 @@ table.listArea td {
 					찾기 </strong>
 			</span>
 		</h2>
-		<br /> <br />
-
-		<fieldset id="field-style">
-			<br /> <br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-				type="text" placeholder="&nbsp;&nbsp;&nbsp;지역을 검색해보세요!"
-				class="input-style" />&nbsp;&nbsp;&nbsp;<a href="#"><i
-				class="fas fa-search"></i></a>
-
-			<button class="btn btn-default" type="submit">상세조회</button>
-			여자<input type="radio" name="gender" /> 남자 <input type="radio"
-				name="gender" /> <select name="searchPrice" id="searchPrice">
-				<option value="">가격높은순</option>
-				<option value="">가격낮은순</option>
-			</select> <select name="searchRank" id="searchRank">
-				<option value="">등급높은순</option>
-				<option value="">등급낮은순</option>
-			</select> <br /> <br /> <br />
-		</fieldset>
-		<br>
+	<div class="SearchFormArea">
+		<%@ include file="petSitterSearchForm.jsp" %>
+	</div>
 	<div class="SearchBodyArea">
 	<div id="map" style="width:400px; height:400px;">
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 넣으시면 됩니다.">
@@ -267,6 +255,7 @@ table.listArea td {
 	</div>						
 		<div class="new-ps-body">
 				<% for(PetsitterService p : list){ %>
+				<input type="hidden" name="psrno" value="<%=p.getPet_service_regno() %>">
 				<table id="listArea" class="listArea">
 					<tr>
 						<td colspan="2">프로필 사진을 여기에 출력<br><br><br><Br></td>
@@ -284,8 +273,26 @@ table.listArea td {
 						<% } %>
 					</tr>
 					<tr>
+						<th scope="row">동물</th>
+						<% switch(p.getPet_category()){ 
+						case 1:%><td>강아지</td><%;break; 
+						case 2:%><td>고양이</td><%;break;
+						case 3:%><td>파충류</td><%;break;
+						case 4:%><td>조류</td><%;break;
+						case 5:%><td>어류</td><%;break;
+						default:%><td>DB읽기에러</td><%;break;} %>
+					</tr>
+					<tr>
 						<th scope="row">주소</th>
 						<td><%= p.getAddress() %></td>
+					</tr>
+					<tr>
+						<th scope="row">서비스내용</th>
+						<td><%= p.getService_detail() %></td>
+					</tr>
+					<tr>
+						<th scope="row">서비스 제한사항</th>
+						<td><%= p.getService_restrict() %></td>
 					</tr>
 				</table>
 				<% } %>
@@ -323,6 +330,11 @@ table.listArea td {
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').trigger('focus')
 		})
+		$("#listArea td").click(function(){
+				var num = $(this).parent().children("#psrno").val();
+				console.log(num);
+				location.href = "<%=request.getContextPath()%>/selectOne.do?psrno=" + num;
+			});
 	</script>
 </body>
 </html>
