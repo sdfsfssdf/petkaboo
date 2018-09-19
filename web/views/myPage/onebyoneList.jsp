@@ -19,6 +19,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
@@ -146,16 +147,12 @@ th {
 	<script>
 		$(function(){
 			$("#listArea td").mouseenter(function(){
-				$(this).parent().css({"background":"darkgray", "cursor":"pointer"})
-			}).mouseout(function(){
-				$(this).parent().css({"background":"black", "cursor":"black"})
+				$(this).parent().css({"cursor":"pointer"})
 			}).click(function(){
 				var num = $(this).parent().children("input").val();
-				location.href = "<%=request.getContextPath()%>/selectOneOnebyOne.bo?num=" + num;
+				location.href="<%=request.getContextPath()%>/selectOneOnebyOne.bo?num=" + num;
 			});
-			
 		});
-	
 	
 	
 	

@@ -49,5 +49,18 @@ public class BoardService {
 		return oneByOneListCount;
 	}
 
+	public Board selectOneOnebyOne(int num) {
+		Connection con = getConnection();
+		
+		Board b = null;
+		
+		
+		/*int result = new BoardDao().updateOnebyOneCount(con, num);*/
+		
+		
+		
+		return null;
+	}
+
 	
 }

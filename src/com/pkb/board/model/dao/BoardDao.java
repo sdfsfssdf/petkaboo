@@ -58,6 +58,8 @@ public class BoardDao {
 		
 		return result;
 	}
+	
+	//목록 전체 조회
 	public ArrayList<Board> selectOnebyOneList(Connection con, int currentPage, int limit) {
 		
 		Board b = null;
@@ -115,6 +117,8 @@ public class BoardDao {
 		
 		return list;
 	}
+	
+	//목록 수 조회
 	public int getOnebyOneListCount(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -144,6 +148,80 @@ public class BoardDao {
 		
 		return oneByOneListCount;
 	}
+	
+	//상세 조회!
+	public Board selectOneOnebyOne(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board b = null;
+		
+		String query = prop.getProperty("selectOneOnebyOne");
+		
+		try {
+
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				
+				b = new Board();
+				
+				b.setArticle_no(rset.getInt("article_no"));
+				b.setUser_no(rset.getInt("user_no"));
+				b.setArticle_date(rset.getDate("article_date"));
+				b.setArticle_title(rset.getString("article_title"));
+				b.setArticle_contents(rset.getString("article_contents"));
+				b.setArticle_type(rset.getString("article_type"));
+				b.setArticle_lv(rset.getInt("article_lv"));
+				b.setContract_no(rset.getInt("contract_no"));
+				b.setArticle_status(rset.getInt("article_status"));
+				b.setArticle_refno(rset.getInt("article_refno"));
+				b.setArticle_modify_date(rset.getDate("article_modify_date"));
+				
+			}
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		
+		return b;
+	}
+	
+	/*public int updateOnebyOneCount(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateOnebyOneCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, num);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		
+			
+		}
+		
+		
+		return result;
+	}*/
 
 	
 
