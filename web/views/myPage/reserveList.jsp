@@ -75,15 +75,15 @@
 		<div class="listInfoArea">
 		
 		<!--  이거 테이블도 여러개지만 반복문으로 처리할 것... -->
-		<form action="<%request.getContextPath()%>/reservation.ps" method="get">
+		<%-- <form action="<%=request.getContextPath()%>/reservation.ps" method="get"> --%>
 			<table class="tableArea" >
 				<tr>
 					<td class="imgArea" rowspan="4" width="150px">img</td>
-					<td><input type="text" value="<%=loginUser.getUser_name() %>">이름 :</td>
-					<td colspan="2"><label>주소 : </label><input type="text" value="<%=loginUser.getAddress()%>"></td>
+					<td><span value="<%=loginUser.getUser_name() %>"> </span>이름 :</td>
+					<td colspan="2"><label>주소 : </label><%-- <input type="text" value="<%=loginUser.getAddress()%>"> --%></td>
 				</tr>
 				<tr>
-					<td><label>반려동물 이름 : </label><input type="text" value="<%=loginUser.getPet_auth()%>"></td>
+					<td><label>반려동물 이름 : </label><%-- <input type="text" value="<%=loginUser.getPet_auth()%>"> --%></td>
 					<td><label>돌봄 시작일 : </label></td>
 					<td><label>돌봄 종료일 : </label> ~ </td>
 				</tr>
@@ -96,7 +96,7 @@
 					<button type="submit" class="btn btn-info">리뷰남기기</button></td>
 				</tr>
 			</table>
-			</form>
+			<!-- </form> -->
 			<br><br>
 			<table class="tableArea">
 				<tr>

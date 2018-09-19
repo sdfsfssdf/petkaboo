@@ -70,7 +70,7 @@
 						<input type="password" id="check" class="form-control"
 							placeholder="비밀번호를 확인해주세요" name="check" maxlength="20">
 					</div>
-					<input type="button" id="join" onclick="join1()"
+					<input type="submit" id="join" onclick="join1()"
 						class="btn btn-primary form-control" value="회원가입">
 
 				</form>
