@@ -1,5 +1,6 @@
 package com.pkb.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pkb.common.MyFileRenamePolicy;
+import com.pkb.member.model.service.FileService;
 import com.pkb.member.model.service.UserService;
 import com.pkb.member.model.vo.User;
 import com.oreilly.servlet.MultipartRequest;
@@ -39,22 +41,52 @@ public class InsertNicknameServlet extends HttpServlet {
 		
 		MultipartRequest mr = new MultipartRequest(request, AbsolutePath + finalPath, 1024*768, "UTF-8", new MyFileRenamePolicy());
 		
-	
-		// String filePath = 
-		String nickname = mr.getParameter("nickname");
-		String email = (String)request.getSession().getAttribute("email");
-		String address= (String)request.getSession().getAttribute("address");
-		int result = new UserService().changeNickname(nickname, email);
+		String name = mr.getParameter("profile");
+		String upload =  mr.getFilesystemName("profile");
+		String original = mr.getOriginalFileName("profile");
 		
-		if(result > 0){
-			HttpSession session = request.getSession();
-			User u = (User)session.getAttribute("loginUser");
-			u.setNickname(nickname);
-			// 키값은 중복이 안된다. 
-			session.setAttribute("loginUser", u);
-			response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
+		File file = mr.getFile("profile");
+		
+		com.pkb.member.model.vo.File f = new com.pkb.member.model.vo.File();
+		
+		f.setFile_name(upload);
+		f.setFile_path(finalPath);
+		f.setUser_no(Integer.valueOf(((User) (request.getSession().getAttribute("loginUser"))).getUser_no()));
+		
+		int profileResult = new FileService().InsertProfile(f);
+		
+		if(profileResult ==1){
+			String nickname = mr.getParameter("nickname");
+			String email = (String)request.getSession().getAttribute("email");
+			String address= (String)request.getSession().getAttribute("address");
+			int result = new UserService().changeNickname(nickname, email);
+			
+			if(result > 0){
+				HttpSession session = request.getSession();
+				User u = (User)session.getAttribute("loginUser");
+				u.setNickname(nickname);
+				// 키값은 중복이 안된다. 
+				session.setAttribute("loginUser", u);
+				response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
+			}else{
+				System.out.println("실패");
+			}
 		}else{
-			System.out.println("실패");
+			String nickname = mr.getParameter("nickname");
+			String email = (String)request.getSession().getAttribute("email");
+			String address= (String)request.getSession().getAttribute("address");
+			int result = new UserService().changeNickname(nickname, email);
+			
+			if(result > 0){
+				HttpSession session = request.getSession();
+				User u = (User)session.getAttribute("loginUser");
+				u.setNickname(nickname);
+				// 키값은 중복이 안된다. 
+				session.setAttribute("loginUser", u);
+				response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
+			}else{
+				System.out.println("실패");
+			}
 		}
 	}
 	/**

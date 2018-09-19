@@ -242,7 +242,7 @@ padding:20px;
 				<hr
 					style="border: thin solid lightgray !important; display: inline-block !important; width: 100% !important;" />
 				<div class="center-content1">
-					<form action="<%=request.getContextPath()%>/insert.tn"
+					<form action="<%=request.getContextPath()%>//insertIdentify.tn"
 						method="post" encType="multipart/form-data">
 						<!-- 주민등록증 사진 찾기 -->
 						<div class=identifyform1>

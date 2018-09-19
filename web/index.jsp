@@ -1,9 +1,7 @@
 <%@page import="com.pkb.member.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<% 
-	User loginUser = (User)request.getAttribute("loginUser"); 
-%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html><br>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -141,9 +139,10 @@
 <body>
 		<%
 			String email =null;
-			if(session.getAttribute("email")!=null){
-			email = (String)session.getAttribute("email");
-		}
+			User login = (User)session.getAttribute("loginUser");
+			if(session.getAttribute("loginUser")!=null){
+			email = login.getEmail();
+			}
 		%>
 	<div class="topArea">
 		<h1 align="center" id="logo">로고</h1>
