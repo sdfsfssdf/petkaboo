@@ -296,7 +296,7 @@
 	</script>
 	<div class="accountBtns" align="center">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button type="button" id="insertAccBtn" class="btn btn-info" data-toggle="modal" data-target="#myModal">무통장 입금계좌 추가하기</button>
+		<button type="button" id="insertAccBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">무통장 입금계좌 추가하기</button>
 		<button type="button" id="deleteAccBtn" class="btn btn-danger " >삭제하기</button>
 	</div>
 	<div class="modal fade" id="myModal" role="dialog">
@@ -472,11 +472,11 @@
 
 	
 	<div class="spaceDiv"><div class="pigingArea" align="center">
-			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=1'"><<</button>
+			<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
-				<button class="btn btn-info" disabled><</button>
+				<button class="btn btn-default" disabled><</button>
 			<% } else { %>
-				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage - 1%>'"><</button>
+				<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage - 1%>'"><</button>
 			<%} %>
 			
 			<% for(int p = startPage; p <= endPage; p++){
@@ -489,11 +489,11 @@
 			<%} %>
 			
 			<%if(currentPage >= maxPage) {%>
-				<button class="btn btn-info" disabled>></button>
+				<button class="btn btn-default" disabled>></button>
 			<%} else { %>
-				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage + 1%>'">></button>
+				<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage + 1%>'">></button>
 			<%} %>
-			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/caaList.caa?currentPage=<%=maxPage%>'">>></button>
+			<button class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/caaList.caa?currentPage=<%=maxPage%>'">>></button>
 			<button class="btn btn-danger" id="deleteCategoryBtn" name="deleteCategoryBtn">삭제하기</button>
 			<script>
 				$(function(){

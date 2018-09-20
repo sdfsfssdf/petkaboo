@@ -113,11 +113,11 @@
 	
 	<!-- 페이지 처리 -->
 	<div class="spaceDiv"><div class="pigingArea">
-			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
+			<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=1'"><<</button>
 			<% if (currentPage <= 1){%>
-				<button class="btn btn-info" disabled><</button>
+				<button class="btn btn-default" disabled><</button>
 			<% } else { %>
-				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage - 1%>'"><</button>
+				<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage - 1%>'"><</button>
 			<%} %>
 			
 			<% for(int p = startPage; p <= endPage; p++){
@@ -130,12 +130,12 @@
 			<%} %>
 			
 			<%if(currentPage >= maxPage) {%>
-				<button class="btn btn-info" disabled>></button>
+				<button class="btn btn-default" disabled>></button>
 			<%} else { %>
-				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage + 1%>'">></button>
+				<button class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/noticeList.no?currentPage=<%=currentPage + 1%>'">></button>
 			<%} %>
 			
-			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/noticeList.no?currentPage=<%=maxPage%>'">>></button>
+			<button class="btn btn-default" onclick="location.href='<%=request.getContextPath() %>/noticeList.no?currentPage=<%=maxPage%>'">>></button>
 	</div>
 	
 

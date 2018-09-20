@@ -36,6 +36,8 @@
 </style>
 </head>
 <body>
+	<%@include file="../main/header.jsp" %>
+	<%@include file="leftMenu.jsp" %>
 	<div class="outer">
 	<div class="first-row">
 	<div class="table1">

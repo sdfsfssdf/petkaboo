@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -294,5 +295,82 @@ public class UserDAO {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int getListCount(Connection con) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		String query = prop.getProperty("listCount");
+
+		int listCount = 0;
+
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+		}
+		return listCount;
+	}
+
+	public ArrayList<User> selectMemberList(Connection con, int currentPage, int limit) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<User> mlist = null;
+		String query = prop.getProperty("selectMemberList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			mlist = new ArrayList<User>();
+			while(rs.next()){
+				User u = new User();
+				u.setUser_no(rs.getInt("user_no"));
+				u.setEmail(rs.getString("email"));
+				u.setUser_pwd(rs.getString("user_pwd"));
+				u.setUser_type(rs.getInt("user_type"));
+				u.setUser_name(rs.getString("user_name"));
+				u.setPhone(rs.getString("phone"));
+				u.setBirthday(rs.getDate("birthday"));
+				u.setGender(rs.getString("gender"));
+				u.setAddress(rs.getString("address"));
+				u.setSms_chk(rs.getString("sms_chk"));
+				u.setEmail_chk(rs.getString("email_chk"));
+				u.setEnrollDate(rs.getDate("enrolldate"));
+				u.setNickname(rs.getString("nickname"));
+				u.setUser_grade(rs.getInt("user_grade"));
+				u.setPet_auth(rs.getString("pet_auth"));
+				u.setUser_status(rs.getInt("user_status"));
+				u.setFile_no(rs.getInt("file_no"));
+				u.setEmail_hash(rs.getString("email_hash"));
+				u.setArticle_no(rs.getInt("article_no"));
+				
+				mlist.add(u);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return mlist;
 	}
 }

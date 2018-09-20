@@ -8,6 +8,7 @@ import static com.pkb.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.pkb.commiAndAccount.model.vo.CommissionAndAccountList;
 import com.pkb.member.model.dao.UserDAO;
 import com.pkb.member.model.vo.User;
 import com.pkb.member.util.SHA256;
@@ -137,4 +138,24 @@ public class UserService {
 		return list;
 		
 		
+	}
+
+	public int getListCount() {
+		Connection con = getConnection();
+
+		int result = new UserDAO().getListCount(con);
+
+		close(con);
+
+		return result;
+	}
+
+	public ArrayList<User> selectMemberList(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<User> mlist = new UserDAO().selectMemberList(con, currentPage, limit);
+		
+		close(con);
+
+		return mlist;
 	}}
