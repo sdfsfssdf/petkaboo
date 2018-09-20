@@ -268,6 +268,7 @@ public class UserDAO {
 		
 		try {
 			pstmt=con.prepareStatement(query);
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
