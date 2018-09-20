@@ -4,7 +4,8 @@ import java.sql.Date;
 
 public class Board implements java.io.Serializable{
 	private int article_no;				//게시물 번호
-	private int user_no;				//작성자 회원번호
+	private int user_no;				//회원번호
+	private String user_name;			//작성자
 	private Date article_date;			//작성일시
 	private String article_title;		//글제목
 	private String article_contents;	//글내용
@@ -21,12 +22,13 @@ public class Board implements java.io.Serializable{
 
 
 
-	public Board(int article_no, int user_no, Date article_date, String article_title, String article_contents,
+	public Board(int article_no, int user_no, String user_name, Date article_date, String article_title, String article_contents,
 			String article_type, int article_lv, int contract_no, int article_status, int article_refno,
 			Date article_modify_date) {
 		super();
 		this.article_no = article_no;
 		this.user_no = user_no;
+		this.user_name = user_name;
 		this.article_date = article_date;
 		this.article_title = article_title;
 		this.article_contents = article_contents;
@@ -37,6 +39,9 @@ public class Board implements java.io.Serializable{
 		this.article_refno = article_refno;
 		this.article_modify_date = article_modify_date;
 	}
+	
+	
+
 
 
 
@@ -48,6 +53,12 @@ public class Board implements java.io.Serializable{
 
 	public int getUser_no() {
 		return user_no;
+	}
+
+
+
+	public String getUser_name() {
+		return user_name;
 	}
 
 
@@ -118,6 +129,12 @@ public class Board implements java.io.Serializable{
 
 
 
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+
+
 	public void setArticle_date(Date article_date) {
 		this.article_date = article_date;
 	}
@@ -174,12 +191,14 @@ public class Board implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "Board [article_no=" + article_no + ", user_no=" + user_no + ", article_date=" + article_date
-				+ ", article_title=" + article_title + ", article_contents=" + article_contents + ", article_type="
-				+ article_type + ", article_lv=" + article_lv + ", contract_no=" + contract_no + ", article_status="
-				+ article_status + ", article_refno=" + article_refno + ", article_modify_date=" + article_modify_date
-				+ "]";
+		return "Board [article_no=" + article_no + ", user_no=" + user_no + ", user_name=" + user_name
+				+ ", article_date=" + article_date + ", article_title=" + article_title + ", article_contents="
+				+ article_contents + ", article_type=" + article_type + ", article_lv=" + article_lv + ", contract_no="
+				+ contract_no + ", article_status=" + article_status + ", article_refno=" + article_refno
+				+ ", article_modify_date=" + article_modify_date + "]";
 	}
+
+	
 	
 	
 }

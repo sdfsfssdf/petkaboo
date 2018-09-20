@@ -32,11 +32,11 @@ public class BoardService {
 		return result;
 	}
 
-	public ArrayList<Board> selectOnebyOneList(int currentPage, int limit) {
+	public ArrayList<Board> selectOnebyOneList(int currentPage, int limit, int user_no) {
 		
 		Connection con = getConnection();
 		
-		ArrayList<Board> list = new BoardDao().selectOnebyOneList(con, currentPage, limit);
+		ArrayList<Board> list = new BoardDao().selectOnebyOneList(con, currentPage, limit, user_no);
 		
 		return list;
 	}
@@ -57,8 +57,25 @@ public class BoardService {
 	
 		Board b = new BoardDao().selectOneOnebyOne(con, num);
 		
-	
+		close(con);
+		
 		return b;
+	}
+
+	public int modifyOnebyOne(Board b) {
+		Connection con = getConnection();
+		
+		int result = new BoardDao().modifyOnebyOne(con, b);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 	

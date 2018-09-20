@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.pkb.board.model.vo.Board;
+import com.pkb.member.model.vo.User;
+
 
 public class BoardDao {
 	private Properties prop = new Properties();
@@ -40,9 +42,9 @@ public class BoardDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			
-			//나중에 로그인 세션 되면 추가! pstmt.setInt(1, b.getUser_no());
-			pstmt.setString(1, b.getArticle_title());
-			pstmt.setString(2, b.getArticle_contents());
+			pstmt.setInt(1, b.getUser_no());
+			pstmt.setString(2, b.getArticle_title());
+			pstmt.setString(3, b.getArticle_contents());
 			
 			
 			result = pstmt.executeUpdate();
@@ -60,33 +62,41 @@ public class BoardDao {
 	}
 	
 	//목록 전체 조회
-	public ArrayList<Board> selectOnebyOneList(Connection con, int currentPage, int limit) {
+	public ArrayList<Board> selectOnebyOneList(Connection con, int currentPage, int limit, int user_no) {
 		
-		Board b = null;
+		Board b = new Board();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> list = null;
-		String query = prop.getProperty("selectOnebyOneList");
 	
+		System.out.println("하...");
+		String query = prop.getProperty("selectOnebyOneList");
+		System.out.println("하...");
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			
+			
+			
+			pstmt.setInt(1, user_no);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			
 			
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<Board>();
 			
 			while(rset.next()){
-				b = new Board();
+				
 				
 				b.setArticle_no(rset.getInt("article_no"));
 				b.setUser_no(rset.getInt("user_no"));
+				b.setUser_name(rset.getString("user_name"));
 				b.setArticle_date(rset.getDate("article_date"));
 				b.setArticle_title(rset.getString("article_title"));
 				b.setArticle_contents(rset.getString("article_contents"));
@@ -173,6 +183,7 @@ public class BoardDao {
 				
 				b.setArticle_no(rset.getInt("article_no"));
 				b.setUser_no(rset.getInt("user_no"));
+				b.setUser_name(rset.getString("user_name"));
 				b.setArticle_date(rset.getDate("article_date"));
 				b.setArticle_title(rset.getString("article_title"));
 				b.setArticle_contents(rset.getString("article_contents"));
@@ -197,6 +208,30 @@ public class BoardDao {
 		
 		
 		return b;
+		
+	}
+	public int modifyOnebyOne(Connection con, Board b) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("modifyOnebyOne");
+		
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, b.getArticle_title());
+			pstmt.setString(2, b.getArticle_contents());
+			pstmt.setInt(3, b.getArticle_no());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+		
 		
 	}
 	
