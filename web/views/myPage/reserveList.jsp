@@ -81,6 +81,7 @@ System.out.println("지혜 " + loginUser.getEmail()) ;
 			
 		
 			<table class="tableArea" >
+			<% for (lioginuse.lent) %>
 				<tr>
 					<td class="imgArea" rowspan="4" width="150px">img</td>
 					<td>이름 : <%=loginUser.getEmail() %></td>
