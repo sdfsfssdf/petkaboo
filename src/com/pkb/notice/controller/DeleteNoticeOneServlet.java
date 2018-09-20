@@ -38,7 +38,6 @@ public class DeleteNoticeOneServlet extends HttpServlet {
 		String page = "";
 
 		if (result > 0 ) {
-			page = "views/admin/defaultSet/noticeList.jsp";
 			// 페이징 객체 초기화
 			Paging pg = new Paging(1, 10);
 
@@ -62,15 +61,14 @@ public class DeleteNoticeOneServlet extends HttpServlet {
 			if (pg.getMaxPage() < pg.getEndPage()) {
 				pg.setEndPage(pg.getMaxPage());
 			}
-			request.setAttribute("list", new NoticeService().selectNoticeList(pg.getCurrentPage(), pg.getLimit()));
-			request.setAttribute("pg", pg);
+			response.sendRedirect(request.getContextPath()+"/noticeList.no");
 		} else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "(관리자 페이지)공지사항 삭제하기 실패");
+			RequestDispatcher view = request.getRequestDispatcher(page);
+			view.forward(request, response);
 		}
 
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
 	}
 
 	/**

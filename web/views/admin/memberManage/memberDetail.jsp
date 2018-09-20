@@ -33,6 +33,8 @@
 </style>
 </head>
 <body>
+	<%@include file="../main/header.jsp" %>
+	<%@include file="leftMenu.jsp" %>
 	<div class="outer">
 		<div class="">
 			<h2><b>회원정보수정</b></h2>

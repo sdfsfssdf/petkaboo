@@ -37,7 +37,6 @@ public class NoticeModifyFormServlet extends HttpServlet {
 
 		Notice nt = new NoticeService().selectOneNotice(nno);
 
-		System.out.println(nt);
 		String page = "";
 		if (nt != null) {
 			page = "views/admin/defaultSet/noticeModify.jsp";

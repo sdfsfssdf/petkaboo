@@ -33,7 +33,6 @@ public class DeleteCategoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		System.out.println("드루옴");
 		String selectAccNo = request.getParameter("selecCategorys");
 
 		String[] tempAccNos = selectAccNo.split(",");
