@@ -116,7 +116,7 @@ ul.sub li:hover > ul.sub-sub{display:block;}
 						<li class="group">
 							<div class="title">서비스 관리</div>
 							<ul class="sub">
-								<li><a href="../myPage/reserveList.jsp">예약현황</a></li>
+								<li><a href="../myPa">예약현황</a></li>
 								<li><a href="#">거래내역</a></li>
 								<li><a href="../myPage/onebyoneQNAWrite.jsp" >1:1 문의</a></li>
 								<li><a onclick="goOnebyOneQna()">내 질문 내역</a></li>

@@ -1,7 +1,9 @@
 <%@page import="com.pkb.member.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%User loginUser = (User)session.getAttribute("loginUser"); %>
+<%User loginUser = (User)session.getAttribute("loginUser"); 
+System.out.println("지혜 " + loginUser.getEmail()) ;
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,11 +78,15 @@
 		
 		<!--  이거 테이블도 여러개지만 반복문으로 처리할 것... -->
 		<%-- <form action="<%=request.getContextPath()%>/reservation.ps" method="get"> --%>
+			
+		
 			<table class="tableArea" >
+			<% for (lioginuse.lent) %>
 				<tr>
 					<td class="imgArea" rowspan="4" width="150px">img</td>
-					<td>이름 : <div value="<%=loginUser.getUser_name() %>"> </div></td>
-					<td colspan="2"><label>주소 : </label><input type="text" value="<%=loginUser.getAddress()%>"></td>
+					<td>이름 : <%=loginUser.getEmail() %></td>
+					<td colspan="2"><label>주소 : </label><%=loginUser.getAddress()%></td>
+					
 				</tr>
 				<tr>
 					<td><label>반려동물 이름 : </label><input type="text" value="<%=loginUser.getPet_auth()%>"></td>
