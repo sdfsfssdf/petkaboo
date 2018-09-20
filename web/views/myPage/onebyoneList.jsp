@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="com.pkb.board.model.vo.*, java.util.*, com.pkb.common.Paging"%>
+	import="com.pkb.board.model.vo.*, java.util.*, com.pkb.common.Paging, com.pkb.member.model.vo.User"%>
  <% 
+ 	User loginUser = (User)session.getAttribute("loginUser"); 
     ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
  
 	Paging pg = (Paging)request.getAttribute("pg");
@@ -64,6 +65,11 @@ th {
 </style>
 </head>
 <body>
+<%
+
+
+if(loginUser != null){ %>
+
 	<h1 align="center" id="logo">로고</h1>
 	<br>
 	<%@ include file="../common/menubar.jsp"%>
@@ -84,6 +90,7 @@ th {
 				 <%for(Board b : list){ %>
 
 				<tr>
+					
 				    <input type="hidden" value="<%=b.getArticle_no() %>">
 					<td><%=b.getArticle_no() %></td>
 					<td><%=b.getArticle_title()%></td>
@@ -129,6 +136,7 @@ th {
 		
 		
 		<div class="searchArea">
+			<form name="searchOne" method="get" action="./onebyoneList.jsp">
 			<select class="form-control" id="searchCondition"
 				name="searchCondition">
 				<option>----</option>
@@ -140,6 +148,7 @@ th {
 			
 			<button onclick="location.href='onebyoneQNAWrite.jsp'"
 				class="btn btn-success">작성하기</button>
+			</form>
 		</div>
 
 	</div>
@@ -154,11 +163,19 @@ th {
 			});
 		});
 	
-	
+		
+		$(function(){
+			
+			
+		})
 	
 	</script>
 	
+	<%}else{ 
 	
+	request.getRequestDispatcher("../common/login.jsp").forward(request,response);
+
+}%>
 	
 	
 	
