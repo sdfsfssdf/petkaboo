@@ -40,8 +40,6 @@ public class SelectOnebyOneListServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-	
-		
 		Paging pg = new Paging(1,10);
 		
 		if (request.getParameter("currentPage") != null) {
@@ -59,7 +57,9 @@ public class SelectOnebyOneListServlet extends HttpServlet {
 		if (pg.getMaxPage() < pg.getEndPage()) {
 			pg.setEndPage(pg.getMaxPage());
 		}
+		
 		int user_no = ((User)(session.getAttribute("loginUser"))).getUser_no();
+		
 		ArrayList<Board> list = new BoardService().selectOnebyOneList(pg.getCurrentPage(), pg.getLimit(), user_no);
 		
 		String page = "";

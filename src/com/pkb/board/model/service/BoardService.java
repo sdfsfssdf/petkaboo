@@ -38,6 +38,8 @@ public class BoardService {
 		
 		ArrayList<Board> list = new BoardDao().selectOnebyOneList(con, currentPage, limit, user_no);
 		
+		close(con);
+		
 		return list;
 	}
 
