@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -244,26 +244,22 @@ padding:20px;
 				<div class="center-content1">
 					<form action="<%=request.getContextPath()%>//insertIdentify.tn"
 						method="post" encType="multipart/form-data">
-						<!-- 주민등록증 사진 찾기 -->
-						<div class=identifyform1>
-							<input type="file" name="identifyImg" size='30' maxlength='25'
-								style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px"
-								value="파일경로" readonly>&nbsp;&nbsp;&nbsp;
-							<button id="regphoto" onclick="#" style="font-weight: lighter">찾기</button>
-						</div>
-
 						<!-- 주민등록증 미리보기 부분 -->
 						<div class=identifyform2>
 							<span>주민등록증 미리보기 사진</span>
+							<div id="contentImgArea">
+								<img id="foo" width = "295.5px" height="220px">
+							</div>
 						</div>
-
+						<div id="fileArea">
+							<input type="file" id="imgInp" name="identifyImg" multiple="multiple" accept=".jpg,.gif,.png"  onchange="loadImg(this,1)">
+						</div>
 						<div class=submitandcancle>
 							<button type="submit"
 								style="font-weight: lighter">등록하기</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button  id="cancel" onclick="#"
 								style="font-weight: lighter">취소하기</button>
-
 						</div>
 					</form>
 				</div>
@@ -298,7 +294,23 @@ padding:20px;
 			</div>
 		</div>
 	</div>
+<script>
+	function readURL(input) {
 
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#foo').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#imgInp").change(function() {
+
+    readURL(this);
+
+  });
+</script>
 
 </body>
 </html>

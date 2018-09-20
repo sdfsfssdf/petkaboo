@@ -34,8 +34,8 @@ public class ModifyAddressServlet extends HttpServlet {
 		String add2 = request.getParameter("addressDetail");
 		String postcode = request.getParameter("postcode");
 		String email = (String)request.getSession().getAttribute("email");
-		String address = (add1+'/'+add2+'/'+postcode);
-	
+		String address = (add1+add2+'/'+postcode);
+		User loginUser = (User)request.getSession().getAttribute("loginUser");
 		
 		int result = new UserService().changeAdd(loginUser);
 		System.out.println(result);
