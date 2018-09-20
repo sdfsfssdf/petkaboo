@@ -107,7 +107,7 @@ ul.sub li:hover > ul.sub-sub{display:block;}
 						<li class="group">
 							<div class="title">펫시터 관리</div>
 							<ul class="sub">
-								<li><a href="#">펫시터 서비스 등록</a></li>
+								<li><a href="../myPage/petSitterServiceInsertForm.jsp">펫시터 서비스 등록</a></li>
 								<li><a href="#">펫시터 정보 수정</a></li>
 								<li><a href="#">수입 현황</a></li>
 								<li><a href="#">돌봄일지</a></li>

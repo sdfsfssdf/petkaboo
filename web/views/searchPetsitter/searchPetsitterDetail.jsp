@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*, com.pkb.petsitterService.model.vo.*"%>
+<% 
+	PetsitterService p = (PetsitterService)request.getAttribute("p");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,7 +159,7 @@ td {
 					<table width="200px" height="200px"
 						style="margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:auto;">
 						<tr>
-							<td colspan="3" ><div width="100%" text-align="center">윤영진 펫시터<br>서울시 강서구<br>☆★★★★ 8명 평가</div></td>
+							<td colspan="3" ><div width="100%" text-align="center"><%=p.getNickname() %> 펫시터<br><%=p.getAddress() %><br>☆★★★★ 8명 평가</div></td>
 						</tr>
 						<tr>
 							<td>강아지<br />30000원</td>
