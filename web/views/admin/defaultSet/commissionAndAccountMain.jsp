@@ -306,7 +306,7 @@
           			<button type="button" class="close" data-dismiss="modal">&times;</button>
           			<h4 class="modal-title">무통장 입금계좌 추가하기 입력창</h4>
         		</div>
-        	<form method="post" action="<%=request.getContextPath()%>/insertAccount.caa">
+        	<form method="post" action="<%=request.getContextPath()%>/insertAccount.caa" onsubmit="return checkModalForm()" name="moform">
         	<div class="modal-body">
           		<label>은행</label> 
           		<select name="bank" class="form-control modalContent1 modalContent">
@@ -319,7 +319,7 @@
           			<option value="KEB외환은행">KEB외환은행</option>
           		</select>
           		<label>계좌번호</label>
-          		<input type="text" class="form-control modalContent modalContent2" name="accountNo" placeholder="계좌번호를 입력해주세요.">
+          		<input type="text" id="accountNo" class="form-control modalContent modalContent2" name="accountNo" placeholder="계좌번호를 입력해주세요.">
 <!--           		<label>예금주</label>
           		<input type="text" class="form-control modalContent modalContent3" name="name" placeholder="예금주명을 입력해주세요."> -->
         	</div>
@@ -330,6 +330,18 @@
         	</form>
       	</div>
     </div>
+    <script>
+    	function checkModalForm(){
+    	
+    		var accountNo = document.getElementById("accountNo");
+    		
+    		if(accountNo.value == ""){
+    			alert('계좌번호를 입력해 주세요.');
+    			moform.accountNo.focus();
+    			return false;
+    		}
+    	}
+    </script>
  	</div>
 	<script>
 		$(function(){
@@ -368,6 +380,11 @@
 						checkRow = '';
 					}	
 				}
+				if(rowid === ''){
+					alert('삭제하실 계좌번호를 선택해 주세요.')
+					return;
+				}
+				
 				location.href="<%=request.getContextPath()%>/deleteAccount.caa?selecAccNo="+rowid;
 			})
 		})
@@ -422,26 +439,29 @@
 	
 	<hr>
 	<h3>동물 카테고리 관리</h3>
-	<table class="table table-hover categoryInfoTable">
-		<tr>
-			<th><input type="checkbox" class="masterCheck2"></th>
-			<th>카테고리 번호</th>
-			<th>분류</th>
-			<th>카테고리명</th>
-		</tr>
-		<%for(PetCategory c : caa.getPlist()){ %>
+	<div class="categoryInfoTable">
+		<table class="table table-hover ">
 			<tr>
-				<td><input type="checkbox" class="childCheck2" name="selectCategoryList" value="<%=c.getPetCategory()%>"></td>
-				<td><%=c.getPetCategory() %></td>
-				<%if(c.getCategoryLV()==0) {%>
-					<td>대분류</td>
-				<%}else { %>
-					<td>소분류</td>
-				<%} %>
-				<td><%=c.getCategoryName()%></td>
+				<th><input type="checkbox" class="masterCheck2"></th>
+				<th>카테고리 번호</th>
+				<th>분류</th>
+				<th>카테고리명</th>
 			</tr>
-		<%} %>
-	</table>
+			<%for(PetCategory c : caa.getPlist()){ %>
+				<tr>
+					<td><input type="checkbox" class="childCheck2" name="selectCategoryList" value="<%=c.getPetCategory()%>"></td>
+					<td><%=c.getPetCategory() %></td>
+					<%if(c.getCategoryLV()==0) {%>
+						<td>대분류</td>
+					<%}else { %>
+						<td>소분류</td>
+					<%} %>
+					<td><%=c.getCategoryName()%></td>
+				</tr>
+			<%} %>
+		</table>
+	</div>
+	<br>
 	<script>	
 		$(function(){
 			$('.masterCheck2').click(function(){
@@ -473,12 +493,11 @@
 			<%} else { %>
 				<button class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/caaList.caa?currentPage=<%=currentPage + 1%>'">></button>
 			<%} %>
-			
 			<button class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/caaList.caa?currentPage=<%=maxPage%>'">>></button>
-			<button class="btn btn-danger" name="deleteCategory"> 삭제하기</button>
+			<button class="btn btn-danger" id="deleteCategoryBtn" name="deleteCategoryBtn">삭제하기</button>
 			<script>
 				$(function(){
-					$('#deleteCategory').click(function(){
+					$('#deleteCategoryBtn').click(function(){
 						var checkBoxs = document.getElementsByName("selectCategoryList"); // 체크박스 객체
 						var len = checkBoxs.length;
 						var checkRow = "";
@@ -513,6 +532,11 @@
 								checkRow = '';
 							}	
 						}
+						if(rowid === ''){
+							alert('삭제하실 카테고리를 선택해주세요.')
+							return;
+						}
+						
 						location.href="<%=request.getContextPath()%>/deleteCategory.caa?selecCategorys="+rowid;
 					})
 				})

@@ -76,7 +76,7 @@ public class NoticeDao {
 				nt = new Notice();
 
 				nt.setArticle_no(rs.getInt("ARTICLE_NO"));
-				nt.setUser_name(rs.getString("user_name"));
+				nt.setUser_name(rs.getString("NICKNAME"));
 				nt.setArticle_date(rs.getDate("ARTICLE_DATE"));
 				nt.setArticle_title(rs.getString("ARTICLE_TITLE"));
 				nt.setArticle_contents(rs.getString("ARTICLE_CONTENTS"));
@@ -142,7 +142,7 @@ public class NoticeDao {
 				nt = new Notice();
 
 				nt.setArticle_no(rs.getInt("ARTICLE_NO"));
-				nt.setUser_name(rs.getString("user_name"));
+				nt.setUser_name(rs.getString("NICKNAME"));
 				nt.setArticle_date(rs.getDate("ARTICLE_DATE"));
 				nt.setArticle_title(rs.getString("ARTICLE_TITLE"));
 				nt.setArticle_contents(rs.getString("ARTICLE_CONTENTS"));

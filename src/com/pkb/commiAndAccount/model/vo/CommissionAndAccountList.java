@@ -2,6 +2,7 @@ package com.pkb.commiAndAccount.model.vo;
 
 import java.util.ArrayList;
 
+
 public class CommissionAndAccountList {
 	private ArrayList<Account> alist;
 	private ArrayList<Commission> clist;

@@ -38,10 +38,8 @@ public class UserDAO {
 			pstmt.setString(1, email);
 			pstmt.setString(2, user_pwd);
 			rset=pstmt.executeQuery();
-			System.out.println("하이");
 			if(rset.next()){
 				loginUser = new User();
-				System.out.println("들어오니?");
 				loginUser.setUser_no(rset.getInt("user_no"));
 				loginUser.setEmail(rset.getString("email"));
 				loginUser.setUser_pwd(rset.getString("user_pwd"));
@@ -78,7 +76,6 @@ public class UserDAO {
 		int result = 0;
 		
 		String query = prop.getProperty("joinUser");
-		System.out.println("들어왔지?");
 		try {
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, u.getEmail());
@@ -90,7 +87,6 @@ public class UserDAO {
 		} finally{
 			close(pstmt);
 		}
-		System.out.println("숫자는?"+result);
 		return result;
 	}
 

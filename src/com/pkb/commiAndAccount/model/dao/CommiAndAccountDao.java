@@ -204,6 +204,7 @@ public class CommiAndAccountDao {
 		int result = 0;
 		String query = prop.getProperty("insertCategoryMinor");
 		
+		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, pc.getCategoryName());
@@ -282,4 +283,22 @@ public class CommiAndAccountDao {
 		return listCount;
 	}
 
+	public int[] deleteCategory(Connection con, int[] accNos) {
+		PreparedStatement pstmt = null;
+		int[] result = null;
+		String query = prop.getProperty("deleteCategory");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			for (int i = 0; i < accNos.length; i++) {
+				pstmt.setInt(1, accNos[i]);
+				pstmt.addBatch();
+			}
+			result = pstmt.executeBatch();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

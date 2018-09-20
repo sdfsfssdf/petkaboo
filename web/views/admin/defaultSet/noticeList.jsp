@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.pkb.notice.model.vo.*, java.util.*,com.pkb.common.Paging"%>%>
+    import="com.pkb.notice.model.vo.*, java.util.*,com.pkb.common.Paging"%>
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 	Paging pg = (Paging)request.getAttribute("pg");
@@ -212,6 +212,11 @@
 								cnt ++;
 								checkRow = '';
 							}	
+						}
+						
+						if(rowid === ''){
+							alert('삭제하실 공지사항을 선택해주세요.')
+							return;
 						}
 						location.href="<%=request.getContextPath()%>/deleteNotices.no?selecNnos="+rowid;
 					})

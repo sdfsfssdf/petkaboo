@@ -35,6 +35,7 @@ public class DeleteAccountServlet extends HttpServlet {
 		
 		String[] tempAccNos = selectAccNo.split(",");
 		int[] accNos = new int[tempAccNos.length];
+		 
 		
 		for (int i = 0; i < accNos.length; i++) {
 			accNos[i] = Integer.parseInt(tempAccNos[i]);
@@ -53,8 +54,6 @@ public class DeleteAccountServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 
-			
-	
 	}
 
 	/**

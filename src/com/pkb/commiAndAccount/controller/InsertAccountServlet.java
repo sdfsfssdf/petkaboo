@@ -54,6 +54,7 @@ public class InsertAccountServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher(page);
 			view.forward(request, response);
 		}
+		
 
 	}
 

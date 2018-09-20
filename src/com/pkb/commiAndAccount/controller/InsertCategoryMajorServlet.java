@@ -38,6 +38,7 @@ public class InsertCategoryMajorServlet extends HttpServlet {
 		PetCategory pc = new PetCategory();
 		pc.setCategoryName(categoryName);
 		
+		
 		int result = new CommiAndAccountService().insertCategoryMajor(pc,commission);
 	
 		String page = "";
