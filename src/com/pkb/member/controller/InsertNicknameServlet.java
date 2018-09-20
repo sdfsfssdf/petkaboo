@@ -44,34 +44,34 @@ public class InsertNicknameServlet extends HttpServlet {
 		String name = mr.getParameter("profile");
 		String upload =  mr.getFilesystemName("profile");
 		String original = mr.getOriginalFileName("profile");
+		String nickname = mr.getParameter("nickname");
+		String email = (String)request.getSession().getAttribute("email");
 		
 		File file = mr.getFile("profile");
 		
 		com.pkb.member.model.vo.File f = new com.pkb.member.model.vo.File();
-		
+		User loginUser = new User();
+		loginUser.setNickname(nickname);
 		f.setFile_name(upload);
 		f.setFile_path(finalPath);
 		f.setUser_no(Integer.valueOf(((User) (request.getSession().getAttribute("loginUser"))).getUser_no()));
 		
-		int profileResult = new FileService().InsertProfile(f);
-	
-			String nickname = mr.getParameter("nickname");
-			String email = (String)request.getSession().getAttribute("email");
-			String address= (String)request.getSession().getAttribute("address");
-			int result = new UserService().changeNickname(nickname, email);
+		int profileResult = new FileService().InsertProfile(f,nickname, email);
 			
-			
-			if(result > 0){
+		if(profileResult == 5 || profileResult == 3){
 				HttpSession session = request.getSession();
 				User u = (User)session.getAttribute("loginUser");
 				u.setNickname(nickname);
 				// 키값은 중복이 안된다. 
 				session.setAttribute("loginUser", u);
 				response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");
-			}else{
-				System.out.println("실패");
-			}
+		}else if(profileResult == 2){
+				response.sendRedirect("views/myPage/modifyMemberInfoMain.jsp");			
+		}else{
+			System.out.println("실패");
 		}
+	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

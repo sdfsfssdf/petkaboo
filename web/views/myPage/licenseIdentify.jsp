@@ -250,17 +250,22 @@ padding:20px;
 				<div class="center-content1">
 				<form method="post" action="<%=request.getContextPath()%>/insert.li" encType="multipart/form-data">	
 					<!-- 자격증 사진 찾기 -->
-					<div class=identifyform1>
-						<input type="file" name="licenseImg" size='30' maxlength='25'
-							style="width: 300px; height: 40px; margin: 0; color: black; border-width: 1px"
-							value="파일경로" readonly>&nbsp;&nbsp;&nbsp;
-						<button id="regphoto" onclick="#" style="font-weight: lighter">찾기</button>
-					</div>
-
-					<!-- 자격증 미리보기 부분 -->
-					<div class=identifyform2>
-						<span>자격증 미리보기 사진</span>
-					</div>
+						<div class=identifyform2>
+							<span>자격증 미리보기 사진</span>
+							<div id="contentImgArea">
+								<img id="foo" width = "295.5px" height="220px">
+							</div>
+						</div>
+						<div id="fileArea">
+							<input type="file" id="imgInp" name="licenseImg" multiple="multiple" accept=".jpg,.gif,.png"  onchange="loadImg(this,1)">
+						</div>
+						<div class=submitandcancle>
+							<button type="submit"
+								style="font-weight: lighter">등록하기</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button  id="cancel" onclick="#"
+								style="font-weight: lighter">취소하기</button>
+						</div>
 
 					<div class=submitandcancle>
 						<button type="submit" id="submit" onclick="#"
@@ -306,7 +311,23 @@ padding:20px;
 			</div>
 		</div>
 	</div>
+<script>
+	function readURL(input) {
 
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('#foo').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#imgInp").change(function() {
+
+    readURL(this);
+
+  });
+</script>
 
 </body>
 </html>

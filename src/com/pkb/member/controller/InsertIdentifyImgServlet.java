@@ -2,6 +2,7 @@ package com.pkb.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -58,8 +59,7 @@ public class InsertIdentifyImgServlet extends HttpServlet {
 		System.out.println(result);
 		
 		if(result > 0){
-			response.sendRedirect("views/myPage/nameIdentify.jsp");
-
+			response.sendRedirect("views/member/imgUploadCheck.jsp");
 		}else{
 			System.out.println("실패");
 		}
