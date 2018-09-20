@@ -279,7 +279,7 @@ public class UserDAO {
 
 		int result = 0;
 
-		String query = prop.getProperty("insertProfile");
+		String query = prop.getProperty("insertLicense");
 
 		try {
 			pstmt = con.prepareStatement(query);

@@ -2,6 +2,8 @@ package com.pkb.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import com.pkb.member.model.vo.User;
 /**
  * Servlet implementation class InsertLicenseImgServlet
  */
+
 @WebServlet("/insert.li")
 public class InsertLicenseImgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -56,7 +59,8 @@ public class InsertLicenseImgServlet extends HttpServlet {
 		
 		
 		if(result > 0){
-			response.sendRedirect("views/myPage/licenseIdentify.jsp");
+		
+			response.sendRedirect("views/member/imgUploadCheck.jsp");
 		}else{
 			System.out.println("실패");
 		}
