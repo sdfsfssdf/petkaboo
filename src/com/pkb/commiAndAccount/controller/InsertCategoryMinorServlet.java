@@ -40,6 +40,7 @@ public class InsertCategoryMinorServlet extends HttpServlet {
 		pc.setCategoryName(categoryName);
 		pc.setCategoryRefNo(category);
 		
+		
 		int result = new CommiAndAccountService().insertCategoryMinor(pc);
 		
 		String page = "";

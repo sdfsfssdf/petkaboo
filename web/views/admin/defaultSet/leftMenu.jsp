@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
    .leftWrapArea{
       display: inline-block;
       width:210px;

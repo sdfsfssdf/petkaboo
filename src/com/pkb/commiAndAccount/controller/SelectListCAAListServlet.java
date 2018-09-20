@@ -62,6 +62,7 @@ public class SelectListCAAListServlet extends HttpServlet {
 
 		CommissionAndAccountList caa = new CommiAndAccountService().selectCAAList(pg.getCurrentPage(), pg.getLimit());
 
+		
 		String page = "";
 
 		if (caa != null) {

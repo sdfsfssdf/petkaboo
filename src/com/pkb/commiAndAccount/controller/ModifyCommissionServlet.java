@@ -56,6 +56,7 @@ public class ModifyCommissionServlet extends HttpServlet {
 
 		int[] result = new CommiAndAccountService().modifyCommssion(clist);
 
+		
 		String page = "";
 		if (result.length > 0) {
 			response.sendRedirect(request.getContextPath()+ "/caaList.caa");

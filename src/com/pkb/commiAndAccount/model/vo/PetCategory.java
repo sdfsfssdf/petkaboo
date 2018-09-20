@@ -44,6 +44,7 @@ public class PetCategory {
 	public void setCategoryLV(int categoryLV) {
 		this.categoryLV = categoryLV;
 	}
+	
 
 	public void setCategoryRefNo(int categoryRefNo) {
 		this.categoryRefNo = categoryRefNo;
