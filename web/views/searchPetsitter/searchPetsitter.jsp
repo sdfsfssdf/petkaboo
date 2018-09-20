@@ -255,10 +255,10 @@ table.listArea td {
 	</div>						
 		<div class="new-ps-body">
 				<% for(PetsitterService p : list){ %>
-				<input type="hidden" name="psrno" value="<%=p.getPet_service_regno() %>">
 				<table id="listArea" class="listArea">
 					<tr>
-						<td colspan="2">프로필 사진을 여기에 출력<br><br><br><Br></td>
+						<input id="no" name="no" value="<%=p.getPet_service_regno() %>" type="hidden">
+						<td colspan="2"><br><br><br><Br></td>
 					</tr>
 					<tr>
 						<th scope="row">닉네임</th>
@@ -330,10 +330,9 @@ table.listArea td {
 		$('#myModal').on('shown.bs.modal', function() {
 			$('#myInput').trigger('focus')
 		})
-		$("#listArea td").click(function(){
-				var num = $(this).parent().children("#psrno").val();
-				console.log(num);
-				location.href = "<%=request.getContextPath()%>/selectOne.do?psrno=" + num;
+		$(".listArea").click(function(){
+				var num = $(this).find("input").val();
+				location.href = "<%=request.getContextPath()%>/selectOne.do?no=" + num;
 			});
 	</script>
 </body>

@@ -32,7 +32,7 @@ public class SelectOnePetsitterService extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 펫시터 서비스 등록번호 가져오기
-		int psrno = Integer.parseInt(request.getParameter("psrno"));
+		int psrno = Integer.parseInt(request.getParameter("no"));
 		System.out.println(psrno);
 		
 		PetsitterService p = new PetsitterMainService().selectOne(psrno);
