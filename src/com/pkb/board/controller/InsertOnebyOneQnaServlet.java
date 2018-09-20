@@ -1,7 +1,9 @@
 package com.pkb.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,12 +51,12 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 		b.setUser_no(((User)(session.getAttribute("loginUser"))).getUser_no());
 		
 		int result = new BoardService().insertOnebyOneQna(b);
-		
+
 		String page = "";
 		if(result > 0) {
 			page = "views/myPage/onebyoneList.jsp";
 			Paging pg = new Paging(1,10);
-			
+	
 			if(request.getParameter("currentPage") != null){
 				pg.setCurrentPage(Integer.parseInt(request.getParameter("currentPage")));
 			}
@@ -68,8 +70,11 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 			if (pg.getMaxPage() < pg.getEndPage()) {
 				pg.setEndPage(pg.getMaxPage());
 			}
-			request.setAttribute("list", new BoardService().selectOnebyOneList(pg.getCurrentPage(),pg.getLimit(),));
+			ArrayList<Board> list = new BoardService().selectOnebyOneList(pg.getCurrentPage(),pg.getLimit(),b.getUser_no());
+			System.out.println(list);
+			request.setAttribute("list", list);
 			request.setAttribute("pg", pg);
+			
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "1:1문의 등록 실패");		
@@ -78,7 +83,10 @@ public class InsertOnebyOneQnaServlet extends HttpServlet {
 		
 		
 		//등록한 정보가 있다면 내 질문내역 화면 띄워주기
-
+	/*	response.sendRedirect(request.getContextPath() + "/selectOnebyOneList.bo");*/
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
+		
 	
 	}
 

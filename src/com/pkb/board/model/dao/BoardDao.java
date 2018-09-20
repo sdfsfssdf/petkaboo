@@ -64,35 +64,31 @@ public class BoardDao {
 	//목록 전체 조회
 	public ArrayList<Board> selectOnebyOneList(Connection con, int currentPage, int limit, int user_no) {
 		
-		Board b = new Board();
+		Board b = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Board> list = null;
 	
-		System.out.println("하...");
+		
 		String query = prop.getProperty("selectOnebyOneList");
-		System.out.println("하...");
+		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
-			
-			
-			
+			System.out.println("sn:"+startRow);
+			System.out.println("en:"+endRow);
 			pstmt.setInt(1, user_no);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
-			
-			
 			
 			rset = pstmt.executeQuery();
 			
 			list = new ArrayList<Board>();
 			
 			while(rset.next()){
-				
+				b = new Board();
 				
 				b.setArticle_no(rset.getInt("article_no"));
 				b.setUser_no(rset.getInt("user_no"));
@@ -106,7 +102,7 @@ public class BoardDao {
 				b.setArticle_status(rset.getInt("article_status"));
 				b.setArticle_refno(rset.getInt("article_refno"));
 				b.setArticle_modify_date(rset.getDate("article_modify_date"));
-				
+				System.out.println(b);
 				list.add(b);
 			}
 			
