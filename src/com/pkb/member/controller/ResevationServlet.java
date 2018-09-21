@@ -43,6 +43,7 @@ public class ResevationServlet extends HttpServlet {
 		request.setAttribute("rsvList", rsvList);
 //		request.setAttribute("pg", pg);//페이징처리에 쓸거임
 		System.out.println("sss" + loginUser);
+		
 		System.out.println("rsvList = " + rsvList );
 	RequestDispatcher view = request.getRequestDispatcher(page);
 	view.forward(request, response);

@@ -124,6 +124,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
+        
         <!-- Modal body -->
         <div class="modal-body">
           <div class="modalTop">
