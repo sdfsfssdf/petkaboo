@@ -158,4 +158,16 @@ public class UserService {
 		close(con);
 
 		return mlist;
-	}}
+	}
+
+	public User selectMemberOne(int userNo) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		User user = new UserDAO().selectMemberOne(con, userNo);
+		
+		close(con);
+		
+		return user;
+	}
+}

@@ -1,8 +1,9 @@
 package com.pkb.member.model.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable{
 	private int user_no;
 	private String email;
 	private String user_pwd;

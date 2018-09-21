@@ -4,31 +4,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Insert title here</title>
 <style>
-	.outer{
-		float:left;
-		width:1000px;
-		height:600px;
-		color:black;
-		margin-left:20px;
-		margin-right:auto;
-		margin-top:20px;
-	}
-	.table{
-		width:100%;
-		border-collapse: separate;
-		border-spacing:-1px;
-		border:solid 1px black;
-		text-align:center;
-		vertical-align:center;
-		margin:auto;
-	}
-	td{
-		border:solid 1px black;
-		font-size:20px;
-	}
+	.outer {
+	float: left;
+	width: 1000px;
+	height: 800px;
+	color: black;
+	margin-left: 20px;
+	margin-right: auto;
+	margin-top: 20px;
+}
 
+.first-row {
+	float: left;
+	width: 100%;
+}
+
+.table1 {
+	float: left;
+	width: 1000px;
+	height: 600px;
+	margin-top: 20px;
+	marign-left: auto;
+	margin-right: auto;
+	padding-left: 50px;
+}
 
 </style>
 </head>
@@ -37,8 +44,10 @@
 	<%@include file="leftMenu.jsp" %>
 	<div class="outer">
 		<div class="">
-			<h2><b>회원정보수정</b></h2>
 			<hr>
+			<div class="table1">
+			<h2>회원정보수정</h2>
+			<p>회원의 상세정보를 확인할 수 있고, 수정, 삭제가 가능합니다.</p>
 			<table class="table" >
 				<tr>
 					<td width="25%" height="50" style="padding-top: 13px">회원번호</td>
@@ -95,6 +104,7 @@
 					<td colspan="2">   </td>
 				</tr>
 			</table>
+			</div>
 		</div>
 	</div>
 </body>

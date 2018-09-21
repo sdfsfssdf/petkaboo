@@ -1,6 +1,8 @@
 package com.pkb.commiAndAccount.model.vo;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 	private int withdrawInfoNo ;
 	private String accountNo;
 	private String bankName;

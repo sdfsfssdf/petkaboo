@@ -2,7 +2,7 @@ package com.pkb.member.model.vo;
 
 import java.util.Date;
 
-public class File {
+public class File{
 	private int file_no;
 	private Date file_date;
 	private String file_name;

@@ -373,4 +373,51 @@ public class UserDAO {
 		
 		return mlist;
 	}
+
+	public User selectMemberOne(Connection con, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		User u = null;
+		String query = prop.getProperty("selectMemberOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				u = new User();
+				
+				u.setUser_no(rs.getInt("user_no"));
+				u.setEmail(rs.getString("email"));
+				u.setUser_pwd(rs.getString("user_pwd"));
+				u.setUser_type(rs.getInt("user_type"));
+				u.setUser_name(rs.getString("user_name"));
+				u.setPhone(rs.getString("phone"));
+				u.setBirthday(rs.getDate("birthday"));
+				u.setGender(rs.getString("gender"));
+				u.setAddress(rs.getString("address"));
+				u.setSms_chk(rs.getString("sms_chk"));
+				u.setEmail_chk(rs.getString("email_chk"));
+				u.setEnrollDate(rs.getDate("enrolldate"));
+				u.setNickname(rs.getString("nickname"));
+				u.setUser_grade(rs.getInt("user_grade"));
+				u.setPet_auth(rs.getString("pet_auth"));
+				u.setUser_status(rs.getInt("user_status"));
+				u.setFile_no(rs.getInt("file_no"));
+				u.setEmail_hash(rs.getString("email_hash"));
+				u.setArticle_no(rs.getInt("article_no"));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return u;
+	}
 }

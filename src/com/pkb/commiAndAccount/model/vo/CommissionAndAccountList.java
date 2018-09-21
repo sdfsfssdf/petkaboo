@@ -1,9 +1,10 @@
 package com.pkb.commiAndAccount.model.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class CommissionAndAccountList {
+public class CommissionAndAccountList implements Serializable{
 	private ArrayList<Account> alist;
 	private ArrayList<Commission> clist;
 	private ArrayList<PetCategory> plist;

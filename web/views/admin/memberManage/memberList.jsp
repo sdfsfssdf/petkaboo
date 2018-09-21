@@ -26,7 +26,7 @@
 .outer {
 	float: left;
 	width: 1000px;
-	height: 600px;
+	height: 800px;
 	color: black;
 	margin-left: 20px;
 	margin-right: auto;
@@ -63,7 +63,7 @@
 				<h2>회원 목록</h2>
 				<p>회원의 정보를 확인 할 수 있고, 관리를 할 수 있습니다.</p>
 				<h4 style="color:lightgray">인증상태는 이메일인증, 휴대폰인증, 펫시터인증 순서 입니다.</h4>
-				<table id="memberList" class="table table-hover" align="center">
+				<table id="memberListTable" class="table table-hover" align="center" name="memberListTable">
 					<tr class="head">
 						<th width="10%">회원번호</th>
 						<th width="25%">ID</th>
@@ -76,6 +76,7 @@
 						for (int i = 0; i < mlist.size(); i++) {
 					%>
 					<tr align="center">
+						<input type="hidden" value="<%=mlist.get(i).getUser_no()%>">
 						<td><%=mlist.get(i).getUser_no()%></td>
 						<td><%=mlist.get(i).getEmail()%></td>
 						<td><%=mlist.get(i).getUser_name()%></td>
@@ -133,6 +134,17 @@
 				</table>
 			</div>
 		</div>
+		
+		<script>
+			$(function(){
+				$('#memberListTable td').click(function(){
+					var num = $(this).parent().children("input[type=hidden]").val();
+					location.href = "<%=request.getContextPath()%>/selectOneMember.me?num="+num;
+				})
+			})
+		</script>
+		
+		<br both="clear"><br>
 		<!-- 페이지 처리 -->
 		<div class="spaceDiv" align="center">
 			<div class="pigingArea">
