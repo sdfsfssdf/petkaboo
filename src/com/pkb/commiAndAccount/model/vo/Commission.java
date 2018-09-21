@@ -1,6 +1,8 @@
 package com.pkb.commiAndAccount.model.vo;
 
-public class Commission {
+import java.io.Serializable;
+
+public class Commission implements Serializable{
 	private int petCategory;
 	private String petCategoryName;
 	private int fee_rate;

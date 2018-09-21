@@ -1,6 +1,8 @@
 package com.pkb.commiAndAccount.model.vo;
 
-public class PetCategory {
+import java.io.Serializable;
+
+public class PetCategory implements Serializable{
 	private int petCategory;
 	private String categoryName;
 	private int categoryLV;
