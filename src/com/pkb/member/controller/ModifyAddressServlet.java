@@ -39,6 +39,7 @@ public class ModifyAddressServlet extends HttpServlet {
 
 		System.out.println(address);
 		
+		
 		int result = new UserService().changeAdd(loginUser, address);
 		System.out.println(result);
 		String page="";

@@ -77,6 +77,7 @@ public class FileService {
 		return result;
 	}
 
+	
 	public int insertLicense(ImgFile f) {
 		Connection con = getConnection();
 		

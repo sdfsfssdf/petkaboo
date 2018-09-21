@@ -22,6 +22,7 @@ import com.pkb.member.model.vo.User;
 public class ModifyMemberMoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
     /**
      * @see HttpServlet#HttpServlet()
      */

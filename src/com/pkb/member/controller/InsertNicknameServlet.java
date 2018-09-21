@@ -88,6 +88,7 @@ public class InsertNicknameServlet extends HttpServlet {
 			String fileName =  list.get(0).getFile_name();
 			
 			
+			
 			System.out.println(fileName);
 			System.out.println(list);
 			String page = "";

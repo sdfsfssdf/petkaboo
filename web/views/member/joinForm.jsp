@@ -68,6 +68,7 @@
 					</div>
 					<div class="form-group">
 						<input type="password" id="check" class="form-control"
+	
 							placeholder="비밀번호를 확인해주세요" name="check" maxlength="100">
 					</div>
 					<input type="submit" id="join" onclick="join1()"

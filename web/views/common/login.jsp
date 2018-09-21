@@ -76,6 +76,7 @@
 						}else{
 							googleAuthObj.signOut().then(function(){
 								checkLoginStatus();
+	
 							});
 						}
 						</script> -->

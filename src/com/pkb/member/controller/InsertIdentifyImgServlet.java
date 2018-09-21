@@ -39,6 +39,7 @@ public class InsertIdentifyImgServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String AbsolutePath = request.getSession().getServletContext().getRealPath("/");
 		
+		
 		String finalPath = "images\\profileImagesUpload\\";
 		
 		MultipartRequest mr = new MultipartRequest(request, AbsolutePath + finalPath, 1024*768, "UTF-8", new MyFileRenamePolicy());

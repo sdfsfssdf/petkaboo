@@ -54,6 +54,7 @@ public class InsertLicenseImgServlet extends HttpServlet {
 		f.setFile_path(finalPath);
 		f.setUser_no(Integer.valueOf(((User) (request.getSession().getAttribute("loginUser"))).getUser_no()));
 		
+		
 		int result = new FileService().insertLicense(f);
 		
 		System.out.println(result);
