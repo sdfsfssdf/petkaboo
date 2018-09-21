@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.pkb.common.MyFileRenamePolicy;
 import com.pkb.member.model.service.FileService;
+import com.pkb.member.model.vo.ImgFile;
 import com.pkb.member.model.vo.User;
 
 /**
@@ -48,7 +49,7 @@ public class InsertIdentifyImgServlet extends HttpServlet {
 		
 		File file = mr.getFile("identifyImg");
 		
-		com.pkb.member.model.vo.File f = new com.pkb.member.model.vo.File();
+		ImgFile f = new ImgFile();
 		
 		f.setFile_name(upload);
 		f.setFile_path(finalPath);
